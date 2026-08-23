@@ -216,9 +216,9 @@ body {
 
 /* Hero Logo Centerpiece */
 .hero-logo-box {
-    max-width: 860px;
+    max-width: 460px;
     width: 100%;
-    margin: 0 auto 28px;
+    margin: 0 auto 24px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -226,7 +226,7 @@ body {
 
 .hero-logo-img {
     width: 100%;
-    max-width: 860px;
+    max-width: 460px;
     height: auto;
     display: block;
 }
@@ -1448,18 +1448,41 @@ body {
     font-weight: 600;
 }
 
-.statement-link {
-    color: var(--ink);
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-color: var(--accent-gold);
-    transition: color 0.25s, text-decoration-color 0.25s;
+.statement-producer-meta {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
 }
 
-.statement-link:hover {
-    color: var(--accent-rose);
-    text-decoration-color: var(--accent-rose);
+.producer-x-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 8px 20px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s var(--ease);
+}
+
+.producer-x-link svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+}
+
+.producer-x-link:hover {
+    background: var(--ink);
+    color: #ffffff;
+    border-color: var(--ink);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
 /* ── Artists & Shortcut Chips ── */

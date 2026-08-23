@@ -6,7 +6,8 @@ const artists = [
     {
         id: "valotoa", name: "valotoa",
         links: [
-            { type: "youtube", url: "https://youtube.com/playlist?list=PLOb7KvIzm6NE&si=2InPpcagbd-i9dKD", label: "YouTube" }
+            { type: "youtube", url: "https://youtube.com/playlist?list=PLOb7KvIzm6NE&si=2InPpcagbd-i9dKD", label: "YouTube" },
+            { type: "suno", url: "https://suno.com/playlist/c95d6dd3-c6ee-41a8-9a9c-8213e6b07dcb", label: "Suno" }
         ],
         spotifyUrls: [],
         youtubeUrls: ["https://youtube.com/playlist?list=PLOb7KvIzm6NE&si=2InPpcagbd-i9dKD"]
@@ -76,6 +77,33 @@ const artists = [
         ],
         spotifyUrls: [],
         youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3Gmw6VX82wfxnStZ8lGeuNp9&si=mujfGGlFHVWnC_kV"]
+    },
+    {
+        id: "asymptote", name: "Asymptote",
+        links: [
+            { type: "youtube", url: "https://youtube.com/playlist?list=PLxpRgysXp3GlPvzX5hzWu4YxyPXrnriyM&si=OeHh87ijcXOVcxWi", label: "YouTube" },
+            { type: "suno", url: "https://suno.com/playlist/c95d6dd3-c6ee-41a8-9a9c-8213e6b07dcb", label: "Suno" }
+        ],
+        spotifyUrls: [],
+        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3GlPvzX5hzWu4YxyPXrnriyM&si=OeHh87ijcXOVcxWi"]
+    },
+    {
+        id: "dayendnight", name: "day end night",
+        links: [
+            { type: "youtube", url: "https://youtube.com/playlist?list=PLxpRgysXp3GmFmY4eSMSeAcFM3qjNN4gE&si=3TtpYPlWD63gZ2B3i", label: "YouTube" },
+            { type: "suno", url: "https://suno.com/playlist/c685d560-7182-4a81-b430-b4bf33bcfd4f", label: "Suno" }
+        ],
+        spotifyUrls: [],
+        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3GmFmY4eSMSeAcFM3qjNN4gE&si=3TtpYPlWD63gZ2B3i"]
+    },
+    {
+        id: "sonografica-artist", name: "Sonografica",
+        links: [
+            { type: "youtube", url: "https://youtube.com/playlist?list=PLLOIHKwdVqbE&si=k-m1OGcNYQMMIxkj", label: "YouTube" },
+            { type: "suno", url: "https://suno.com/playlist/6e89b45f-0ade-423e-9acd-cec8b0303665", label: "Suno" }
+        ],
+        spotifyUrls: [],
+        youtubeUrls: ["https://youtube.com/playlist?list=PLLOIHKwdVqbE&si=k-m1OGcNYQMMIxkj"]
     }
 ];
 
