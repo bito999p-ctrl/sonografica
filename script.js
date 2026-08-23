@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupAudioDeck();
 });
 
-/* ── Virtual Hardware Audio Player Deck Engine ── */
+/* ── Virtual Analog Hardware Audio Player Deck Engine ── */
 function setupAudioDeck() {
     const deck = document.getElementById('sonografica-deck');
     if (!deck) return;
@@ -105,6 +105,7 @@ function setupAudioDeck() {
     const titleEl = document.getElementById('deck-track-title');
     const artistEl = document.getElementById('deck-artist-name');
     const statusLabel = document.getElementById('deck-status-label');
+    const shuffleBadge = document.getElementById('deck-shuffle-badge');
     const btnPlay = document.getElementById('deck-btn-play');
     const iconPlay = btnPlay ? btnPlay.querySelector('.icon-play') : null;
     const iconPause = btnPlay ? btnPlay.querySelector('.icon-pause') : null;
@@ -112,6 +113,7 @@ function setupAudioDeck() {
     const btnStop = document.getElementById('deck-btn-stop');
     const btnPrev = document.getElementById('deck-btn-prev');
     const btnNext = document.getElementById('deck-btn-next');
+    const btnShuffle = document.getElementById('deck-shuffle-toggle');
     const currentTimeEl = document.getElementById('deck-current-time');
     const durationEl = document.getElementById('deck-duration');
     const progressWrap = document.getElementById('deck-progress-wrap');
@@ -124,6 +126,26 @@ function setupAudioDeck() {
 
     let currentIndex = 0;
     let isPlaying = false;
+    let isShuffle = true; // Default to Random / Shuffle mode
+    let shuffleQueue = [];
+    let queuePointer = 0;
+
+    function buildShuffleQueue(firstIndex) {
+        const indices = playlist.map((_, i) => i);
+        for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        if (typeof firstIndex === 'number') {
+            const at = indices.indexOf(firstIndex);
+            if (at > -1) {
+                indices.splice(at, 1);
+                indices.unshift(firstIndex);
+            }
+        }
+        shuffleQueue = indices;
+        queuePointer = 0;
+    }
 
     // Populate tracklist drawer
     if (tracklistItems) {
@@ -140,6 +162,7 @@ function setupAudioDeck() {
                 <span class="track-row-artist">${escapeHtml(track.artist)}</span>
             `;
             row.addEventListener('click', () => {
+                if (isShuffle) buildShuffleQueue(idx);
                 loadTrack(idx, true);
             });
             tracklistItems.appendChild(row);
@@ -231,13 +254,26 @@ function setupAudioDeck() {
     }
 
     function prevTrack() {
-        const nextIdx = (currentIndex - 1 + playlist.length) % playlist.length;
-        loadTrack(nextIdx, isPlaying);
+        if (isShuffle) {
+            queuePointer = Math.max(0, queuePointer - 1);
+            loadTrack(shuffleQueue[queuePointer], isPlaying);
+        } else {
+            const nextIdx = (currentIndex - 1 + playlist.length) % playlist.length;
+            loadTrack(nextIdx, isPlaying);
+        }
     }
 
     function nextTrack() {
-        const nextIdx = (currentIndex + 1) % playlist.length;
-        loadTrack(nextIdx, isPlaying);
+        if (isShuffle) {
+            queuePointer++;
+            if (queuePointer >= shuffleQueue.length) {
+                buildShuffleQueue();
+            }
+            loadTrack(shuffleQueue[queuePointer], isPlaying);
+        } else {
+            const nextIdx = (currentIndex + 1) % playlist.length;
+            loadTrack(nextIdx, isPlaying);
+        }
     }
 
     // Button Events
@@ -261,6 +297,19 @@ function setupAudioDeck() {
 
     if (btnNext) {
         btnNext.addEventListener('click', nextTrack);
+    }
+
+    // Shuffle Mode Toggle
+    if (btnShuffle) {
+        btnShuffle.addEventListener('click', () => {
+            isShuffle = !isShuffle;
+            btnShuffle.classList.toggle('is-active', isShuffle);
+            if (shuffleBadge) {
+                shuffleBadge.innerHTML = isShuffle ? '&#8646; SHUFFLE ON' : '&#8644; ORDER';
+                shuffleBadge.style.color = isShuffle ? 'var(--accent-rose)' : 'var(--accent-gold)';
+            }
+            if (isShuffle) buildShuffleQueue(currentIndex);
+        });
     }
 
     // Audio element event listeners
@@ -310,8 +359,10 @@ function setupAudioDeck() {
         });
     }
 
-    // Initial Load - Stopped State
-    loadTrack(0, false);
+    // Initial Random Track Selection on Page Load (Stopped state)
+    const initialRandomIdx = Math.floor(Math.random() * playlist.length);
+    buildShuffleQueue(initialRandomIdx);
+    loadTrack(initialRandomIdx, false);
 }
 
 function escapeHtml(str) {

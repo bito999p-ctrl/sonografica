@@ -57,13 +57,23 @@
                 <img src="sonografica_logo.jpg" alt="Sonografica" class="hero-logo-img" />
             </div>
 
-            <!-- Virtual Hardware Audio Machine Deck -->
-            <div class="audio-deck-chassis" id="sonografica-deck">
+            <!-- Virtual Analog Hardware Audio Machine Deck -->
+            <div class="audio-deck-chassis analog-theme" id="sonografica-deck">
+                <!-- Corner Machine Screws -->
+                <div class="deck-screw top-left">&#10010;</div>
+                <div class="deck-screw top-right">&#10010;</div>
+                <div class="deck-screw bottom-left">&#10010;</div>
+                <div class="deck-screw bottom-right">&#10010;</div>
+
                 <!-- Top Chassis Bezel -->
                 <div class="deck-top-bar">
                     <div class="deck-brand-tag">
                         <span class="deck-brand-name">SONOGRAFICA</span>
-                        <span class="deck-model">AUDIO DECK MODEL-S01</span>
+                        <span class="deck-model">ANALOG AUDIO DECK S-01</span>
+                    </div>
+                    <div class="deck-curation-badge">
+                        <span class="curation-dot"></span>
+                        <span class="curation-text">RECOMMENDED SELECTION / 推薦楽曲</span>
                     </div>
                     <div class="deck-status-led" id="deck-status-led">
                         <span class="led-dot"></span>
@@ -71,19 +81,25 @@
                     </div>
                 </div>
 
-                <!-- Main Display Screen Section -->
+                <!-- Main Analog Display & VU Gauges -->
                 <div class="deck-main-panel">
                     <div class="deck-display-screen">
-                        <div class="display-cover-frame">
+                        <!-- Vinyl / Cassette Artwork Bay -->
+                        <div class="display-cover-frame analog-bay">
                             <img src="assets/covers/cover_01.jpg" alt="Album Art" id="deck-cover-img" class="deck-cover-img" />
+                            <div class="analog-tape-reels">
+                                <div class="tape-reel left-reel"></div>
+                                <div class="tape-reel right-reel"></div>
+                            </div>
                             <div class="cover-glare-overlay"></div>
                         </div>
 
-                        <!-- LCD Metadata Screen -->
-                        <div class="deck-lcd-screen">
+                        <!-- Analog Meter & Track Information -->
+                        <div class="deck-lcd-screen analog-monitor">
                             <div class="lcd-header-row">
                                 <span class="lcd-track-badge" id="deck-track-num">TRK 01 / 28</span>
-                                <span class="lcd-audio-format">44.1kHz • LOSSLESS MP3</span>
+                                <span class="lcd-mode-badge" id="deck-shuffle-badge">&#8646; SHUFFLE ON</span>
+                                <span class="lcd-audio-format">ANALOG TAPE • 44.1kHz</span>
                             </div>
 
                             <div class="lcd-track-info">
@@ -91,14 +107,26 @@
                                 <p class="lcd-artist-name" id="deck-artist-name">valotoa</p>
                             </div>
 
-                            <!-- Animated Audio VU Meter -->
-                            <div class="lcd-vu-meter" id="deck-vu-meter">
-                                <span class="vu-bar"></span><span class="vu-bar"></span><span class="vu-bar"></span>
-                                <span class="vu-bar"></span><span class="vu-bar"></span><span class="vu-bar"></span>
-                                <span class="vu-bar"></span><span class="vu-bar"></span><span class="vu-bar"></span>
-                                <span class="vu-bar"></span><span class="vu-bar"></span><span class="vu-bar"></span>
-                                <span class="vu-bar"></span><span class="vu-bar"></span><span class="vu-bar"></span>
-                                <span class="vu-bar"></span><span class="vu-bar"></span><span class="vu-bar"></span>
+                            <!-- Dual Analog VU Needle Meters -->
+                            <div class="analog-vu-container">
+                                <div class="vu-needle-meter">
+                                    <div class="vu-scale">
+                                        <span>-20</span><span>-10</span><span>-5</span><span>0</span><span class="vu-red">+3</span>
+                                    </div>
+                                    <div class="vu-needle-track">
+                                        <div class="vu-needle" id="vu-needle-l"></div>
+                                    </div>
+                                    <span class="vu-ch-label">L-CH</span>
+                                </div>
+                                <div class="vu-needle-meter">
+                                    <div class="vu-scale">
+                                        <span>-20</span><span>-10</span><span>-5</span><span>0</span><span class="vu-red">+3</span>
+                                    </div>
+                                    <div class="vu-needle-track">
+                                        <div class="vu-needle" id="vu-needle-r"></div>
+                                    </div>
+                                    <span class="vu-ch-label">R-CH</span>
+                                </div>
                             </div>
 
                             <!-- Time & Progress Scrubber -->
@@ -113,10 +141,10 @@
                     </div>
                 </div>
 
-                <!-- Hardware Control Panel (Tactile Push Buttons) -->
+                <!-- Hardware Control Panel (Heavy Retro Tape Keys) -->
                 <div class="deck-controls-panel">
                     <div class="deck-buttons-group">
-                        <button class="deck-btn btn-prev" id="deck-btn-prev" title="Previous Track" aria-label="Previous Track">
+                        <button class="deck-btn btn-prev" id="deck-btn-prev" title="Previous Track (Random)" aria-label="Previous Track">
                             <span class="btn-cap"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></span>
                             <span class="btn-subtext">PREV</span>
                         </button>
@@ -134,22 +162,27 @@
                             <span class="btn-subtext">STOP</span>
                         </button>
 
-                        <button class="deck-btn btn-next" id="deck-btn-next" title="Next Track" aria-label="Next Track">
+                        <button class="deck-btn btn-next" id="deck-btn-next" title="Next Track (Random)" aria-label="Next Track">
                             <span class="btn-cap"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></span>
                             <span class="btn-subtext">NEXT</span>
                         </button>
                     </div>
 
-                    <!-- Volume & Track Drawer Toggle -->
+                    <!-- Aux Controls: Shuffle Mode, Volume & Tracklist -->
                     <div class="deck-aux-controls">
+                        <button class="deck-mode-btn is-active" id="deck-shuffle-toggle" title="Toggle Shuffle Mode">
+                            <span class="mode-icon">&#8646;</span>
+                            <span class="mode-text">SHUFFLE</span>
+                        </button>
+
                         <div class="deck-volume-control">
                             <span class="vol-icon">VOL</span>
                             <input type="range" id="deck-volume-slider" min="0" max="1" step="0.01" value="0.85" class="deck-vol-slider" aria-label="Volume" />
                         </div>
 
-                        <button class="deck-drawer-btn" id="deck-playlist-toggle" title="Track List">
+                        <button class="deck-drawer-btn" id="deck-playlist-toggle" title="Recommended Track List">
                             <span class="drawer-btn-icon">☰</span>
-                            <span class="drawer-btn-text">TRACKS</span>
+                            <span class="drawer-btn-text">PICKS (28)</span>
                         </button>
                     </div>
                 </div>
@@ -157,7 +190,7 @@
                 <!-- Expandable Tracklist Drawer -->
                 <div class="deck-tracklist-drawer" id="deck-tracklist-drawer">
                     <div class="tracklist-drawer-header">
-                        <span class="tracklist-title">ARCHIVE TRACKS (28)</span>
+                        <span class="tracklist-title">&#10022; SONOGRAFICA RECOMMENDED ARCHIVE (28 TRACKS)</span>
                         <button class="tracklist-close-btn" id="deck-tracklist-close">&times;</button>
                     </div>
                     <div class="tracklist-scroll-area" id="deck-tracklist-items"></div>
