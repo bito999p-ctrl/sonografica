@@ -31,15 +31,15 @@
         }
 
         .back-link:hover {
-            color: var(--canvas-ivory);
+            color: var(--text-primary);
             transform: translateX(-3px);
         }
 
         .law-heading {
             font-family: var(--font-heading);
             font-size: 2.2rem;
-            color: var(--canvas-ivory);
-            letter-spacing: 0.1em;
+            color: var(--text-primary);
+            letter-spacing: 0.08em;
             margin-bottom: 36px;
             border-bottom: 1px solid var(--draft-border);
             padding-bottom: 16px;
@@ -48,12 +48,13 @@
         .law-table {
             width: 100%;
             border-collapse: collapse;
-            background: rgba(18, 20, 26, 0.7);
+            background: var(--bg-paper);
             border: 1px solid var(--draft-border);
             border-radius: 8px;
             overflow: hidden;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(45, 40, 35, 0.05);
         }
 
         .law-table th,
@@ -67,15 +68,15 @@
 
         .law-table th {
             width: 32%;
-            background: rgba(244, 239, 230, 0.03);
-            color: var(--canvas-ivory);
+            background: rgba(255, 255, 255, 0.6);
+            color: var(--text-primary);
             font-family: var(--font-heading);
             font-weight: 600;
             letter-spacing: 0.05em;
         }
 
         .law-table td {
-            color: var(--text-primary);
+            color: var(--text-secondary);
         }
 
         @media (max-width: 768px) {

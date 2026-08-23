@@ -1,6 +1,7 @@
 /**
  * ==========================================
  * Sonografica — Core Interaction & Waveform Engine
+ * (Pencil & Watercolor Harmonic Simulation on Canvas)
  * ==========================================
  */
 
@@ -132,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================
-   Generative Sonografica Soundwave Canvas
+   Generative Pencil & Watercolor Waveform Canvas
    ========================================== */
 function setupSonograficaCanvas() {
     const canvas = document.getElementById('sono-canvas');
@@ -143,9 +144,9 @@ function setupSonograficaCanvas() {
     let time = 0;
     const mouse = { x: null, y: null, targetX: null, targetY: null };
 
-    // Floating harmonic paper debris particles (matching Collage Resti)
+    // Floating harmonic paper debris & watercolor pigment flecks
     const particles = [];
-    const particleCount = 45;
+    const particleCount = 40;
 
     class HarmonicDebris {
         constructor() {
@@ -157,12 +158,12 @@ function setupSonograficaCanvas() {
             this.y = initial ? Math.random() * height : height + 20;
             this.size = Math.random() * 4 + 1.5;
             this.rotation = Math.random() * Math.PI * 2;
-            this.vRot = (Math.random() - 0.5) * 0.02;
-            this.vy = -(Math.random() * 0.4 + 0.2);
-            this.vx = (Math.random() - 0.5) * 0.3;
-            this.opacity = Math.random() * 0.35 + 0.1;
-            this.color = Math.random() > 0.6 ? '#df5b7a' : (Math.random() > 0.3 ? '#3cb8aa' : '#dbaa5c');
-            this.isSquare = Math.random() > 0.4;
+            this.vRot = (Math.random() - 0.5) * 0.015;
+            this.vy = -(Math.random() * 0.35 + 0.15);
+            this.vx = (Math.random() - 0.5) * 0.25;
+            this.opacity = Math.random() * 0.25 + 0.08;
+            this.color = Math.random() > 0.6 ? '#c94263' : (Math.random() > 0.3 ? '#268a7d' : '#b38222');
+            this.isSquare = Math.random() > 0.45;
         }
 
         update() {
@@ -226,18 +227,16 @@ function setupSonograficaCanvas() {
         const step = 6;
 
         for (let x = 0; x <= width; x += step) {
-            // Wave equation with multi-harmonic frequencies
             let wave = Math.sin(x * frequency + time * speed) * amplitude;
             wave += Math.cos(x * frequency * 0.5 - time * speed * 0.7) * (amplitude * 0.4);
 
-            // Cursor magnetic wave displacement
             if (mouse.x !== null && mouse.y !== null) {
                 const dx = x - mouse.x;
                 const dy = (yOffset + wave) - mouse.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-                const maxDist = 200;
+                const maxDist = 220;
                 if (dist < maxDist) {
-                    const factor = (1 - dist / maxDist) * 25;
+                    const factor = (1 - dist / maxDist) * 22;
                     wave += Math.sin(dist * 0.05 - time * 2) * factor;
                 }
             }
@@ -246,7 +245,6 @@ function setupSonograficaCanvas() {
             points.push({ x, y });
         }
 
-        // Draw smooth curve through harmonic points
         if (points.length > 0) {
             ctx.moveTo(points[0].x, points[0].y);
             for (let i = 1; i < points.length - 1; i++) {
@@ -263,7 +261,6 @@ function setupSonograficaCanvas() {
     function animate() {
         time += 0.015;
 
-        // Smooth mouse interpolation
         if (mouse.targetX !== null) {
             mouse.x += (mouse.targetX - (mouse.x || mouse.targetX)) * 0.05;
             mouse.y += (mouse.targetY - (mouse.y || mouse.targetY)) * 0.05;
@@ -271,18 +268,17 @@ function setupSonograficaCanvas() {
 
         ctx.clearRect(0, 0, width, height);
 
-        // Draw delicate acoustic soundwave layers (Sonografica visual signature)
+        // Pencil & Watercolor wave layers onto canvas
         const midY = height * 0.52;
-        drawWave(midY, 35, 0.0035, 0.8, '#df5b7a', 0.18, 1);
-        drawWave(midY + 15, 45, 0.0028, -0.6, '#3cb8aa', 0.15, 1.2);
-        drawWave(midY - 20, 25, 0.005, 1.1, '#dbaa5c', 0.14, 0.8);
-        drawWave(midY + 40, 20, 0.004, -0.9, '#f4efe6', 0.08, 0.6);
+        drawWave(midY, 32, 0.0035, 0.8, '#c94263', 0.22, 1);
+        drawWave(midY + 15, 42, 0.0028, -0.6, '#268a7d', 0.20, 1.2);
+        drawWave(midY - 20, 22, 0.005, 1.1, '#b38222', 0.20, 0.8);
+        drawWave(midY + 35, 18, 0.004, -0.9, 'rgba(45, 40, 35, 0.25)', 0.15, 0.8);
 
-        // Top ambient fine harmonic lines
-        drawWave(height * 0.18, 12, 0.002, 0.5, '#f4efe6', 0.04, 0.5);
-        drawWave(height * 0.85, 18, 0.0025, -0.4, '#3cb8aa', 0.06, 0.8);
+        // Subtle ambient pencil harmonics top & bottom
+        drawWave(height * 0.18, 12, 0.002, 0.5, 'rgba(45, 40, 35, 0.15)', 0.10, 0.6);
+        drawWave(height * 0.85, 16, 0.0025, -0.4, '#268a7d', 0.12, 0.8);
 
-        // Draw and update floating harmonic debris
         particles.forEach(p => {
             p.update();
             p.draw();
@@ -308,7 +304,6 @@ function setupMobileNav() {
             navToggle.classList.toggle('active');
         });
 
-        // Auto close drawer when link is clicked
         const links = navContainer.querySelectorAll('.nav-link');
         links.forEach(link => {
             link.addEventListener('click', () => {
@@ -330,7 +325,7 @@ function setupMagneticButtons() {
             const rect = el.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            el.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`;
+            el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
         });
 
         el.addEventListener('mouseleave', () => {
