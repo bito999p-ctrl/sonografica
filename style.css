@@ -338,10 +338,28 @@ body {
 }
 
 .concept-body p {
-    font-size: 1rem;
+    font-family: var(--font-jp);
+    font-size: 1.02rem;
+    font-weight: 400;
     color: var(--ink-secondary);
-    margin-bottom: 18px;
-    line-height: 1.9;
+    margin-bottom: 22px;
+    line-height: 2.1;
+    letter-spacing: 0.04em;
+}
+
+.statement-lead {
+    font-size: 1.08rem !important;
+    color: var(--ink) !important;
+}
+
+.statement-conclusion {
+    padding-top: 12px;
+    border-top: 1px solid rgba(0,0,0,.08);
+}
+
+.statement-conclusion strong {
+    color: var(--ink);
+    font-weight: 600;
 }
 
 /* ── Artists ── */
