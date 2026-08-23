@@ -59,12 +59,6 @@
 
             <!-- Virtual Retro CRT Audio Master Console -->
             <div class="audio-deck-chassis crt-console-theme" id="sonografica-deck">
-                <!-- Realistic Device Photo Showcase -->
-                <div class="deck-device-photo-wrap">
-                    <img src="assets/amc80_photo.jpg" alt="SONOGRAFICA AMC-80 Audio Master Console" class="deck-device-photo" />
-                    <div class="deck-device-photo-overlay"></div>
-                </div>
-
                 <!-- Walnut Wood Side Cheeks -->
                 <div class="chassis-wood-cheek left-cheek"></div>
                 <div class="chassis-wood-cheek right-cheek"></div>
@@ -116,25 +110,39 @@
                             </div>
                         </div>
 
-                        <!-- Retro Chunky Square Hardware Keys -->
+                        <!-- Retro Chunky Square Hardware Keys with Chrome Bezel & Illuminated Caps -->
                         <div class="console-action-keys">
                             <button class="deck-btn btn-prev" id="deck-btn-prev" title="Previous Track" aria-label="Previous Track">
-                                <span class="btn-cap btn-icon">⏮</span>
+                                <div class="btn-chrome-rim">
+                                    <div class="btn-cap">
+                                        <span class="btn-icon-sym">⏮</span>
+                                    </div>
+                                </div>
                             </button>
 
                             <button class="deck-btn btn-play" id="deck-btn-play" title="Play / Pause" aria-label="Play / Pause">
-                                <span class="btn-cap play-cap btn-icon">
-                                    <span class="icon-play" id="deck-play-label">▶</span>
-                                    <span class="icon-pause" style="display:none;">⏸</span>
-                                </span>
+                                <div class="btn-chrome-rim rim-play">
+                                    <div class="btn-cap play-cap">
+                                        <span class="btn-icon-sym icon-play" id="deck-play-label">▶</span>
+                                        <span class="btn-icon-sym icon-pause" style="display:none;">⏸</span>
+                                    </div>
+                                </div>
                             </button>
 
                             <button class="deck-btn btn-stop" id="deck-btn-stop" title="Stop" aria-label="Stop">
-                                <span class="btn-cap btn-icon">⏹</span>
+                                <div class="btn-chrome-rim rim-stop">
+                                    <div class="btn-cap stop-cap">
+                                        <span class="btn-icon-sym">⏹</span>
+                                    </div>
+                                </div>
                             </button>
 
                             <button class="deck-btn btn-next" id="deck-btn-next" title="Next Track" aria-label="Next Track">
-                                <span class="btn-cap btn-icon">⏭</span>
+                                <div class="btn-chrome-rim">
+                                    <div class="btn-cap">
+                                        <span class="btn-icon-sym">⏭</span>
+                                    </div>
+                                </div>
                             </button>
                         </div>
                     </div>

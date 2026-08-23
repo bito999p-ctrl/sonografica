@@ -234,21 +234,25 @@ body {
 
 /* ==========================================
    Virtual Retro CRT Audio Master Console (Model AMC-80)
-   Vintage Rack Chassis × Walnut Cheeks × Curved CRT Phosphor Screen
+   Authentic Brushed Metal Chassis × Walnut Wood Cheeks × Curved CRT Screen
    ========================================== */
 .audio-deck-chassis.crt-console-theme {
     max-width: 860px;
     width: 100%;
     margin: 14px auto 44px;
-    background: linear-gradient(180deg, #2b2823 0%, #1e1b18 100%);
-    border-radius: 12px;
-    border: 2px solid #4a4237;
+    background-color: #1e1b18;
+    background-image: 
+        linear-gradient(180deg, rgba(40, 36, 32, 0.6) 0%, rgba(18, 16, 14, 0.8) 100%),
+        url('assets/brushed_aluminum.jpg');
+    background-size: auto, 400px 400px;
+    border-radius: 8px;
+    border: 2px solid #524a3e;
     box-shadow: 
-        0 28px 75px rgba(35, 28, 20, 0.35),
-        0 6px 24px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.7);
-    padding: 0;
+        0 30px 80px rgba(18, 14, 10, 0.45),
+        0 10px 30px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.9);
+    padding: 22px 30px;
     text-align: left;
     position: relative;
     color: #f4ede2;
@@ -301,33 +305,56 @@ body {
     padding-bottom: 18px;
 }
 
-/* Walnut Wood Side Cheeks */
+/* Walnut Wood Side Cheeks (Real Timber Texture & 3D Depth) */
 .chassis-wood-cheek {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 12px;
-    background: linear-gradient(90deg, #422616 0%, #633c22 45%, #3d2113 100%);
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8);
+    width: 18px;
+    background-color: #3b2214;
+    background-image: url('assets/walnut_wood.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 
+        inset 2px 0 3px rgba(255, 255, 255, 0.15),
+        inset -3px 0 6px rgba(0, 0, 0, 0.8),
+        0 0 10px rgba(0, 0, 0, 0.6);
     z-index: 2;
 }
-.chassis-wood-cheek.left-cheek { left: 0; border-right: 1px solid #24140a; }
-.chassis-wood-cheek.right-cheek { right: 0; border-left: 1px solid #24140a; }
+.chassis-wood-cheek.left-cheek {
+    left: 0;
+    border-right: 2px solid #140b06;
+}
+.chassis-wood-cheek.right-cheek {
+    right: 0;
+    border-left: 2px solid #140b06;
+}
 
-/* Corner Machine Screws */
+/* Corner Machined Stainless Steel Screws */
 .deck-screw {
     position: absolute;
-    font-size: 11px;
-    color: #615749;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #b5aba0 0%, #5e564c 55%, #2a251e 100%);
+    border: 1px solid #1a1815;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: #171513;
+    font-weight: 900;
     user-select: none;
     line-height: 1;
     z-index: 3;
 }
-.deck-screw.top-left { top: 8px; left: 20px; }
-.deck-screw.top-right { top: 8px; right: 20px; }
-.deck-screw.bottom-left { bottom: 8px; left: 20px; }
-.deck-screw.bottom-right { bottom: 8px; right: 20px; }
+.deck-screw.top-left { top: 8px; left: 24px; }
+.deck-screw.top-right { top: 8px; right: 24px; }
+.deck-screw.bottom-left { bottom: 8px; left: 24px; }
+.deck-screw.bottom-right { bottom: 8px; right: 24px; }
 
 /* Top Bezel Bar */
 .deck-top-bar {
@@ -337,6 +364,7 @@ body {
     padding-bottom: 12px;
     margin-bottom: 16px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
     flex-wrap: wrap;
     gap: 10px;
 }
@@ -353,30 +381,26 @@ body {
     font-weight: 700;
     letter-spacing: 0.16em;
     color: #ede7dc;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
 }
 
 .deck-model {
     font-size: 0.65rem;
     color: #a49e91;
     letter-spacing: 0.1em;
-    border-left: 1px solid rgba(255, 255, 255, 0.15);
-    padding-left: 8px;
 }
 
-/* Recommendation Badge */
 .deck-curation-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    background: rgba(197, 160, 89, 0.12);
+    border: 1px solid rgba(197, 160, 89, 0.35);
     padding: 3px 10px;
-    background: rgba(179, 130, 34, 0.14);
-    border: 1px solid rgba(179, 130, 34, 0.35);
     border-radius: 4px;
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--accent-gold);
-    letter-spacing: 0.08em;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
 }
+
 .curation-dot {
     width: 6px;
     height: 6px;
@@ -385,87 +409,97 @@ body {
     box-shadow: 0 0 6px var(--accent-gold);
 }
 
-/* LED Status Indicator */
+.curation-text {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--accent-gold);
+}
+
 .deck-status-led {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
     font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.15em;
+    font-size: 0.65rem;
+    color: #9a9284;
+    letter-spacing: 0.1em;
 }
 
 .led-dot {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    background: #e04545;
-    box-shadow: 0 0 8px rgba(224, 69, 69, 0.6);
-    transition: all 0.3s ease;
+    background: #ff4747;
+    box-shadow: 0 0 6px #ff4747;
+    transition: background 0.3s, box-shadow 0.3s;
 }
 
 .audio-deck-chassis.is-playing .led-dot {
     background: #38ef7d;
-    box-shadow: 0 0 10px rgba(56, 239, 125, 0.9);
-    animation: ledPulse 1.5s infinite;
+    box-shadow: 0 0 8px #38ef7d;
 }
 
 .audio-deck-chassis.is-paused .led-dot {
-    background: var(--accent-gold);
-    box-shadow: 0 0 8px rgba(219, 170, 92, 0.8);
+    background: #f7b731;
+    box-shadow: 0 0 6px #f7b731;
 }
 
-.led-label {
-    color: #9a9489;
-    font-size: 0.65rem;
-}
-
-/* Main Console Panel Layout: Left Subpanel + CRT Monitor */
+/* ==========================================
+   Main Console Panel: Dual VU Gauges + CRT Monitor
+   ========================================== */
 .deck-main-panel {
     display: grid;
     grid-template-columns: 240px 1fr;
-    gap: 20px;
+    gap: 18px;
     align-items: stretch;
-    margin-bottom: 16px;
 }
 
-/* Left Subpanel: VU Meters & Chunky Hardware Buttons */
+/* Left Subpanel: Dual VU Gauges & Action Keys */
 .console-left-subpanel {
     display: flex;
     flex-direction: column;
+    gap: 12px;
     justify-content: space-between;
-    gap: 14px;
 }
 
-/* Dual Analog Needle VU Meters */
+/* Dual Analog VU Meters */
 .analog-vu-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
+    background: #110f0d;
     padding: 8px;
-    background: #141311;
-    border: 1px solid #363028;
     border-radius: 6px;
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.7);
+    border: 1px solid #332d26;
+    box-shadow: 
+        inset 0 2px 6px rgba(0, 0, 0, 0.9),
+        0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .vu-needle-meter {
-    background: linear-gradient(180deg, #f4e8c1 0%, #d8caa0 100%);
-    border: 1px solid #3a3328;
+    background: #f1e4cb;
+    border: 2px solid #231f1a;
     border-radius: 4px;
-    padding: 4px 6px 6px;
+    padding: 6px 4px 4px;
     position: relative;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+    box-shadow: 
+        inset 0 0 10px rgba(184, 150, 102, 0.5),
+        inset 0 0 4px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
 }
 
 .vu-scale {
     display: flex;
     justify-content: space-between;
     font-family: var(--font-mono);
-    font-size: 0.48rem;
-    color: #3b3428;
+    font-size: 0.45rem;
     font-weight: 700;
-    margin-bottom: 2px;
+    color: #2b251e;
+    letter-spacing: -0.02em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    padding-bottom: 2px;
 }
 .vu-scale .vu-red { color: #c42d2d; }
 
@@ -519,11 +553,20 @@ body {
     font-weight: 700;
 }
 
-/* Retro Square Hardware Keys */
+/* ==========================================
+   Retro Chunky Square Hardware Keys (Chrome Bezel & Acrylic Backlit Face)
+   ========================================== */
 .console-action-keys {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 7px;
+    background: #0d0c0a;
+    border: 1px solid #2e2a24;
+    border-radius: 7px;
+    padding: 6px;
+    box-shadow: 
+        inset 0 2px 6px rgba(0, 0, 0, 0.9),
+        0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .deck-btn {
@@ -531,67 +574,137 @@ body {
     background: transparent;
     cursor: pointer;
     padding: 0;
-    color: #e5dfd5;
     outline: none;
     display: block;
     width: 100%;
 }
 
+/* Outer Machined Die-Cast Chrome/Alloy Bezel Rim */
+.btn-chrome-rim {
+    background: linear-gradient(145deg, #b8b8b8 0%, #5e5e5e 35%, #242424 70%, #7d7d7d 100%);
+    padding: 2.5px;
+    border-radius: 6px;
+    box-shadow: 
+        0 3px 5px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+/* Molded Tactile Acrylic Keycap Face */
 .deck-btn .btn-cap {
     width: 100%;
-    height: 42px;
-    background: linear-gradient(180deg, #3d3730 0%, #27231e 100%);
-    border: 1px solid #574e42;
-    border-radius: 6px;
+    height: 38px;
+    background: linear-gradient(180deg, #2c2e2d 0%, #161817 60%, #0d0e0e 100%);
+    border: 1px solid #1c1f1e;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
     box-shadow: 
-        0 4px 0 #12100d,
-        0 6px 12px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    color: #ded8ce;
-    transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.2s;
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.8);
+    transition: all 0.15s ease;
+    position: relative;
 }
 
-.deck-btn .btn-icon {
-    font-size: 1.35rem;
+/* Glowing Symbol Inside Key */
+.btn-icon-sym {
+    font-size: 1.18rem;
     line-height: 1;
     letter-spacing: 0;
+    color: #8fa096;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
     font-family: 'Segoe UI Symbol', 'Apple Color Emoji', 'Noto Sans Symbols', sans-serif;
+    transition: all 0.2s ease;
 }
 
-.deck-btn.btn-play .btn-cap {
-    border-color: var(--accent-gold);
-    color: var(--accent-gold);
+/* Play Keycap (Illuminated Green Phosphor Lamp) */
+.btn-chrome-rim.rim-play {
+    background: linear-gradient(145deg, #a5d8b5 0%, #3e704e 35%, #183321 70%, #5ba473 100%);
 }
 
-.audio-deck-chassis.is-playing .deck-btn.btn-play .btn-cap {
-    background: linear-gradient(180deg, #1f4f31 0%, #11331e 100%);
-    border-color: #38ef7d;
-    color: #38ef7d;
-    box-shadow: 0 4px 0 #091a0f, 0 0 12px rgba(56, 239, 125, 0.3);
+.deck-btn .btn-cap.play-cap {
+    background: linear-gradient(180deg, #183823 0%, #0e2417 60%, #08170e 100%);
+    border-color: #2b613c;
 }
 
-.deck-btn.btn-stop:hover .btn-cap {
-    color: #ff6b6b;
+.deck-btn .btn-cap.play-cap .btn-icon-sym {
+    color: #52f08e;
+    text-shadow: 
+        0 0 8px rgba(82, 240, 142, 0.8),
+        0 0 16px rgba(82, 240, 142, 0.4);
 }
 
-.deck-btn:hover .btn-cap {
-    background: linear-gradient(180deg, #4d463d 0%, #312c26 100%);
+/* Active Play State (Neon Luminescence) */
+.audio-deck-chassis.is-playing .btn-chrome-rim.rim-play {
+    box-shadow: 
+        0 0 12px rgba(82, 240, 142, 0.45),
+        0 3px 5px rgba(0, 0, 0, 0.7);
+}
+
+.audio-deck-chassis.is-playing .deck-btn .btn-cap.play-cap {
+    background: linear-gradient(180deg, #245834 0%, #133920 60%, #0c2314 100%);
+    border-color: #52f08e;
+    box-shadow: 
+        inset 0 1px 2px rgba(255, 255, 255, 0.5),
+        inset 0 0 10px rgba(82, 240, 142, 0.35);
+}
+
+.audio-deck-chassis.is-playing .deck-btn .btn-cap.play-cap .btn-icon-sym {
     color: #ffffff;
+    text-shadow: 
+        0 0 10px #52f08e,
+        0 0 20px #38ef7d;
+}
+
+/* Stop Keycap (Illuminated Red Ruby Lamp) */
+.btn-chrome-rim.rim-stop {
+    background: linear-gradient(145deg, #d8a5a5 0%, #703e3e 35%, #331818 70%, #a45b5b 100%);
+}
+
+.deck-btn .btn-cap.stop-cap {
+    background: linear-gradient(180deg, #381818 0%, #240e0e 60%, #170808 100%);
+    border-color: #612b2b;
+}
+
+.deck-btn .btn-cap.stop-cap .btn-icon-sym {
+    color: #f05252;
+    text-shadow: 0 0 8px rgba(240, 82, 82, 0.6);
+}
+
+.deck-btn.btn-stop:hover .btn-cap.stop-cap {
+    background: linear-gradient(180deg, #4f1d1d 0%, #331212 60%, #210a0a 100%);
+}
+
+.deck-btn.btn-stop:hover .btn-icon-sym {
+    color: #ffffff;
+    text-shadow: 
+        0 0 10px #ff5555,
+        0 0 18px #ff2222;
+}
+
+/* Prev & Next Hover */
+.deck-btn:hover .btn-cap {
+    background: linear-gradient(180deg, #383c3a 0%, #212423 60%, #161818 100%);
+}
+
+.deck-btn:hover .btn-icon-sym {
+    color: #e0ece5;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Tactile Mechanical Click Down State */
+.deck-btn:active .btn-chrome-rim {
+    transform: translateY(2px);
+    box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
 .deck-btn:active .btn-cap {
-    transform: translateY(3px);
     box-shadow: 
-        0 1px 0 #12100d,
-        0 2px 4px rgba(0, 0, 0, 0.4),
-        inset 0 1px 3px rgba(0, 0, 0, 0.6);
+        inset 0 2px 4px rgba(0, 0, 0, 0.9),
+        inset 0 0 6px rgba(0, 0, 0, 0.7);
 }
 
 /* ==========================================
