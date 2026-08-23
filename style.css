@@ -222,11 +222,6 @@ body {
     align-items: center;
     border-radius: var(--radius);
     overflow: hidden;
-    transition: transform 0.6s var(--ease);
-}
-
-.hero-logo-box:hover {
-    transform: translateY(-4px) scale(1.005);
 }
 
 .hero-logo-img {
