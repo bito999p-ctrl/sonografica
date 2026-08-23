@@ -331,7 +331,7 @@ function setupAudioDeck() {
             isShuffle = !isShuffle;
             btnShuffle.classList.toggle('is-active', isShuffle);
             if (shuffleBadge) {
-                shuffleBadge.innerHTML = isShuffle ? '&#8646; SHUFFLE ON' : '&#8644; ORDER';
+                shuffleBadge.innerHTML = isShuffle ? '&#8646; SHUFFLE' : '&#8644; ORDER';
                 shuffleBadge.style.color = isShuffle ? 'var(--accent-rose)' : 'var(--accent-gold)';
             }
             if (isShuffle) buildShuffleQueue(currentIndex);
