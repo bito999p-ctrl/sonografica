@@ -5,6 +5,14 @@
 
 const artists = [
     {
+        id: "valotoa", name: "valotoa",
+        links: [
+            { type: "youtube", url: "https://youtube.com/playlist?list=PLOb7KvIzm6NE&si=2InPpcagbd-i9dKD", label: "YouTube" }
+        ],
+        spotifyUrls: [],
+        youtubeUrls: ["https://youtube.com/playlist?list=PLOb7KvIzm6NE&si=2InPpcagbd-i9dKD"]
+    },
+    {
         id: "bito", name: "Bito",
         links: [
             { type: "twitter", url: "https://x.com/BitoCraftedTune", label: "X" },
@@ -85,13 +93,10 @@ function setupNav() {
     const toggle = document.querySelector('.nav-toggle');
     const drawer = document.querySelector('.nav-container');
 
-    // Scroll state
-    let lastY = 0;
     window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
 
-    // Mobile toggle
     if (toggle && drawer) {
         toggle.addEventListener('click', e => {
             e.preventDefault();
@@ -105,7 +110,7 @@ function setupNav() {
     }
 }
 
-/* ── Scroll Reveal (staggered) ── */
+/* ── Scroll Reveal ── */
 function setupReveal() {
     const items = document.querySelectorAll('.reveal-on-scroll');
     const io = new IntersectionObserver((entries, obs) => {
@@ -119,7 +124,7 @@ function setupReveal() {
     items.forEach(el => io.observe(el));
 }
 
-/* ── Generative Canvas — Pencil/Watercolor waveforms ── */
+/* ── Generative Canvas — Pencil & Watercolor Waveforms on Paper ── */
 function setupCanvas() {
     const c = document.getElementById('sono-canvas');
     if (!c) return;
@@ -127,7 +132,6 @@ function setupCanvas() {
     let w, h, t = 0;
     const mouse = { x: null, y: null, tx: null, ty: null };
 
-    // Floating debris
     const debris = [];
     class Debris {
         constructor(init) {
@@ -238,7 +242,7 @@ function renderLinks(artist) {
             twitter: '<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
             tiktok: '<svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>',
             spotify: '<svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 4.439-1.5 9.839-.84 13.561 1.44.419.24.6.78.18 1.38zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.4-1.02 15.6 1.44.539.3.719.96.42 1.5-.239.479-.84.6-1.38.3z"/></svg>',
-            youtube: '<svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
+            youtube: '<svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
             suno: '<img src="suno.jpeg" alt="Suno" loading="lazy">',
             aisa: '<span style="font-size:10px;font-weight:700;font-family:var(--font-mono)">AISA</span>'
         };
@@ -251,7 +255,7 @@ function renderSpotify(artist) {
     const el = document.getElementById(`spotify-${artist.id}`);
     if (!el) return;
     if (!artist.spotifyUrls?.length) {
-        el.innerHTML = '<div class="empty-frame">Coming Soon</div>';
+        el.innerHTML = '<div class="empty-frame">Spotify Coming Soon</div>';
         return;
     }
     artist.spotifyUrls.forEach(u => {
