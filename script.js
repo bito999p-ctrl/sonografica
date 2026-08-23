@@ -18,12 +18,12 @@ const artists = [
             { type: "twitter", url: "https://x.com/BitoCraftedTune", label: "X" },
             { type: "tiktok", url: "https://www.tiktok.com/@bito_craft", label: "TikTok" },
             { type: "spotify", url: "https://open.spotify.com/intl-ja/artist/5PDksV2zctE689I1uOLO2o?si=0d0RFSu7SLaUEGpSITbAdw", label: "Spotify" },
-            { type: "youtube", url: "https://www.youtube.com/@bito_craft", label: "YouTube" },
+            { type: "youtube", url: "https://youtube.com/playlist?list=PLxpRgysXp3GlUaHN7GwWZheqxz5XCbdzL&si=YVcTUFljO9vOOcwF", label: "YouTube" },
             { type: "suno", url: "https://suno.com/@bito999", label: "Suno" },
             { type: "aisa", url: "https://aisa.radioalps.com/music/artist/bito", label: "AISA RADIO" }
         ],
         spotifyUrls: ["https://open.spotify.com/intl-ja/artist/5PDksV2zctE689I1uOLO2o?si=0d0RFSu7SLaUEGpSITbAdw"],
-        youtubeUrls: ["https://youtu.be/H-DCHJTbr44?si=TbG4GPmlYwSXVY5l"]
+        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3GlUaHN7GwWZheqxz5XCbdzL&si=YVcTUFljO9vOOcwF"]
     },
     {
         id: "pophoper", name: "pophoper",
@@ -602,7 +602,7 @@ function renderSpotify(artist) {
     const el = document.getElementById(`spotify-${artist.id}`);
     if (!el) return;
     if (!artist.spotifyUrls?.length) {
-        el.innerHTML = '<div class="empty-frame">Spotify Coming Soon</div>';
+        el.innerHTML = '<div class="empty-frame">No Streaming Releases</div>';
         return;
     }
     artist.spotifyUrls.forEach(u => {

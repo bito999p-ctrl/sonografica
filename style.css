@@ -1449,35 +1449,46 @@ body {
 }
 
 .statement-producer-meta {
-    margin-top: 20px;
+    margin-top: 22px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    gap: 10px;
 }
 
-.producer-x-link {
+.producer-meta-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
     color: var(--ink);
     background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.12);
-    padding: 8px 20px;
+    padding: 7px 16px;
     border-radius: var(--radius-pill);
     text-decoration: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     transition: all 0.25s var(--ease);
 }
 
-.producer-x-link svg {
-    width: 15px;
-    height: 15px;
+.producer-meta-link svg {
+    width: 14px;
+    height: 14px;
     fill: currentColor;
+    flex-shrink: 0;
 }
 
-.producer-x-link:hover {
+.producer-meta-link .suno-icon-img {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.producer-meta-link:hover {
     background: var(--ink);
     color: #ffffff;
     border-color: var(--ink);
