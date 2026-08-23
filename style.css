@@ -212,23 +212,25 @@ body {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Transparent Logo Centerpiece */
+/* Texture-Matched Logo Centerpiece */
 .hero-logo-box {
     max-width: 620px;
     width: 90%;
     margin: 0 auto 28px;
-    transition: transform 0.6s var(--ease), filter 0.6s var(--ease);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.6s var(--ease);
 }
 
 .hero-logo-box:hover {
-    transform: translateY(-4px) scale(1.02);
+    transform: translateY(-4px) scale(1.01);
 }
 
 .hero-logo-img {
     width: 100%;
     height: auto;
     display: block;
-    filter: drop-shadow(0 15px 35px rgba(45, 38, 30, 0.08));
+    mix-blend-mode: multiply;
 }
 
 .hero-eyebrow {
