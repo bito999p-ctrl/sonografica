@@ -218,24 +218,21 @@ body {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Texture-Matched Logo Centerpiece (100% Native Resolution) */
+/* Transparent Hero Logo Centerpiece */
 .hero-logo-box {
-    max-width: 1024px;
+    max-width: 820px;
     width: 100%;
     margin: 0 auto 28px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: var(--radius);
-    overflow: hidden;
 }
 
 .hero-logo-img {
-    width: 1024px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 820px;
     height: auto;
     display: block;
-    mix-blend-mode: multiply;
 }
 
 /* ==========================================
@@ -1858,13 +1855,6 @@ body {
 .reveal-stagger-4 { transition-delay: 0.32s; }
 
 /* ── Responsive ── */
-@media (max-width: 1064px) {
-    /* Responsive Paper Texture Scale Sync: Match scaled logo image perfectly */
-    body {
-        background-size: calc(300px * ((100vw - 40px) / 1024)) auto;
-    }
-}
-
 @media (max-width: 1024px) {
     .nav-toggle {
         display: flex;
