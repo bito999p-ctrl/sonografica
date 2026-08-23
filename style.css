@@ -1448,6 +1448,20 @@ body {
     font-weight: 600;
 }
 
+.statement-link {
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--accent-gold);
+    transition: color 0.25s, text-decoration-color 0.25s;
+}
+
+.statement-link:hover {
+    color: var(--accent-rose);
+    text-decoration-color: var(--accent-rose);
+}
+
 /* ── Artists & Shortcut Chips ── */
 .artists-section {
     background: transparent;
