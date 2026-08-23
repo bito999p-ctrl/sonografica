@@ -80,7 +80,8 @@ const artists = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    artists.forEach(a => { renderLinks(a); renderSpotify(a); renderYouTube(a); });
+    artists.forEach(a => { renderLinks(a); });
+    setupLazyEmbeds();
     setupNav();
     setupReveal();
     setupCanvas();
@@ -373,7 +374,27 @@ function escapeHtml(str) {
     }[m]));
 }
 
-/* ── Smooth Nav ── */
+/* ── Lazy Load YouTube and Spotify Embeds on Scroll ── */
+function setupLazyEmbeds() {
+    const artistObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const block = entry.target;
+                const artistId = block.id;
+                const artist = artists.find(a => a.id === artistId);
+                if (artist) {
+                    renderSpotify(artist);
+                    renderYouTube(artist);
+                }
+                obs.unobserve(block);
+            }
+        });
+    }, { rootMargin: '300px 0px 300px 0px', threshold: 0.01 });
+
+    document.querySelectorAll('.artist-block').forEach(el => artistObserver.observe(el));
+}
+
+/* ── Smooth Nav & Mobile Menu Handler ── */
 function setupNav() {
     const nav = document.querySelector('.main-nav');
     const toggle = document.querySelector('.nav-toggle');
@@ -385,18 +406,30 @@ function setupNav() {
 
     if (toggle && drawer) {
         toggle.addEventListener('click', e => {
-            e.preventDefault();
-            toggle.classList.toggle('active');
-            drawer.classList.toggle('active');
+            e.stopPropagation();
+            const isActive = toggle.classList.toggle('active');
+            drawer.classList.toggle('active', isActive);
+            document.body.style.overflow = isActive ? 'hidden' : '';
         });
+
         drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
             toggle.classList.remove('active');
             drawer.classList.remove('active');
+            document.body.style.overflow = '';
         }));
+
+        // Close when clicking outside on mobile overlay
+        drawer.addEventListener('click', e => {
+            if (e.target === drawer) {
+                toggle.classList.remove('active');
+                drawer.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
     }
 }
 
-/* ── Scroll Reveal ── */
+/* ── Scroll Reveal & Stagger Animation Gimmick ── */
 function setupReveal() {
     const items = document.querySelectorAll('.reveal-on-scroll');
     const io = new IntersectionObserver((entries, obs) => {
@@ -406,7 +439,7 @@ function setupReveal() {
                 obs.unobserve(entry.target);
             }
         });
-    }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
     items.forEach(el => io.observe(el));
 }
 

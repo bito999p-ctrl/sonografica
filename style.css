@@ -156,18 +156,24 @@ body {
 
 .nav-toggle {
     display: none;
+    background: transparent;
+    border: none;
+    outline: none;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 6px;
-    width: 28px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1600;
+    padding: 6px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .nav-toggle span {
     display: block;
-    width: 100%;
+    width: 22px;
     height: 2px;
     background: var(--ink);
     transition: all 0.3s var(--ease);
@@ -607,14 +613,13 @@ body {
     position: relative;
 }
 
-/* Glowing Symbol Inside Key */
-.btn-icon-sym {
-    font-size: 1.18rem;
-    line-height: 1;
-    letter-spacing: 0;
-    color: #8fa096;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
-    font-family: 'Segoe UI Symbol', 'Apple Color Emoji', 'Noto Sans Symbols', sans-serif;
+/* Vector SVG Icon Inside Key */
+.btn-svg {
+    width: 17px;
+    height: 17px;
+    fill: #8fa096;
+    display: block;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.9));
     transition: all 0.2s ease;
 }
 
@@ -628,11 +633,9 @@ body {
     border-color: #2b613c;
 }
 
-.deck-btn .btn-cap.play-cap .btn-icon-sym {
-    color: #52f08e;
-    text-shadow: 
-        0 0 8px rgba(82, 240, 142, 0.8),
-        0 0 16px rgba(82, 240, 142, 0.4);
+.deck-btn .btn-cap.play-cap .btn-svg {
+    fill: #52f08e;
+    filter: drop-shadow(0 0 6px rgba(82, 240, 142, 0.8)) drop-shadow(0 0 12px rgba(82, 240, 142, 0.4));
 }
 
 /* Active Play State (Neon Luminescence) */
@@ -650,11 +653,9 @@ body {
         inset 0 0 10px rgba(82, 240, 142, 0.35);
 }
 
-.audio-deck-chassis.is-playing .deck-btn .btn-cap.play-cap .btn-icon-sym {
-    color: #ffffff;
-    text-shadow: 
-        0 0 10px #52f08e,
-        0 0 20px #38ef7d;
+.audio-deck-chassis.is-playing .deck-btn .btn-cap.play-cap .btn-svg {
+    fill: #ffffff;
+    filter: drop-shadow(0 0 8px #52f08e) drop-shadow(0 0 18px #38ef7d);
 }
 
 /* Stop Keycap (Illuminated Red Ruby Lamp) */
@@ -667,20 +668,18 @@ body {
     border-color: #612b2b;
 }
 
-.deck-btn .btn-cap.stop-cap .btn-icon-sym {
-    color: #f05252;
-    text-shadow: 0 0 8px rgba(240, 82, 82, 0.6);
+.deck-btn .btn-cap.stop-cap .btn-svg {
+    fill: #f05252;
+    filter: drop-shadow(0 0 6px rgba(240, 82, 82, 0.6));
 }
 
 .deck-btn.btn-stop:hover .btn-cap.stop-cap {
     background: linear-gradient(180deg, #4f1d1d 0%, #331212 60%, #210a0a 100%);
 }
 
-.deck-btn.btn-stop:hover .btn-icon-sym {
-    color: #ffffff;
-    text-shadow: 
-        0 0 10px #ff5555,
-        0 0 18px #ff2222;
+.deck-btn.btn-stop:hover .btn-svg {
+    fill: #ffffff;
+    filter: drop-shadow(0 0 8px #ff5555) drop-shadow(0 0 16px #ff2222);
 }
 
 /* Prev & Next Hover */
@@ -688,9 +687,9 @@ body {
     background: linear-gradient(180deg, #383c3a 0%, #212423 60%, #161818 100%);
 }
 
-.deck-btn:hover .btn-icon-sym {
-    color: #e0ece5;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+.deck-btn:hover .btn-svg {
+    fill: #e0ece5;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
 }
 
 /* Tactile Mechanical Click Down State */
@@ -1155,43 +1154,80 @@ body {
 /* Mobile Responsiveness for CRT Deck */
 @media (max-width: 820px) {
     .audio-deck-chassis.crt-console-theme {
-        padding: 16px 14px;
-        margin-bottom: 32px;
+        padding: 14px 16px;
+        margin: 24px auto 32px;
     }
 
     .deck-top-bar {
-        flex-direction: column;
-        align-items: flex-start;
+        justify-content: space-between;
+        align-items: center;
         gap: 8px;
+        padding-bottom: 8px;
+        margin-bottom: 12px;
+    }
+
+    .deck-brand-tag {
+        display: none !important;
     }
 
     .deck-main-panel {
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 12px;
     }
 
     .console-action-keys {
         grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+    }
+
+    .crt-oscilloscope-grid {
+        display: none !important;
+    }
+
+    .crt-top-info .crt-khz {
+        display: none !important;
+    }
+
+    .crt-screen-interior {
+        padding: 10px;
     }
 
     .crt-screen-content {
-        grid-template-columns: 1fr;
+        grid-template-columns: 80px 1fr;
         gap: 12px;
-        text-align: center;
+        text-align: left;
     }
 
     .crt-cover-box {
-        margin: 0 auto;
+        width: 80px;
+        height: 80px;
+        margin: 0;
     }
 
     .crt-top-info {
-        justify-content: center;
-        gap: 10px;
+        justify-content: flex-start;
+        gap: 8px;
+        margin-bottom: 4px;
+    }
+
+    .crt-track-title {
+        font-size: 0.85rem;
+        margin-bottom: 2px;
+    }
+
+    .crt-artist-name {
+        font-size: 0.72rem;
+    }
+
+    .crt-timecode-row {
+        margin-top: 6px;
     }
 
     .deck-controls-panel {
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
+        margin-top: 10px;
+        padding-top: 10px;
     }
 
     .deck-toggle-row {
@@ -1799,19 +1835,36 @@ body {
     color: var(--ink);
 }
 
-/* ── Animations ── */
+/* ── Scroll Reveal Animations & Text Gimmick ── */
 .reveal-on-scroll {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    transform: translateY(32px);
+    filter: blur(4px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
 }
 
 .reveal-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
 }
 
+.reveal-stagger-1 { transition-delay: 0.08s; }
+.reveal-stagger-2 { transition-delay: 0.16s; }
+.reveal-stagger-3 { transition-delay: 0.24s; }
+.reveal-stagger-4 { transition-delay: 0.32s; }
+
 /* ── Responsive ── */
+@media (max-width: 1064px) {
+    /* Responsive Paper Texture Scale Sync: Match scaled logo image perfectly */
+    body {
+        background-size: calc(300px * ((100vw - 40px) / 1024)) auto;
+    }
+}
+
 @media (max-width: 1024px) {
     .nav-toggle {
         display: flex;
@@ -1819,33 +1872,35 @@ body {
 
     .nav-container {
         position: fixed;
-        inset: 0;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
         background: rgba(243, 237, 226, 0.98);
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 28px;
+        gap: 32px;
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.4s var(--ease);
+        transform: translateY(-8px);
+        transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+        z-index: 1500;
     }
 
     .nav-container.active {
         opacity: 1;
         pointer-events: all;
+        transform: translateY(0);
     }
 
     .nav-link {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         font-weight: 600;
         color: var(--ink);
-    }
-
-    .nav-cta {
-        font-size: 1rem;
-        padding: 12px 32px;
     }
 
     .nav-toggle.active span:first-child {

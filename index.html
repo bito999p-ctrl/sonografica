@@ -32,17 +32,16 @@
     <nav class="main-nav">
         <a href="#" class="brand-logo">Sonografica</a>
 
-        <a href="#" class="nav-toggle" aria-label="Menu">
+        <button type="button" class="nav-toggle" aria-label="Toggle Navigation">
             <span></span>
             <span></span>
-        </a>
+        </button>
 
         <div class="nav-container">
             <a href="#about" class="nav-link">Statement</a>
             <a href="#artists-root" class="nav-link">Artists</a>
             <a href="#tools" class="nav-link">Tools</a>
             <a href="#thanks" class="nav-link">Thanks</a>
-            <a href="https://bito999p-ctrl.github.io/aether_master/" target="_blank" class="nav-cta">AetherMaster</a>
         </div>
     </nav>
 
@@ -57,7 +56,15 @@
                 <img src="sonografica_logo.jpg" alt="Sonografica" class="hero-logo-img" />
             </div>
 
-            <!-- Virtual Retro CRT Audio Master Console -->
+            <p class="hero-eyebrow">Private Audio Label</p>
+            <p class="hero-sub">音と感情の断片をキャンバスに — Drawing & Placing Sound</p>
+
+            <blockquote class="hero-quote">
+                <p>"ogni suono che ho lasciato andare<br>ha trovato un altro modo per esistere."</p>
+                <cite>放たれたすべての音は、別の存在のかたちを見つけだす。</cite>
+            </blockquote>
+
+            <!-- Virtual Retro CRT Audio Master Console (Positioned below statement quote) -->
             <div class="audio-deck-chassis crt-console-theme" id="sonografica-deck">
                 <!-- Walnut Wood Side Cheeks -->
                 <div class="chassis-wood-cheek left-cheek"></div>
@@ -110,12 +117,12 @@
                             </div>
                         </div>
 
-                        <!-- Retro Chunky Square Hardware Keys with Chrome Bezel & Illuminated Caps -->
+                        <!-- Retro Chunky Square Hardware Keys with Chrome Bezel & Vector SVG Icons -->
                         <div class="console-action-keys">
                             <button class="deck-btn btn-prev" id="deck-btn-prev" title="Previous Track" aria-label="Previous Track">
                                 <div class="btn-chrome-rim">
                                     <div class="btn-cap">
-                                        <span class="btn-icon-sym">⏮</span>
+                                        <svg class="btn-svg" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
                                     </div>
                                 </div>
                             </button>
@@ -123,8 +130,8 @@
                             <button class="deck-btn btn-play" id="deck-btn-play" title="Play / Pause" aria-label="Play / Pause">
                                 <div class="btn-chrome-rim rim-play">
                                     <div class="btn-cap play-cap">
-                                        <span class="btn-icon-sym icon-play" id="deck-play-label">▶</span>
-                                        <span class="btn-icon-sym icon-pause" style="display:none;">⏸</span>
+                                        <svg class="btn-svg icon-play" id="deck-play-label" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                        <svg class="btn-svg icon-pause" style="display:none;" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
                                     </div>
                                 </div>
                             </button>
@@ -132,7 +139,7 @@
                             <button class="deck-btn btn-stop" id="deck-btn-stop" title="Stop" aria-label="Stop">
                                 <div class="btn-chrome-rim rim-stop">
                                     <div class="btn-cap stop-cap">
-                                        <span class="btn-icon-sym">⏹</span>
+                                        <svg class="btn-svg" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
                                     </div>
                                 </div>
                             </button>
@@ -140,7 +147,7 @@
                             <button class="deck-btn btn-next" id="deck-btn-next" title="Next Track" aria-label="Next Track">
                                 <div class="btn-chrome-rim">
                                     <div class="btn-cap">
-                                        <span class="btn-icon-sym">⏭</span>
+                                        <svg class="btn-svg" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
                                     </div>
                                 </div>
                             </button>
@@ -235,25 +242,6 @@
                     <div class="tracklist-scroll-area" id="deck-tracklist-items"></div>
                 </div>
             </div>
-
-            <p class="hero-eyebrow">Private Audio Label</p>
-            <p class="hero-sub">音と感情の断片をキャンバスに — Drawing & Placing Sound</p>
-
-            <blockquote class="hero-quote">
-                <p>"ogni suono che ho lasciato andare<br>ha trovato un altro modo per esistere."</p>
-                <cite>放たれたすべての音は、別の存在のかたちを見つけだす。</cite>
-            </blockquote>
-
-            <div class="hero-actions">
-                <a href="https://bito999p-ctrl.github.io/aether_master/" target="_blank" class="btn btn-primary">
-                    <span>AetherMaster</span>
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-                <a href="https://aether-player-blush.vercel.app/" target="_blank" class="btn btn-ghost">
-                    <span>AetherPlayer</span>
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-            </div>
         </div>
 
         <div class="scroll-cue">
@@ -263,30 +251,30 @@
 
     <!-- Concept & Statement -->
     <section id="about" class="section concept-section">
-        <div class="container reveal-on-scroll">
+        <div class="container">
             <div class="concept-layout">
-                <div class="concept-visual">
+                <div class="concept-visual reveal-on-scroll">
                     <div class="concept-img-wrap">
                         <img src="sonografica_art.jpg" alt="Sonografica Collage Art" loading="lazy" />
                     </div>
                 </div>
 
                 <div class="concept-body">
-                    <span class="section-tag">Statement</span>
-                    <h2 class="section-heading">
+                    <span class="section-tag reveal-on-scroll">Statement</span>
+                    <h2 class="section-heading reveal-on-scroll reveal-stagger-1">
                         Sono <span class="jp">(音)</span> +<br>
                         Grafica <span class="jp">(描く・配置する)</span>
                     </h2>
                     <div class="statement-content">
-                        <p class="statement-lead">
+                        <p class="statement-lead reveal-on-scroll reveal-stagger-2">
                             音を描き、配置し、試行錯誤する。<br>
                             完璧に整えられた美しさよりも、衝動や好奇心のままに音を置く実験を優先すること。
                         </p>
-                        <p>
+                        <p class="reveal-on-scroll reveal-stagger-3">
                             誰かのための完成品を作るのではなく、<br>
                             自らのライフワークとして、気まぐれに、けれど淡々と。
                         </p>
-                        <p class="statement-conclusion">
+                        <p class="statement-conclusion reveal-on-scroll reveal-stagger-4">
                             <strong>Sonografica（ソノグラフィカ）</strong>は、<br>
                             音と感情の断片をキャンバスに配置し続ける、プライベート・オーディオ・レーベルです。
                         </p>
@@ -428,7 +416,7 @@
             <p class="section-sub center">ブラウザ上で動作するマスタリングツールとプレイヤー</p>
 
             <div class="tools-grid">
-                <a href="https://bito999p-ctrl.github.io/aether_master/" target="_blank" class="tool-card">
+                <a href="https://bito999p-ctrl.github.io/aether_master/" target="_blank" class="tool-card reveal-on-scroll reveal-stagger-1">
                     <div class="tool-icon cyan">∿</div>
                     <div class="tool-body">
                         <h3>AetherMaster</h3>
@@ -437,7 +425,7 @@
                     <span class="tool-arrow">&rarr;</span>
                 </a>
 
-                <a href="https://aether-player-blush.vercel.app/" target="_blank" class="tool-card">
+                <a href="https://aether-player-blush.vercel.app/" target="_blank" class="tool-card reveal-on-scroll reveal-stagger-2">
                     <div class="tool-icon rose">▶</div>
                     <div class="tool-body">
                         <h3>AetherPlayer</h3>
@@ -451,12 +439,12 @@
 
     <!-- Thanks -->
     <section id="thanks" class="section thanks-section">
-        <div class="container reveal-on-scroll">
-            <span class="section-tag center">Thanks</span>
-            <h2 class="section-heading center">Special Thanks</h2>
-            <p class="section-sub center">活動を支えてくださる皆様や、関連するプロジェクトへのリンクです。</p>
+        <div class="container">
+            <span class="section-tag center reveal-on-scroll">Thanks</span>
+            <h2 class="section-heading center reveal-on-scroll reveal-stagger-1">Special Thanks</h2>
+            <p class="section-sub center reveal-on-scroll reveal-stagger-2">活動を支えてくださる皆様や、関連するプロジェクトへのリンクです。</p>
 
-            <div class="thanks-grid">
+            <div class="thanks-grid reveal-on-scroll reveal-stagger-3">
                 <a href="https://trillion-music4899.jp/" target="_blank" class="thanks-chip">MakotoAI</a>
                 <a href="https://momuandteasteam.com/" target="_blank" class="thanks-chip">MoMu & TeaSteam</a>
                 <a href="https://rezonate.ai/" target="_blank" class="thanks-chip">Rezonate</a>
