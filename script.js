@@ -214,20 +214,17 @@ function setupAudioDeck() {
             if (statusLabel) statusLabel.textContent = 'PLAYING';
             if (iconPlay) iconPlay.style.display = 'none';
             if (iconPause) iconPause.style.display = 'block';
-            if (playLabel) playLabel.textContent = 'PAUSE';
         } else if (state === 'paused') {
             isPlaying = false;
             deck.classList.add('is-paused');
             if (statusLabel) statusLabel.textContent = 'PAUSED';
             if (iconPlay) iconPlay.style.display = 'block';
             if (iconPause) iconPause.style.display = 'none';
-            if (playLabel) playLabel.textContent = 'PLAY';
         } else {
             isPlaying = false;
             if (statusLabel) statusLabel.textContent = 'STOPPED';
             if (iconPlay) iconPlay.style.display = 'block';
             if (iconPause) iconPause.style.display = 'none';
-            if (playLabel) playLabel.textContent = 'PLAY';
             if (progressFill) progressFill.style.width = '0%';
             if (currentTimeEl) currentTimeEl.textContent = '00:00';
         }

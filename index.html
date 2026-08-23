@@ -59,6 +59,12 @@
 
             <!-- Virtual Retro CRT Audio Master Console -->
             <div class="audio-deck-chassis crt-console-theme" id="sonografica-deck">
+                <!-- Realistic Device Photo Showcase -->
+                <div class="deck-device-photo-wrap">
+                    <img src="assets/amc80_photo.jpg" alt="SONOGRAFICA AMC-80 Audio Master Console" class="deck-device-photo" />
+                    <div class="deck-device-photo-overlay"></div>
+                </div>
+
                 <!-- Walnut Wood Side Cheeks -->
                 <div class="chassis-wood-cheek left-cheek"></div>
                 <div class="chassis-wood-cheek right-cheek"></div>
@@ -113,21 +119,22 @@
                         <!-- Retro Chunky Square Hardware Keys -->
                         <div class="console-action-keys">
                             <button class="deck-btn btn-prev" id="deck-btn-prev" title="Previous Track" aria-label="Previous Track">
-                                <span class="btn-cap">PREV</span>
+                                <span class="btn-cap btn-icon">⏮</span>
                             </button>
 
                             <button class="deck-btn btn-play" id="deck-btn-play" title="Play / Pause" aria-label="Play / Pause">
-                                <span class="btn-cap play-cap">
-                                    <span class="play-text" id="deck-play-label">PLAY</span>
+                                <span class="btn-cap play-cap btn-icon">
+                                    <span class="icon-play" id="deck-play-label">▶</span>
+                                    <span class="icon-pause" style="display:none;">⏸</span>
                                 </span>
                             </button>
 
                             <button class="deck-btn btn-stop" id="deck-btn-stop" title="Stop" aria-label="Stop">
-                                <span class="btn-cap">STOP</span>
+                                <span class="btn-cap btn-icon">⏹</span>
                             </button>
 
                             <button class="deck-btn btn-next" id="deck-btn-next" title="Next Track" aria-label="Next Track">
-                                <span class="btn-cap">NEXT</span>
+                                <span class="btn-cap btn-icon">⏭</span>
                             </button>
                         </div>
                     </div>
