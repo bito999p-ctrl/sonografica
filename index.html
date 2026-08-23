@@ -4,144 +4,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bito Music</title>
+    <title>Sonografica | Sound Drawing & Audio Archive</title>
+    <meta name="description" content="Sonografica — Sono (音) ＋ Grafica (描写・記録・視覚化)。音の描写と記録を紡ぐアート＆ミュージックレーベル。">
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="favicon.png">
-    <!-- 外部CSSファイルを読み込み -->
+
+    <!-- Google Fonts: Art Gallery & Architectural Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;600&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C8CLCFDVX2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-C8CLCFDVX2');
     </script>
 </head>
 
 <body>
-    <canvas id="particle-canvas"></canvas> <!-- Fullscreen Particles -->
+    <!-- Generative Soundwave & Spectrogram Canvas -->
+    <canvas id="sono-canvas"></canvas>
 
+    <!-- Custom Grain / Canvas Texture Overlay -->
+    <div class="canvas-texture-overlay"></div>
+
+    <!-- Navigation -->
     <nav class="main-nav">
+        <div class="nav-brand">
+            <a href="#" class="brand-logo">Sonografica</a>
+            <span class="brand-sub">Sono + Grafica</span>
+        </div>
+
         <a href="#" class="nav-toggle" aria-label="Menu">
             <span></span>
             <span></span>
             <span></span>
         </a>
+
         <div class="nav-container">
-            <a href="#bito" class="nav-link">Bito</a>
-            <a href="#pophoper" class="nav-link">pophoper</a>
-            <a href="#hizumi" class="nav-link">歪み歪み</a>
-            <a href="#stray" class="nav-link">Stray Glitch Monkeys</a>
-            <a href="#metropolitans" class="nav-link">METROPOLITANS</a>
-            <a href="#rupture" class="nav-link">RUPTURE</a>
-            <a href="#thanks" class="nav-link">Special Thanks</a>
-            <a href="https://bito999p-ctrl.github.io/aether_master/" target="_blank" class="nav-link nav-tool-link">AetherMaster</a>
-            <a href="https://aether-player-blush.vercel.app/" target="_blank" class="nav-link nav-player-link">AetherPlayer</a>
+            <a href="#about" class="nav-link"><span class="nav-num">00</span>Concept</a>
+            <a href="#bito" class="nav-link"><span class="nav-num">01</span>Bito</a>
+            <a href="#pophoper" class="nav-link"><span class="nav-num">02</span>pophoper</a>
+            <a href="#hizumi" class="nav-link"><span class="nav-num">03</span>歪み歪み</a>
+            <a href="#stray" class="nav-link"><span class="nav-num">04</span>Stray Glitch Monkeys</a>
+            <a href="#metropolitans" class="nav-link"><span class="nav-num">05</span>METROPOLITANS</a>
+            <a href="#rupture" class="nav-link"><span class="nav-num">06</span>RUPTURE</a>
+            <a href="#tools" class="nav-link"><span class="nav-num">07</span>Tools</a>
+            <a href="#thanks" class="nav-link"><span class="nav-num">08</span>Special Thanks</a>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <header class="hero-section">
-        <div class="hero-bg"></div> <!-- Parallax Background Layer -->
-        <div class="header-content">
-            <h1>Bito Music</h1>
+        <div class="hero-bg-wrapper">
+            <div class="hero-bg" style="background-image: url('sonografica_hero.jpg');"></div>
+            <div class="draft-frame"></div>
+            <div class="draft-crosshair top-left">+</div>
+            <div class="draft-crosshair top-right">+</div>
+            <div class="draft-crosshair bottom-left">+</div>
+            <div class="draft-crosshair bottom-right">+</div>
         </div>
-        <p class="tagline">Official Portfolio</p>
-        <div class="hero-buttons">
-            <a href="https://bito999p-ctrl.github.io/aether_master/" target="_blank" class="mastering-tool-btn">
-                AetherMaster
-            </a>
-            <a href="https://aether-player-blush.vercel.app/" target="_blank" class="aether-player-btn">
-                AetherPlayer
-            </a>
+
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <span class="eyebrow-tag">Acoustic Scenography & Archive</span>
+                <span class="eyebrow-divider">—</span>
+                <span class="eyebrow-concept">Sono (音) × Grafica (描写・記録)</span>
+            </div>
+
+            <h1 class="main-title">Sonografica</h1>
+
+            <p class="tagline">Where Sound Becomes Form — 音の描写と記録</p>
+
+            <blockquote class="hero-quote">
+                “ogni suono che ho lasciato andare ha trovato un altro modo per esistere.”
+                <span class="quote-sub">放たれたすべての音は、別の存在のかたちを見つけだす。</span>
+            </blockquote>
+
+            <div class="hero-buttons">
+                <a href="https://bito999p-ctrl.github.io/aether_master/" target="_blank" class="mastering-tool-btn">
+                    <span class="btn-icon">∿</span>
+                    <span class="btn-text">AetherMaster</span>
+                    <span class="btn-badge">Mastering Engine</span>
+                </a>
+                <a href="https://aether-player-blush.vercel.app/" target="_blank" class="aether-player-btn">
+                    <span class="btn-icon">▶</span>
+                    <span class="btn-text">AetherPlayer</span>
+                    <span class="btn-badge">Audio Player</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span class="scroll-text">DISCOVER ARCHIVE</span>
+            <div class="scroll-line"></div>
         </div>
     </header>
 
     <div class="container main-content">
 
-        <!-- Bito Section -->
-        <section id="bito" class="artist-section reveal-on-scroll">
-            <div class="artist-header">
-                <h2 class="glitch-text" data-text="Bito">Bito</h2>
-                <div class="artist-links" id="links-bito"></div>
-            </div>
-            <div class="media-grid">
-                <div class="media-column youtube-col" id="youtube-bito"></div>
-                <div class="media-column spotify-col" id="spotify-bito"></div>
+        <!-- Concept / Art Feature Section -->
+        <section id="about" class="concept-section reveal-on-scroll">
+            <div class="concept-grid">
+                <div class="concept-art-frame">
+                    <img src="sonografica_art.jpg" alt="Sonografica Collage Art" class="concept-art-img" loading="lazy">
+                    <div class="art-caption">
+                        <span class="art-meta-num">#5</span>
+                        <span class="art-meta-title">Collage Resti — Acoustic Waveform & Mixed Media</span>
+                    </div>
+                </div>
+
+                <div class="concept-text-column">
+                    <div class="section-label">
+                        <span class="label-idx">00</span>
+                        <span class="label-title">CONCEPT & PHILOSOPHY</span>
+                    </div>
+                    <h2 class="concept-heading">Sono <span>(音)</span> + Grafica <span>(描写・記録・視覚化)</span></h2>
+                    
+                    <p class="concept-desc">
+                        「Sonografica」は、不可視の音響体験を視覚・絵画・造形へと翻訳し、永続的な記録として刻み込むクリエイティブ・レーベルです。
+                    </p>
+                    <p class="concept-desc">
+                        微細な音波の揺らぎ、周波数のグラデーション、音楽が空間に残す色彩の余韻——
+                        幾何学的な製図線と有機的な水彩の飛沫が交わる境界で、新しい音の記録を紡ぎ出します。
+                    </p>
+
+                    <div class="concept-spec-grid">
+                        <div class="spec-item">
+                            <span class="spec-term">SONO</span>
+                            <span class="spec-val">Sound / Audio / Frequency</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-term">GRAFICA</span>
+                            <span class="spec-val">Drawing / Inscription / Visual Form</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- pophoper Section -->
-        <section id="pophoper" class="artist-section reveal-on-scroll">
-            <div class="artist-header">
-                <h2 class="glitch-text" data-text="pophoper">pophoper</h2>
-                <div class="artist-links" id="links-pophoper"></div>
-            </div>
-            <div class="media-grid">
-                <div class="media-column youtube-col" id="youtube-pophoper"></div>
-                <div class="media-column spotify-col" id="spotify-pophoper"></div>
-            </div>
-        </section>
+        <!-- Section Divider -->
+        <div class="section-draft-divider">
+            <span class="divider-line"></span>
+            <span class="divider-tag">EXHIBITION / ARTISTS CATALOG</span>
+            <span class="divider-line"></span>
+        </div>
 
-        <!-- hizumi yugami Section -->
-        <section id="hizumi" class="artist-section reveal-on-scroll">
-            <div class="artist-header">
-                <h2 class="glitch-text" data-text="歪み歪み -hizumi yugami-">歪み歪み -hizumi yugami-</h2>
-                <div class="artist-links" id="links-hizumi"></div>
-            </div>
-            <div class="media-grid">
-                <div class="media-column youtube-col" id="youtube-hizumi"></div>
-                <div class="media-column spotify-col" id="spotify-hizumi"></div>
-            </div>
-        </section>
+        <!-- Artists Sections Container -->
+        <div id="artists-root">
+            <!-- Bito Section -->
+            <section id="bito" class="artist-section reveal-on-scroll">
+                <div class="artist-header">
+                    <div class="artist-identity">
+                        <span class="artist-catalog-num">CAT. #01</span>
+                        <h2 class="artist-name glitch-text" data-text="Bito">Bito</h2>
+                    </div>
+                    <div class="artist-links" id="links-bito"></div>
+                </div>
+                <div class="media-grid">
+                    <div class="media-column youtube-col" id="youtube-bito"></div>
+                    <div class="media-column spotify-col" id="spotify-bito"></div>
+                </div>
+            </section>
 
-        <!-- Stray Glitch Monkeys Section -->
-        <section id="stray" class="artist-section reveal-on-scroll">
-            <div class="artist-header">
-                <h2 class="glitch-text" data-text="Stray Glitch Monkeys">Stray Glitch Monkeys</h2>
-                <div class="artist-links" id="links-stray"></div>
-            </div>
-            <div class="media-grid">
-                <div class="media-column youtube-col" id="youtube-stray"></div>
-                <div class="media-column spotify-col" id="spotify-stray"></div>
-            </div>
-        </section>
+            <!-- pophoper Section -->
+            <section id="pophoper" class="artist-section reveal-on-scroll">
+                <div class="artist-header">
+                    <div class="artist-identity">
+                        <span class="artist-catalog-num">CAT. #02</span>
+                        <h2 class="artist-name glitch-text" data-text="pophoper">pophoper</h2>
+                    </div>
+                    <div class="artist-links" id="links-pophoper"></div>
+                </div>
+                <div class="media-grid">
+                    <div class="media-column youtube-col" id="youtube-pophoper"></div>
+                    <div class="media-column spotify-col" id="spotify-pophoper"></div>
+                </div>
+            </section>
 
-        <!-- THE METROPOLITANS Section -->
-        <section id="metropolitans" class="artist-section reveal-on-scroll">
-            <div class="artist-header">
-                <h2 class="glitch-text" data-text="THE METROPOLITANS">THE METROPOLITANS</h2>
-                <div class="artist-links" id="links-metropolitans"></div>
-            </div>
-            <div class="media-grid">
-                <div class="media-column youtube-col" id="youtube-metropolitans"></div>
-                <div class="media-column spotify-col" id="spotify-metropolitans"></div>
-            </div>
-        </section>
+            <!-- hizumi yugami Section -->
+            <section id="hizumi" class="artist-section reveal-on-scroll">
+                <div class="artist-header">
+                    <div class="artist-identity">
+                        <span class="artist-catalog-num">CAT. #03</span>
+                        <h2 class="artist-name glitch-text" data-text="歪み歪み -hizumi yugami-">歪み歪み -hizumi yugami-</h2>
+                    </div>
+                    <div class="artist-links" id="links-hizumi"></div>
+                </div>
+                <div class="media-grid">
+                    <div class="media-column youtube-col" id="youtube-hizumi"></div>
+                    <div class="media-column spotify-col" id="spotify-hizumi"></div>
+                </div>
+            </section>
 
-        <!-- RUPTURE Section -->
-        <section id="rupture" class="artist-section reveal-on-scroll">
-            <div class="artist-header">
-                <h2 class="glitch-text" data-text="RUPTURE">RUPTURE</h2>
-                <div class="artist-links" id="links-rupture"></div>
+            <!-- Stray Glitch Monkeys Section -->
+            <section id="stray" class="artist-section reveal-on-scroll">
+                <div class="artist-header">
+                    <div class="artist-identity">
+                        <span class="artist-catalog-num">CAT. #04</span>
+                        <h2 class="artist-name glitch-text" data-text="Stray Glitch Monkeys">Stray Glitch Monkeys</h2>
+                    </div>
+                    <div class="artist-links" id="links-stray"></div>
+                </div>
+                <div class="media-grid">
+                    <div class="media-column youtube-col" id="youtube-stray"></div>
+                    <div class="media-column spotify-col" id="spotify-stray"></div>
+                </div>
+            </section>
+
+            <!-- THE METROPOLITANS Section -->
+            <section id="metropolitans" class="artist-section reveal-on-scroll">
+                <div class="artist-header">
+                    <div class="artist-identity">
+                        <span class="artist-catalog-num">CAT. #05</span>
+                        <h2 class="artist-name glitch-text" data-text="THE METROPOLITANS">THE METROPOLITANS</h2>
+                    </div>
+                    <div class="artist-links" id="links-metropolitans"></div>
+                </div>
+                <div class="media-grid">
+                    <div class="media-column youtube-col" id="youtube-metropolitans"></div>
+                    <div class="media-column spotify-col" id="spotify-metropolitans"></div>
+                </div>
+            </section>
+
+            <!-- RUPTURE Section -->
+            <section id="rupture" class="artist-section reveal-on-scroll">
+                <div class="artist-header">
+                    <div class="artist-identity">
+                        <span class="artist-catalog-num">CAT. #06</span>
+                        <h2 class="artist-name glitch-text" data-text="RUPTURE">RUPTURE</h2>
+                    </div>
+                    <div class="artist-links" id="links-rupture"></div>
+                </div>
+                <div class="media-grid">
+                    <div class="media-column youtube-col" id="youtube-rupture"></div>
+                    <div class="media-column spotify-col" id="spotify-rupture"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Dedicated Tools Showcase -->
+        <section id="tools" class="tools-section reveal-on-scroll">
+            <div class="section-label center">
+                <span class="label-idx">07</span>
+                <span class="label-title">AUDIO ENGINE & TOOLS</span>
             </div>
-            <div class="media-grid">
-                <div class="media-column youtube-col" id="youtube-rupture"></div>
-                <div class="media-column spotify-col" id="spotify-rupture"></div>
+            <h2 class="tools-heading">Aether Ecosystem</h2>
+            <p class="tools-sub">Sonograficaの音響彫刻を支える高精度ウェブ・オーディオツール</p>
+
+            <div class="tools-grid">
+                <a href="https://bito999p-ctrl.github.io/aether_master/" target="_blank" class="tool-card master-card">
+                    <div class="tool-card-top">
+                        <span class="tool-badge">Mastering Suite</span>
+                        <span class="tool-symbol">∿</span>
+                    </div>
+                    <h3 class="tool-title">AetherMaster</h3>
+                    <p class="tool-desc">
+                        周波数バランスとダイナミクスを最適化し、音の立体感と透明度を描き出すブラウザ・マスタリングエンジン。
+                    </p>
+                    <span class="tool-action-link">Open AetherMaster &rarr;</span>
+                </a>
+
+                <a href="https://aether-player-blush.vercel.app/" target="_blank" class="tool-card player-card">
+                    <div class="tool-card-top">
+                        <span class="tool-badge">Audio Player</span>
+                        <span class="tool-symbol">▶</span>
+                    </div>
+                    <h3 class="tool-title">AetherPlayer</h3>
+                    <p class="tool-desc">
+                        Aetherマスタリングエンジンを搭載し、高品位なサウンドレンダリングを実現する専用オーディオプレイヤー。
+                    </p>
+                    <span class="tool-action-link">Launch Player &rarr;</span>
+                </a>
             </div>
         </section>
 
         <!-- Special Thanks Section -->
-        <section id="thanks" class="artist-section reveal-on-scroll">
-            <div class="artist-header">
+        <section id="thanks" class="artist-section thanks-section reveal-on-scroll">
+            <div class="section-label center">
+                <span class="label-idx">08</span>
+                <span class="label-title">ACKNOWLEDGMENT</span>
+            </div>
+            <div class="artist-header center-header">
                 <h2 class="glitch-text" data-text="Special Thanks">Special Thanks</h2>
             </div>
-            <div class="thanks-container" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 12px; text-align: center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-                <p style="color: var(--light-gray); font-size: 0.95rem; margin-bottom: 24px; line-height: 1.8; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    We would like to express our deepest gratitude to everyone who supports our creative journey.
+            <div class="thanks-container">
+                <p class="thanks-intro">
+                    Sonograficaの音と表現の探求を支え、インスピレーションを分かち合う皆様へ深謝申し上げます。
                 </p>
-                <div class="thanks-grid" style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; color: var(--text-color); font-weight: 500;">
+                <div class="thanks-grid">
                     <a href="https://trillion-music4899.jp/" target="_blank" class="thanks-link">MakotoAI</a>
                     <a href="https://momuandteasteam.com/" target="_blank" class="thanks-link">MoMu & TeaSteam</a>
                     <a href="https://rezonate.ai/" target="_blank" class="thanks-link">Rezonate</a>
@@ -151,15 +308,28 @@
             </div>
         </section>
 
-        <footer>
-            <p>&copy; 2026 Bito Music</p>
-            <p style="margin-top: 10px; font-size: 0.9rem;">Contact: <a href="mailto:bito.999.p@gmail.com"
-                    style="color: var(--light-gray); text-decoration: underline;">bito.999.p@gmail.com</a></p>
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-draft-lines"></div>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">Sonografica</span>
+                    <span class="footer-concept">Sono (Sound) + Grafica (Visualization)</span>
+                </div>
+                <p class="footer-copy">&copy; 2026 Sonografica. All Rights Reserved.</p>
+                <div class="footer-contact">
+                    <span class="contact-label">Inquiry:</span>
+                    <a href="mailto:bito.999.p@gmail.com" class="contact-email">bito.999.p@gmail.com</a>
+                </div>
+                <div class="footer-legal">
+                    <a href="law.html" class="legal-link">特定商取引法に基づく表記</a>
+                </div>
+            </div>
         </footer>
 
     </div>
 
-    <!-- 外部JavaScriptファイルを読み込み -->
+    <!-- JavaScript Files -->
     <script src="script.js"></script>
 </body>
 

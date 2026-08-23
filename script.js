@@ -1,17 +1,19 @@
 /**
  * ==========================================
- * 設定エリア (Configuration Area)
+ * Sonografica — Core Interaction & Waveform Engine
  * ==========================================
  */
+
 const artists = [
     {
         id: "bito",
         name: "Bito",
+        catalog: "CAT. #01",
         links: [
             { type: "twitter", url: "https://x.com/BitoCraftedTune", label: "X" },
-            { type: "tiktok", url: "https://www.tiktok.com/@bito_craft", label: "TikTok" }, // Added TikTok
+            { type: "tiktok", url: "https://www.tiktok.com/@bito_craft", label: "TikTok" },
             { type: "spotify", url: "https://open.spotify.com/intl-ja/artist/5PDksV2zctE689I1uOLO2o?si=0d0RFSu7SLaUEGpSITbAdw", label: "Spotify" },
-            { type: "youtube", url: "https://www.youtube.com/@bito_craft", label: "YouTube" }, // Used existing good link instead of the X one provided
+            { type: "youtube", url: "https://www.youtube.com/@bito_craft", label: "YouTube" },
             { type: "suno", url: "https://suno.com/@bito999", label: "Suno" },
             { type: "aisa", url: "https://aisa.radioalps.com/music/artist/bito", label: "AISA RADIO" }
         ],
@@ -19,12 +21,13 @@ const artists = [
             "https://open.spotify.com/intl-ja/artist/5PDksV2zctE689I1uOLO2o?si=0d0RFSu7SLaUEGpSITbAdw"
         ],
         youtubeUrls: [
-            "https://youtu.be/H-DCHJTbr44?si=TbG4GPmlYwSXVY5l" // Keeping existing valid YouTube video
+            "https://youtu.be/H-DCHJTbr44?si=TbG4GPmlYwSXVY5l"
         ]
     },
     {
         id: "pophoper",
         name: "pophoper",
+        catalog: "CAT. #02",
         links: [
             { type: "twitter", url: "", label: "X" },
             { type: "spotify", url: "https://open.spotify.com/intl-ja/artist/5fejGOb2AqHlneXYKJVwF7?si=X175bF7MTsO5obPIIs_oEA", label: "Spotify" },
@@ -42,6 +45,7 @@ const artists = [
     {
         id: "hizumi",
         name: "歪み歪み -hizumi yugami-",
+        catalog: "CAT. #03",
         links: [
             { type: "twitter", url: "", label: "X" },
             { type: "spotify", url: "https://open.spotify.com/intl-ja/artist/3tj9sPIAEwZbTk4SyAtT10", label: "Spotify" },
@@ -59,6 +63,7 @@ const artists = [
     {
         id: "stray",
         name: "Stray Glitch Monkeys",
+        catalog: "CAT. #04",
         links: [
             { type: "twitter", url: "", label: "X" },
             { type: "spotify", url: "https://open.spotify.com/intl-ja/artist/280n7G2T6dmFkCRs8JFMeX?si=v1hsCKO3TauIOwhjwdT6ng", label: "Spotify" },
@@ -76,6 +81,7 @@ const artists = [
     {
         id: "metropolitans",
         name: "THE METROPOLITANS",
+        catalog: "CAT. #05",
         links: [
             { type: "twitter", url: "", label: "X" },
             { type: "spotify", url: "https://open.spotify.com/intl-ja/artist/5lSsV9mEnzTwpDzOSWqPiQ", label: "Spotify" },
@@ -93,6 +99,7 @@ const artists = [
     {
         id: "rupture",
         name: "RUPTURE",
+        catalog: "CAT. #06",
         links: [
             { type: "twitter", url: "", label: "X" },
             { type: "spotify", url: "", label: "Spotify" },
@@ -107,18 +114,6 @@ const artists = [
     }
 ];
 
-/**
- * ==========================================
- * 以下、ロジック部分
- * ==========================================
- */
-
-/**
- * ==========================================
- * 以下、ロジック部分
- * ==========================================
- */
-
 document.addEventListener('DOMContentLoaded', () => {
     try {
         artists.forEach(artist => {
@@ -126,253 +121,194 @@ document.addEventListener('DOMContentLoaded', () => {
             renderSpotify(artist);
             renderYouTube(artist);
         });
+
         setupMobileNav();
         setupScrollAnimation();
-        setupParallax(); // Parallax effect
-        setupMagneticButtons(); // Magnetic effect
-        setupParticles(); // Particle effect
+        setupMagneticButtons();
+        setupSonograficaCanvas();
     } catch (e) {
-        // alert("Error loading site: " + e.message); 
-        console.error(e);
+        console.error('Sonografica Initialization Error:', e);
     }
 });
 
-function setupCustomCursor() {
-    const cursor = document.getElementById('cursor');
-    if (!cursor) return;
-
-    // Move cursor
-    window.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-
-    // Hover effect for links and interactables
-    const interactables = document.querySelectorAll('a, button, .youtube-item, iframe, .glitch-text');
-    interactables.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-    });
-}
-
-/* ... Scroll Animation ... */
-
-function setupParticles() {
-    const canvas = document.getElementById('particle-canvas');
+/* ==========================================
+   Generative Sonografica Soundwave Canvas
+   ========================================== */
+function setupSonograficaCanvas() {
+    const canvas = document.getElementById('sono-canvas');
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     let width, height;
-    let particles = [];
+    let time = 0;
+    const mouse = { x: null, y: null, targetX: null, targetY: null };
 
-    // Configuration
-    const particleCount = 200; // Increased density as requested
-    const connectionDistance = 150;
-    const mouseParams = { x: null, y: null, radius: 250 }; // Slightly larger radius
+    // Floating harmonic paper debris particles (matching Collage Resti)
+    const particles = [];
+    const particleCount = 45;
 
-    // Resize handler - Fullscreen
-    function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    // Mouse listeners - attach to WINDOW for full screen tracking
-    window.addEventListener('mousemove', (e) => {
-        mouseParams.x = e.clientX;
-        mouseParams.y = e.clientY;
-    });
-
-    window.addEventListener('mouseleave', () => {
-        mouseParams.x = null;
-        mouseParams.y = null;
-    });
-
-    // Touch listeners (Mobile support)
-    window.addEventListener('touchstart', (e) => {
-        if (e.touches.length > 0) {
-            mouseParams.x = e.touches[0].clientX;
-            mouseParams.y = e.touches[0].clientY;
-        }
-    });
-
-    window.addEventListener('touchmove', (e) => {
-        if (e.touches.length > 0) {
-            mouseParams.x = e.touches[0].clientX;
-            mouseParams.y = e.touches[0].clientY;
-        }
-    });
-
-    window.addEventListener('touchend', () => {
-        mouseParams.x = null;
-        mouseParams.y = null;
-    });
-
-    // Particle Class
-    class Particle {
+    class HarmonicDebris {
         constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            // Base drift velocity (Auto-Drift)
-            this.baseVx = (Math.random() - 0.5) * 0.8;
-            this.baseVy = (Math.random() - 0.5) * 0.8;
-            this.vx = this.baseVx;
-            this.vy = this.baseVy;
-            this.size = Math.random() * 1.0 + 0.2; // Much smaller particles (0.2 to 1.2px) - VERY FINE
-            this.color = `rgba(255, 255, 255, ${Math.random() * 0.4 + 0.2})`; // Slightly brighter
+            this.reset(true);
+        }
+
+        reset(initial = false) {
+            this.x = initial ? Math.random() * width : Math.random() * width;
+            this.y = initial ? Math.random() * height : height + 20;
+            this.size = Math.random() * 4 + 1.5;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.vRot = (Math.random() - 0.5) * 0.02;
+            this.vy = -(Math.random() * 0.4 + 0.2);
+            this.vx = (Math.random() - 0.5) * 0.3;
+            this.opacity = Math.random() * 0.35 + 0.1;
+            this.color = Math.random() > 0.6 ? '#df5b7a' : (Math.random() > 0.3 ? '#3cb8aa' : '#dbaa5c');
+            this.isSquare = Math.random() > 0.4;
         }
 
         update() {
-            // Move
             this.x += this.vx;
             this.y += this.vy;
+            this.rotation += this.vRot;
 
-            // Mouse Attraction
-            if (mouseParams.x != null) {
-                let dx = mouseParams.x - this.x;
-                let dy = mouseParams.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < mouseParams.radius) {
-                    const nx = dx / distance;
-                    const ny = dy / distance;
-
-                    // Swarm Dynamics: Spring-to-Ring
-                    const swarmRadius = 120;
-
-                    // Spring Logic: Pull towards radius, push away if closer
-                    const springK = 0.01;
-                    const displacement = distance - swarmRadius;
-                    let force = displacement * springK;
-
-                    // Dampen force at edge of interaction range
-                    const edgeDampen = Math.max(0, 1 - (distance / mouseParams.radius));
-                    force *= edgeDampen;
-
-                    // Apply Radial Force
-                    this.vx += nx * force;
-                    this.vy += ny * force;
-
-                    // Tangential/Orbit Force (Spin)
-                    const orbit = 0.02 * edgeDampen;
-                    this.vx += -ny * orbit;
-                    this.vy += nx * orbit;
-
-                    // More Chaos
-                    const chaos = 1.0 * edgeDampen;
-                    this.vx += (Math.random() - 0.5) * chaos;
-                    this.vy += (Math.random() - 0.5) * chaos;
-                }
+            if (this.y < -30 || this.x < -30 || this.x > width + 30) {
+                this.reset(false);
             }
-
-            // Return to base state (instead of simple friction stopping them)
-            // Gently interpolate velocity back to baseVx/Vy
-            this.vx += (this.baseVx - this.vx) * 0.05;
-            this.vy += (this.baseVy - this.vy) * 0.05;
-
-            // Soft Bounce / Wrap
-            if (this.x < 0 || this.x > width) this.vx *= -1;
-            if (this.y < 0 || this.y > height) this.vy *= -1;
         }
 
         draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation);
             ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.globalAlpha = this.opacity;
+
+            if (this.isSquare) {
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+            } else {
+                ctx.beginPath();
+                ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.restore();
         }
     }
 
-    function init() {
-        particles = [];
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        particles.length = 0;
         for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
+            particles.push(new HarmonicDebris());
         }
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    window.addEventListener('mousemove', (e) => {
+        mouse.targetX = e.clientX;
+        mouse.targetY = e.clientY;
+    });
+
+    window.addEventListener('mouseleave', () => {
+        mouse.targetX = null;
+        mouse.targetY = null;
+    });
+
+    function drawWave(yOffset, amplitude, frequency, speed, color, alpha, strokeWidth = 1) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.strokeStyle = color;
+        ctx.globalAlpha = alpha;
+        ctx.lineWidth = strokeWidth;
+
+        const points = [];
+        const step = 6;
+
+        for (let x = 0; x <= width; x += step) {
+            // Wave equation with multi-harmonic frequencies
+            let wave = Math.sin(x * frequency + time * speed) * amplitude;
+            wave += Math.cos(x * frequency * 0.5 - time * speed * 0.7) * (amplitude * 0.4);
+
+            // Cursor magnetic wave displacement
+            if (mouse.x !== null && mouse.y !== null) {
+                const dx = x - mouse.x;
+                const dy = (yOffset + wave) - mouse.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const maxDist = 200;
+                if (dist < maxDist) {
+                    const factor = (1 - dist / maxDist) * 25;
+                    wave += Math.sin(dist * 0.05 - time * 2) * factor;
+                }
+            }
+
+            const y = yOffset + wave;
+            points.push({ x, y });
+        }
+
+        // Draw smooth curve through harmonic points
+        if (points.length > 0) {
+            ctx.moveTo(points[0].x, points[0].y);
+            for (let i = 1; i < points.length - 1; i++) {
+                const xc = (points[i].x + points[i + 1].x) / 2;
+                const yc = (points[i].y + points[i + 1].y) / 2;
+                ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+            }
+        }
+
+        ctx.stroke();
+        ctx.restore();
     }
 
     function animate() {
+        time += 0.015;
+
+        // Smooth mouse interpolation
+        if (mouse.targetX !== null) {
+            mouse.x += (mouse.targetX - (mouse.x || mouse.targetX)) * 0.05;
+            mouse.y += (mouse.targetY - (mouse.y || mouse.targetY)) * 0.05;
+        }
+
         ctx.clearRect(0, 0, width, height);
 
+        // Draw delicate acoustic soundwave layers (Sonografica visual signature)
+        const midY = height * 0.52;
+        drawWave(midY, 35, 0.0035, 0.8, '#df5b7a', 0.18, 1);
+        drawWave(midY + 15, 45, 0.0028, -0.6, '#3cb8aa', 0.15, 1.2);
+        drawWave(midY - 20, 25, 0.005, 1.1, '#dbaa5c', 0.14, 0.8);
+        drawWave(midY + 40, 20, 0.004, -0.9, '#f4efe6', 0.08, 0.6);
+
+        // Top ambient fine harmonic lines
+        drawWave(height * 0.18, 12, 0.002, 0.5, '#f4efe6', 0.04, 0.5);
+        drawWave(height * 0.85, 18, 0.0025, -0.4, '#3cb8aa', 0.06, 0.8);
+
+        // Draw and update floating harmonic debris
         particles.forEach(p => {
             p.update();
             p.draw();
         });
+
         requestAnimationFrame(animate);
     }
 
-    init();
     animate();
 }
 
-function setupParallax() {
-    const heroBg = document.querySelector('.hero-bg');
-    if (!heroBg) return;
-
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        // Move background slower than scroll (speed factor 0.4)
-        heroBg.style.transform = `translateY(${scrollY * 0.4}px)`;
-    });
-}
-
-function setupMagneticButtons() {
-    // Target all icon links, mastering tool button, aether player button, and thanks links
-    const buttons = document.querySelectorAll('.icon-link, .mastering-tool-btn, .aether-player-btn, .thanks-link');
-
-    buttons.forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            // Calculate mouse position relative to center of button
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            // Move button slightly towards mouse (magnetic pull)
-            // Divide by factor to dampen movement
-            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-        });
-
-        btn.addEventListener('mouseleave', () => {
-            // Reset position smoothly
-            btn.style.transform = 'translate(0, 0)';
-            // Note: CSS transition property handles the smooth return
-        });
-    });
-}
-
-function setupScrollAnimation() {
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // Only animate once
-            }
-        });
-    }, observerOptions);
-
-    const targets = document.querySelectorAll('.reveal-on-scroll');
-    targets.forEach(target => {
-        observer.observe(target);
-    });
-}
-
+/* ==========================================
+   Mobile Navigation Drawer
+   ========================================== */
 function setupMobileNav() {
     const navToggle = document.querySelector('.nav-toggle');
     const navContainer = document.querySelector('.nav-container');
 
     if (navToggle && navContainer) {
-        navToggle.addEventListener('click', () => {
+        navToggle.addEventListener('click', (e) => {
+            e.preventDefault();
             navContainer.classList.toggle('active');
             navToggle.classList.toggle('active');
         });
 
-        // Close menu when a link is clicked
+        // Auto close drawer when link is clicked
         const links = navContainer.querySelectorAll('.nav-link');
         links.forEach(link => {
             link.addEventListener('click', () => {
@@ -383,26 +319,68 @@ function setupMobileNav() {
     }
 }
 
+/* ==========================================
+   Magnetic Hover Interactions
+   ========================================== */
+function setupMagneticButtons() {
+    const targets = document.querySelectorAll('.icon-link, .mastering-tool-btn, .aether-player-btn, .thanks-link, .tool-card');
+
+    targets.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            el.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`;
+        });
+
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = '';
+        });
+    });
+}
+
+/* ==========================================
+   Scroll Reveal Animation
+   ========================================== */
+function setupScrollAnimation() {
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+/* ==========================================
+   Render Artist Media & Links
+   ========================================== */
 function renderArtistLinks(artist) {
     const container = document.getElementById(`links-${artist.id}`);
     if (!container) return;
 
     artist.links.forEach(link => {
-        // If URL is empty, DO NOT render the icon.
         if (!link.url) return;
 
         const a = document.createElement('a');
         a.href = link.url;
         a.target = "_blank";
+        a.rel = "noopener noreferrer";
         a.className = `icon-link brand-${link.type}`;
         a.setAttribute('aria-label', link.label);
 
-        // SVG/Image Icons
         let iconHtml = '';
         if (link.type === 'twitter') {
             iconHtml = '<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>';
         } else if (link.type === 'tiktok') {
-            // Simple Music Note / TikTok icon shape
             iconHtml = '<svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>';
         } else if (link.type === 'spotify') {
             iconHtml = '<svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 4.439-1.5 9.839-.84 13.561 1.44.419.24.6.78.18 1.38zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.4-1.02 15.6 1.44.539.3.719.96.42 1.5-.239.479-.84.6-1.38.3z"/></svg>';
@@ -411,8 +389,7 @@ function renderArtistLinks(artist) {
         } else if (link.type === 'suno') {
             iconHtml = '<img src="suno.jpeg" alt="Suno" loading="lazy">';
         } else if (link.type === 'aisa') {
-            // AISA text
-            iconHtml = '<span style="font-size:10px; font-weight:bold;">AISA</span>';
+            iconHtml = '<span style="font-size:10px; font-weight:700; font-family:var(--font-mono);">AISA</span>';
         }
 
         a.innerHTML = iconHtml;
@@ -425,10 +402,9 @@ function renderSpotify(artist) {
     if (!container) return;
 
     if (!artist.spotifyUrls || artist.spotifyUrls.length === 0) {
-        // "Coming soon" as requested, instead of just hiding
         const placeholder = document.createElement('div');
         placeholder.className = 'empty-frame';
-        placeholder.innerHTML = '<span>Spotify Coming soon</span>'; // Explicit Text
+        placeholder.innerHTML = '<span>Spotify Archive In Preparation</span>';
         container.appendChild(placeholder);
         return;
     }
@@ -436,22 +412,20 @@ function renderSpotify(artist) {
     artist.spotifyUrls.forEach(urlStr => {
         try {
             const url = new URL(urlStr);
-            let cleanPath = url.pathname.replace(/^\/intl-[a-z]+\//, '/');
-            cleanPath = cleanPath.replace(/\/$/, "");
-
+            let cleanPath = url.pathname.replace(/^\/intl-[a-z]+\//, '/').replace(/\/$/, "");
             const embedSrc = `https://open.spotify.com/embed${cleanPath}?utm_source=generator&theme=0`;
 
             const iframe = document.createElement('iframe');
             iframe.src = embedSrc;
             iframe.width = "100%";
             iframe.height = "352";
-            iframe.style.border = "none"; // Explicitly remove border
+            iframe.style.border = "none";
             iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
             iframe.loading = "lazy";
 
             container.appendChild(iframe);
         } catch (e) {
-            console.error('Invalid Spotify URL', urlStr);
+            console.error('Invalid Spotify URL:', urlStr);
         }
     });
 }
@@ -461,10 +435,9 @@ function renderYouTube(artist) {
     if (!container) return;
 
     if (!artist.youtubeUrls || artist.youtubeUrls.length === 0) {
-        // "Coming soon" as requested
         const placeholder = document.createElement('div');
         placeholder.className = 'empty-frame';
-        placeholder.innerHTML = '<span>Videos Coming soon</span>'; // Explicit Text
+        placeholder.innerHTML = '<span>Visual Archive In Preparation</span>';
         container.appendChild(placeholder);
         return;
     }
@@ -488,10 +461,10 @@ function renderYouTube(artist) {
 
             item.appendChild(iframe);
         } catch (e) {
-            console.error('Invalid YouTube URL', urlStr);
+            console.error('Invalid YouTube URL:', urlStr);
             const placeholder = document.createElement('div');
             placeholder.className = 'empty-frame';
-            placeholder.textContent = 'Invalid Video Info';
+            placeholder.textContent = 'Invalid Video Archive';
             container.appendChild(placeholder);
         }
 
