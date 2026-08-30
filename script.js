@@ -892,9 +892,20 @@ document.addEventListener('DOMContentLoaded', () => {
     setupAudioDeck();
 
     // Synchronize closed Suno card height with YouTube card
-    setTimeout(syncPlayerHeights, 100);
-    window.addEventListener('resize', syncPlayerHeights, { passive: true });
+    setupPlayerHeightSync();
 });
+
+function setupPlayerHeightSync() {
+    syncPlayerHeights();
+    if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => {
+            syncPlayerHeights();
+        });
+        document.querySelectorAll('.youtube-card').forEach(yt => ro.observe(yt));
+    }
+    window.addEventListener('resize', syncPlayerHeights, { passive: true });
+    setTimeout(syncPlayerHeights, 300);
+}
 
 function syncPlayerHeights() {
     if (window.innerWidth <= 960) {
