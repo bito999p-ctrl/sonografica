@@ -1552,6 +1552,8 @@ body {
     padding: 56px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.07);
     scroll-margin-top: 80px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .artist-block:last-child {
@@ -1563,7 +1565,23 @@ body {
     align-items: flex-end;
     justify-content: space-between;
     margin-bottom: 32px;
-    gap: 20px;
+    gap: 16px;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .artist-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    .artist-links {
+        flex-wrap: wrap;
+        gap: 8px;
+        max-width: 100%;
+    }
 }
 
 .artist-meta {
@@ -2271,21 +2289,54 @@ body {
     .suno-native-player {
         height: auto;
         min-height: 220px;
+        max-width: 100%;
     }
     .suno-screen-content {
-        padding: 18px 14px;
-        gap: 14px;
+        padding: 16px 12px;
+        gap: 12px;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     .suno-art-col {
-        width: 100px;
-        height: 100px;
+        width: 90px;
+        height: 90px;
+        flex-shrink: 0;
+    }
+    .suno-meta-col {
+        min-width: 0;
+        overflow: hidden;
     }
     .suno-track-title-text {
-        font-size: 0.95rem;
+        font-size: 0.92rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .suno-play-pause-btn {
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
+    }
+    .suno-accordion-toggle {
+        padding: 0 8px;
+    }
+    .suno-toggle-main {
+        gap: 6px;
+    }
+    .suno-toggle-badge-btn {
+        padding: 4px 6px;
+        font-size: 0.65rem;
+        letter-spacing: 0.02em;
+    }
+    .suno-down-chevrons-wrap {
+        padding: 4px 6px;
+        font-size: 0.68rem;
+        letter-spacing: 0.03em;
+        gap: 4px;
+    }
+    .suno-triple-chevrons .chevron-ch {
+        width: 10px;
+        height: 10px;
+        margin-right: -3px;
     }
 }
 
