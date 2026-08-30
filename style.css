@@ -1659,16 +1659,18 @@ body {
 
 .media-grid {
     display: grid;
-    grid-template-columns: 1fr 380px;
+    grid-template-columns: minmax(0, 1fr) 380px;
     gap: 28px;
     align-items: start;
+    width: 100%;
 }
 
 @media (max-width: 960px) {
     .media-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 24px;
         align-items: start;
+        width: 100%;
     }
 }
 
@@ -1676,12 +1678,16 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .media-card {
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
     background: var(--surface);
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-sm);
@@ -1817,6 +1823,8 @@ body {
 
 .youtube-card {
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
     height: auto;
 }
 
@@ -1824,6 +1832,8 @@ body {
 .suno-native-player {
     position: relative;
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
     min-height: 280px;
     height: 320px;
     background: #0d0e12;
@@ -1853,6 +1863,9 @@ body {
     position: relative;
     z-index: 2;
     height: 100%;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     display: flex;
     align-items: center;
     padding: 24px 20px;
@@ -2148,6 +2161,10 @@ body {
 
 /* Collapsible Tracklist Drawer */
 .suno-tracklist {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
     max-height: 0;
     overflow: hidden;
     background: var(--surface);
@@ -2168,6 +2185,9 @@ body {
     align-items: stretch;
     justify-content: space-between;
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
     background: transparent;
     transition: background 0.2s var(--ease);
@@ -2191,6 +2211,8 @@ body {
     justify-content: space-between;
     flex: 1;
     min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: 8px 10px 8px 14px;
     background: transparent;
     border: none;
@@ -2215,7 +2237,9 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex: 1;
     min-width: 0;
+    max-width: 100%;
     overflow: hidden;
 }
 
@@ -2232,6 +2256,10 @@ body {
 }
 
 .suno-track-title {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
