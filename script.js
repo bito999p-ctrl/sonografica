@@ -655,7 +655,7 @@ function renderSunoJukebox(artist, container) {
         const frame = document.createElement('iframe');
         frame.className = 'suno-embed-frame';
         frame.width = '100%';
-        frame.height = '145';
+        frame.height = '220';
         frame.style.border = 'none';
         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
         frame.allowFullscreen = true;

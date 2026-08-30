@@ -1641,8 +1641,8 @@ body {
 
 .media-grid {
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 24px;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 26px;
     align-items: stretch;
 }
 
@@ -1781,7 +1781,7 @@ body {
 .suno-player-box {
     width: 100%;
     background: #000000;
-    height: 145px;
+    height: 220px;
     flex-shrink: 0;
     line-height: 0;
 }
@@ -1789,7 +1789,7 @@ body {
 .suno-embed-frame {
     display: block;
     width: 100%;
-    height: 145px;
+    height: 220px;
     border: none;
 }
 
@@ -1805,8 +1805,12 @@ body {
 }
 
 @media (max-width: 860px) {
+    .suno-player-box,
+    .suno-embed-frame {
+        height: 220px;
+    }
     .suno-tracklist {
-        max-height: 160px;
+        max-height: 180px;
     }
 }
 
