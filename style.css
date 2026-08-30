@@ -104,49 +104,180 @@ body {
     background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, rgba(10, 5, 7, 0.75) 75%, rgba(10, 5, 7, 0.96) 100%);
 }
 
-/* ── 歪み歪み (Hizumi Hizumi) Immersive Theme ── */
-body.theme-hizumi .ambient-backdrop {
+/* ── Dynamic Ambient Activation for Themed Artists ── */
+body[class*="theme-"] .ambient-backdrop {
     opacity: 1;
 }
 
+body[class*="theme-"] .brand-logo,
+body[class*="theme-"] .nav-link {
+    color: #f1f1f1;
+}
+
+body[class*="theme-"] .nav-toggle span {
+    background: #f1f1f1;
+}
+
+/* 02. valotoa Immersive Theme (Razor-Sharp Monochrome & Platinum Silver) */
+body.theme-valotoa .ambient-bg-color {
+    background: radial-gradient(circle at 50% 35%, rgba(180, 195, 215, 0.2) 0%, rgba(16, 18, 22, 0.95) 75%, rgba(8, 9, 12, 0.98) 100%);
+}
+body.theme-valotoa .ambient-bg-image {
+    opacity: 0.24;
+    transform: scale(1);
+    background-image: url('assets/valotoa_bg.jpg');
+}
+body.theme-valotoa .main-nav {
+    background: rgba(14, 16, 20, 0.92);
+    border-bottom-color: rgba(226, 232, 240, 0.16);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+body.theme-valotoa #valotoa .artist-num {
+    color: #cbd5e1;
+    text-shadow: 0 0 16px rgba(226, 232, 240, 0.7);
+}
+body.theme-valotoa #valotoa .artist-name {
+    color: #ffffff;
+    text-shadow: 0 2px 24px rgba(200, 215, 235, 0.35);
+}
+body.theme-valotoa #valotoa .media-card {
+    border-color: rgba(226, 232, 240, 0.2);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+/* 03. 歪み歪み (Hizumi Hizumi) Immersive Theme (Dark Crimson & Charcoal Oil) */
 body.theme-hizumi .ambient-bg-color {
     background: radial-gradient(circle at 50% 35%, rgba(180, 18, 30, 0.38) 0%, rgba(12, 5, 8, 0.94) 80%, rgba(8, 3, 5, 0.98) 100%);
 }
-
 body.theme-hizumi .ambient-bg-image {
     opacity: 0.28;
     transform: scale(1);
     background-image: url('assets/hizumi_bg.jpg');
 }
-
 body.theme-hizumi .main-nav {
     background: rgba(14, 6, 9, 0.92);
     border-bottom-color: rgba(255, 45, 65, 0.18);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
-
-body.theme-hizumi .brand-logo,
-body.theme-hizumi .nav-link {
-    color: #f1f1f1;
-}
-
-body.theme-hizumi .nav-toggle span {
-    background: #f1f1f1;
-}
-
 body.theme-hizumi #hizumi .artist-num {
     color: #ff3344;
     text-shadow: 0 0 16px rgba(255, 51, 68, 0.6);
 }
-
 body.theme-hizumi #hizumi .artist-name {
     color: #ffffff;
     text-shadow: 0 2px 24px rgba(255, 30, 50, 0.4);
 }
-
 body.theme-hizumi #hizumi .media-card {
     border-color: rgba(255, 45, 65, 0.22);
     box-shadow: 0 12px 36px rgba(180, 10, 20, 0.22);
+}
+
+/* 04. pophoper Immersive Theme (Golden Hour & Amber Neon Twilight) */
+body.theme-pophoper .ambient-bg-color {
+    background: radial-gradient(circle at 50% 35%, rgba(245, 158, 11, 0.28) 0%, rgba(26, 14, 6, 0.94) 75%, rgba(12, 6, 3, 0.98) 100%);
+}
+body.theme-pophoper .ambient-bg-image {
+    opacity: 0.26;
+    transform: scale(1);
+    background-image: url('assets/pophoper_bg.jpg');
+}
+body.theme-pophoper .main-nav {
+    background: rgba(18, 10, 5, 0.92);
+    border-bottom-color: rgba(245, 158, 11, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+body.theme-pophoper #pophoper .artist-num {
+    color: #fbbf24;
+    text-shadow: 0 0 16px rgba(251, 191, 36, 0.7);
+}
+body.theme-pophoper #pophoper .artist-name {
+    color: #ffffff;
+    text-shadow: 0 2px 24px rgba(245, 158, 11, 0.35);
+}
+body.theme-pophoper #pophoper .media-card {
+    border-color: rgba(245, 158, 11, 0.22);
+    box-shadow: 0 12px 36px rgba(245, 158, 11, 0.16);
+}
+
+/* 05. Stray Glitch Monkeys Immersive Theme (Skyscraper Rooftop & Ice Slate) */
+body.theme-stray .ambient-bg-color {
+    background: radial-gradient(circle at 50% 35%, rgba(56, 189, 248, 0.2) 0%, rgba(14, 19, 28, 0.95) 75%, rgba(8, 11, 16, 0.98) 100%);
+}
+body.theme-stray .ambient-bg-image {
+    opacity: 0.25;
+    transform: scale(1);
+    background-image: url('assets/stray_bg.png');
+}
+body.theme-stray .main-nav {
+    background: rgba(11, 15, 22, 0.92);
+    border-bottom-color: rgba(56, 189, 248, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+body.theme-stray #stray .artist-num {
+    color: #38bdf8;
+    text-shadow: 0 0 16px rgba(56, 189, 248, 0.65);
+}
+body.theme-stray #stray .artist-name {
+    color: #ffffff;
+    text-shadow: 0 2px 24px rgba(56, 189, 248, 0.35);
+}
+body.theme-stray #stray .media-card {
+    border-color: rgba(56, 189, 248, 0.2);
+    box-shadow: 0 12px 36px rgba(15, 23, 42, 0.4);
+}
+
+/* 06. DAY END NIGHT Immersive Theme (Midnight Grunge & Street Graffiti) */
+body.theme-dayendnight .ambient-bg-color {
+    background: radial-gradient(circle at 50% 40%, rgba(70, 78, 90, 0.3) 0%, rgba(14, 16, 20, 0.96) 80%, rgba(7, 8, 10, 0.99) 100%);
+}
+body.theme-dayendnight .ambient-bg-image {
+    opacity: 0.28;
+    transform: scale(1);
+    background-image: url('assets/dayendnight_bg.jpg');
+}
+body.theme-dayendnight .main-nav {
+    background: rgba(12, 14, 18, 0.92);
+    border-bottom-color: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+body.theme-dayendnight #dayendnight .artist-num {
+    color: #f4f4f5;
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
+}
+body.theme-dayendnight #dayendnight .artist-name {
+    color: #ffffff;
+    text-shadow: 0 2px 24px rgba(255, 255, 255, 0.3);
+}
+body.theme-dayendnight #dayendnight .media-card {
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+}
+
+/* 08. RUPTURE Immersive Theme (Explosive Punk Live Stage & Fiery Red) */
+body.theme-rupture .ambient-bg-color {
+    background: radial-gradient(circle at 50% 35%, rgba(239, 68, 68, 0.36) 0%, rgba(28, 7, 7, 0.95) 80%, rgba(10, 2, 2, 0.99) 100%);
+}
+body.theme-rupture .ambient-bg-image {
+    opacity: 0.27;
+    transform: scale(1);
+    background-image: url('assets/rupture_bg.jpg');
+}
+body.theme-rupture .main-nav {
+    background: rgba(18, 6, 6, 0.92);
+    border-bottom-color: rgba(239, 68, 68, 0.22);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+body.theme-rupture #rupture .artist-num {
+    color: #ff4d4f;
+    text-shadow: 0 0 18px rgba(255, 77, 79, 0.8);
+}
+body.theme-rupture #rupture .artist-name {
+    color: #ffffff;
+    text-shadow: 0 2px 24px rgba(239, 68, 68, 0.4);
+}
+body.theme-rupture #rupture .media-card {
+    border-color: rgba(239, 68, 68, 0.25);
+    box-shadow: 0 12px 36px rgba(220, 38, 38, 0.22);
 }
 
 /* ── Layout ── */

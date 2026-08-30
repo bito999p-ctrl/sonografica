@@ -900,24 +900,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* ── Artist Ambient Background Theming (Focal Zone Observer) ── */
 function setupArtistAmbientObserver() {
-    const hizumiEl = document.getElementById('hizumi');
-    if (!hizumiEl) return;
+    const THEMED_ARTISTS = [
+        'valotoa',
+        'hizumi',
+        'pophoper',
+        'stray',
+        'dayendnight',
+        'rupture'
+    ];
+
+    const artistEls = THEMED_ARTISTS
+        .map(id => ({ id, el: document.getElementById(id) }))
+        .filter(item => item.el);
+
+    if (!artistEls.length) return;
 
     let ticking = false;
+    let currentThemeClass = '';
 
     function checkActiveArtist() {
-        const rect = hizumiEl.getBoundingClientRect();
         const vHeight = window.innerHeight;
-        // The focal zone is the central 30% of the screen (35% to 65% from top)
-        // Hizumi is active ONLY if its block actually occupies this central focal zone
         const focalTop = vHeight * 0.35;
         const focalBottom = vHeight * 0.65;
-        const isHizumiFocused = rect.top <= focalBottom && rect.bottom >= focalTop;
 
-        if (isHizumiFocused) {
-            document.body.classList.add('theme-hizumi');
-        } else {
-            document.body.classList.remove('theme-hizumi');
+        let activeArtistId = null;
+
+        for (const item of artistEls) {
+            const rect = item.el.getBoundingClientRect();
+            if (rect.top <= focalBottom && rect.bottom >= focalTop) {
+                activeArtistId = item.id;
+                break;
+            }
+        }
+
+        const newThemeClass = activeArtistId ? `theme-${activeArtistId}` : '';
+
+        if (newThemeClass !== currentThemeClass) {
+            if (currentThemeClass) {
+                document.body.classList.remove(currentThemeClass);
+            }
+            if (newThemeClass) {
+                document.body.classList.add(newThemeClass);
+            }
+            currentThemeClass = newThemeClass;
         }
     }
 
@@ -933,7 +958,6 @@ function setupArtistAmbientObserver() {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', checkActiveArtist, { passive: true });
-    // Initial check
     checkActiveArtist();
 }
 
