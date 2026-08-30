@@ -112,7 +112,7 @@ body {
     background-image: url('assets/pophoper_bg.jpg');
 }
 .ambient-artist-bg.bg-stray {
-    background-image: url('assets/stray_bg.png');
+    background-image: url('assets/stray_bg.jpg');
 }
 .ambient-artist-bg.bg-dayendnight {
     background-image: url('assets/dayendnight_bg.jpg');
@@ -207,7 +207,7 @@ body.theme-hizumi .ambient-bg-color {
     background: radial-gradient(circle at 50% 35%, rgba(180, 18, 30, 0.38) 0%, rgba(12, 5, 8, 0.94) 80%, rgba(8, 3, 5, 0.98) 100%);
 }
 body.theme-hizumi .ambient-artist-bg.bg-hizumi {
-    opacity: 0.28;
+    opacity: 0.32;
     transform: scale(1);
 }
 body.theme-hizumi .main-nav {
@@ -254,12 +254,13 @@ body.theme-pophoper #pophoper .media-card {
     box-shadow: 0 12px 36px rgba(245, 158, 11, 0.16);
 }
 
-/* 05. Stray Glitch Monkeys Immersive Theme (Skyscraper Rooftop & Ice Slate) */
+/* 05. Stray Glitch Monkeys Immersive Theme (Industrial Grunge & Icy Slate) */
 body.theme-stray .ambient-bg-color {
     background: radial-gradient(circle at 50% 35%, rgba(56, 189, 248, 0.2) 0%, rgba(14, 19, 28, 0.95) 75%, rgba(8, 11, 16, 0.98) 100%);
 }
 body.theme-stray .ambient-artist-bg.bg-stray {
-    opacity: 0.25;
+    opacity: 0.35;
+    filter: brightness(0.88) contrast(1.15);
     transform: scale(1);
 }
 body.theme-stray .main-nav {
