@@ -650,22 +650,20 @@ function renderSunoJukebox(artist, container) {
     const playerBox = document.createElement('div');
     playerBox.className = 'suno-player-box';
 
-    function switchSunoTrack(trackId) {
-        playerBox.innerHTML = '';
-        const newIframe = document.createElement('iframe');
-        newIframe.className = 'suno-embed-frame';
-        newIframe.src = `https://suno.com/embed/${trackId}`;
-        newIframe.width = '100%';
-        newIframe.height = '180';
-        newIframe.style.border = 'none';
-        newIframe.loading = 'eager';
-        newIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        newIframe.allowFullscreen = true;
-        playerBox.appendChild(newIframe);
-    }
-
-    // Initialize first track
-    switchSunoTrack(tracks[0].id);
+    const iframes = [];
+    tracks.forEach((track, idx) => {
+        const frame = document.createElement('iframe');
+        frame.className = 'suno-embed-frame';
+        frame.width = '100%';
+        frame.height = '180';
+        frame.style.border = 'none';
+        frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        frame.allowFullscreen = true;
+        frame.dataset.src = `https://suno.com/embed/${track.id}`;
+        frame.style.display = idx === 0 ? 'block' : 'none';
+        playerBox.appendChild(frame);
+        iframes.push(frame);
+    });
 
     const listWrap = document.createElement('div');
     listWrap.className = 'suno-tracklist';
@@ -691,7 +689,15 @@ function renderSunoJukebox(artist, container) {
             if (item.classList.contains('is-active')) return;
             listWrap.querySelectorAll('.suno-track-item').forEach(b => b.classList.remove('is-active'));
             item.classList.add('is-active');
-            switchSunoTrack(track.id);
+
+            iframes.forEach((f, fIdx) => {
+                if (fIdx === idx) {
+                    if (!f.src) f.src = f.dataset.src;
+                    f.style.display = 'block';
+                } else {
+                    f.style.display = 'none';
+                }
+            });
         });
 
         listWrap.appendChild(item);
@@ -703,6 +709,9 @@ function renderSunoJukebox(artist, container) {
 
     container.innerHTML = '';
     container.appendChild(wrap);
+
+    // Activate first track src AFTER container is securely in the DOM
+    iframes[0].src = iframes[0].dataset.src;
 }
 
 function renderYouTube(artist) {
