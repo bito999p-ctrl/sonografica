@@ -522,8 +522,12 @@ const artists = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    artists.forEach(a => { renderLinks(a); });
-    setupLazyEmbeds();
+    artists.forEach(a => {
+        renderLinks(a);
+        renderSpotify(a);
+        renderYouTube(a);
+    });
+    setupSunoRequestController();
     setupNav();
     setupReveal();
     setupCanvas();
@@ -816,24 +820,116 @@ function escapeHtml(str) {
     }[m]));
 }
 
-/* ── Lazy Load YouTube and Spotify Embeds on Scroll ── */
-function setupLazyEmbeds() {
-    const artistObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const block = entry.target;
-                const artistId = block.id;
-                const artist = artists.find(a => a.id === artistId);
-                if (artist) {
-                    renderSpotify(artist);
-                    renderYouTube(artist);
-                }
-                obs.unobserve(block);
-            }
-        });
-    }, { rootMargin: '300px 0px 300px 0px', threshold: 0.01 });
+/* ── Page-Level Suno Request Concurrency & Anti-Collision Controller ── */
+let isSunoConnecting = false;
+const sunoPendingQueue = [];
+let isShortcutScrolling = false;
+let shortcutScrollTimer = null;
 
-    document.querySelectorAll('.artist-block').forEach(el => artistObserver.observe(el));
+function requestSunoActivation(iframe, isPriority = false) {
+    if (!iframe || iframe.src) return;
+    if (isPriority) {
+        const idx = sunoPendingQueue.indexOf(iframe);
+        if (idx > -1) sunoPendingQueue.splice(idx, 1);
+        sunoPendingQueue.unshift(iframe);
+    } else {
+        if (!sunoPendingQueue.includes(iframe)) {
+            sunoPendingQueue.push(iframe);
+        }
+    }
+    processNextSunoRequest();
+}
+
+function processNextSunoRequest() {
+    if (isSunoConnecting || sunoPendingQueue.length === 0) return;
+
+    const frame = sunoPendingQueue.shift();
+    if (!frame || frame.src) {
+        processNextSunoRequest();
+        return;
+    }
+
+    isSunoConnecting = true;
+    frame.src = frame.dataset.src;
+
+    let cleared = false;
+    const releaseLock = () => {
+        if (cleared) return;
+        cleared = true;
+        frame.removeEventListener('load', releaseLock);
+        frame.removeEventListener('error', releaseLock);
+        setTimeout(() => {
+            isSunoConnecting = false;
+            processNextSunoRequest();
+        }, 600);
+    };
+
+    frame.addEventListener('load', releaseLock);
+    frame.addEventListener('error', releaseLock);
+    setTimeout(releaseLock, 3500);
+}
+
+function activateMostVisibleArtist() {
+    if (isShortcutScrolling) return;
+    const blocks = document.querySelectorAll('.artist-block');
+    let bestBlock = null;
+    let maxVisible = 0;
+    const vh = window.innerHeight;
+
+    blocks.forEach(block => {
+        const rect = block.getBoundingClientRect();
+        const visible = Math.max(0, Math.min(rect.bottom, vh) - Math.max(rect.top, 0));
+        if (visible > maxVisible) {
+            maxVisible = visible;
+            bestBlock = block;
+        }
+    });
+
+    if (bestBlock && maxVisible > 100) {
+        const frame = bestBlock.querySelector('.suno-embed-frame');
+        if (frame && !frame.src) {
+            requestSunoActivation(frame);
+        }
+    }
+}
+
+function setupSunoRequestController() {
+    // Intercept artist shortcut chip clicks
+    document.querySelectorAll('.artist-shortcut-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            const href = chip.getAttribute('href');
+            if (!href || !href.startsWith('#')) return;
+            const targetId = href.slice(1);
+            const targetBlock = document.getElementById(targetId);
+            if (!targetBlock) return;
+
+            // Stop all intermediate activations during scroll
+            isShortcutScrolling = true;
+            clearTimeout(shortcutScrollTimer);
+            sunoPendingQueue.length = 0; // Clear intermediate queue
+
+            shortcutScrollTimer = setTimeout(() => {
+                isShortcutScrolling = false;
+                const targetFrame = targetBlock.querySelector('.suno-embed-frame');
+                if (targetFrame && !targetFrame.src) {
+                    requestSunoActivation(targetFrame, true);
+                }
+            }, 650);
+        });
+    });
+
+    // Debounce manual window scrolling so fast scrolls don't spam requests
+    let scrollDebounce = null;
+    window.addEventListener('scroll', () => {
+        if (isShortcutScrolling) return;
+        clearTimeout(scrollDebounce);
+        scrollDebounce = setTimeout(() => {
+            activateMostVisibleArtist();
+        }, 300);
+    }, { passive: true });
+
+    // Initial activation for the artist at the top
+    setTimeout(activateMostVisibleArtist, 350);
 }
 
 /* ── Smooth Nav & Mobile Menu Handler ── */
@@ -1101,13 +1197,6 @@ function renderSunoJukebox(artist, container) {
     const listWrap = document.createElement('div');
     listWrap.className = 'suno-tracklist';
 
-    toggleBar.addEventListener('click', () => {
-        const isExpanded = toggleBar.getAttribute('aria-expanded') === 'true';
-        toggleBar.setAttribute('aria-expanded', String(!isExpanded));
-        toggleBar.classList.toggle('is-open', !isExpanded);
-        listWrap.classList.toggle('is-open', !isExpanded);
-    });
-
     tracks.forEach((track, idx) => {
         const item = document.createElement('div');
         item.className = `suno-track-item ${idx === 0 ? 'is-active' : ''}`;
@@ -1138,7 +1227,7 @@ function renderSunoJukebox(artist, container) {
 
             iframes.forEach((f, fIdx) => {
                 if (fIdx === idx) {
-                    if (!f.src) f.src = f.dataset.src;
+                    if (!f.src) requestSunoActivation(f, true);
                     f.style.display = 'block';
                 } else {
                     f.style.display = 'none';
@@ -1160,6 +1249,16 @@ function renderSunoJukebox(artist, container) {
         listWrap.appendChild(item);
     });
 
+    toggleBar.addEventListener('click', () => {
+        const isExpanded = toggleBar.getAttribute('aria-expanded') === 'true';
+        toggleBar.setAttribute('aria-expanded', String(!isExpanded));
+        toggleBar.classList.toggle('is-open', !isExpanded);
+        listWrap.classList.toggle('is-open', !isExpanded);
+        if (!iframes[0].src) {
+            requestSunoActivation(iframes[0], true);
+        }
+    });
+
     wrap.appendChild(header);
     wrap.appendChild(playerBox);
     wrap.appendChild(toggleBar);
@@ -1167,24 +1266,6 @@ function renderSunoJukebox(artist, container) {
 
     container.innerHTML = '';
     container.appendChild(wrap);
-
-    // Lazily activate first track src ONLY when the artist card scrolls into view
-    // This prevents 10 iframes from flooding auth.suno.com simultaneously (which causes ERR_TOO_MANY_REDIRECTS)
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (iframes[0] && !iframes[0].src && iframes[0].dataset.src) {
-                        iframes[0].src = iframes[0].dataset.src;
-                    }
-                    obs.unobserve(wrap);
-                }
-            });
-        }, { rootMargin: '120px 0px' });
-        observer.observe(wrap);
-    } else {
-        iframes[0].src = iframes[0].dataset.src;
-    }
 }
 
 function renderYouTube(artist) {
