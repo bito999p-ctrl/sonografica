@@ -410,6 +410,24 @@ const artists = [
         ],
         "sunoTracks": [
             {
+                "id": "c02b278a-528a-4ee8-8986-973e70e47043",
+                "title": "アンソロポス",
+                "image": "https://cdn2.suno.ai/c02b278a-528a-4ee8-8986-973e70e47043_07cbc614.jpeg",
+                "stream": "https://cdn1.suno.ai/c02b278a-528a-4ee8-8986-973e70e47043.mp4"
+            },
+            {
+                "id": "2a3256be-ace4-492a-a473-72744bdf7e46",
+                "title": "ラブソングが歌えない",
+                "image": "https://cdn2.suno.ai/2a3256be-ace4-492a-a473-72744bdf7e46_f043b080.jpeg",
+                "stream": "https://cdn1.suno.ai/2a3256be-ace4-492a-a473-72744bdf7e46.mp4"
+            },
+            {
+                "id": "badfaa75-f7a8-4b15-a7a2-52062bf20768",
+                "title": "僕は",
+                "image": "https://cdn2.suno.ai/badfaa75-f7a8-4b15-a7a2-52062bf20768_b7a2529d.jpeg",
+                "stream": "https://cdn1.suno.ai/badfaa75-f7a8-4b15-a7a2-52062bf20768.mp4"
+            },
+            {
                 "id": "96957030-34a3-4e81-9348-e6ef6d414613",
                 "title": "嘘だよね -欠陥感情四象限-",
                 "image": "https://cdn2.suno.ai/96957030-34a3-4e81-9348-e6ef6d414613_0286f37c.jpeg",
@@ -432,24 +450,6 @@ const artists = [
                 "title": "ありがとうございました -欠陥感情四象限-",
                 "image": "https://cdn2.suno.ai/video_upload_80149a81-3188-4147-8a4e-ac9fc80588a2_video_upload_80149a81-3188-4147-8a4e-ac9fc80588a2_cover_snapshot_0s_1767536933_image.jpeg",
                 "stream": "https://cdn1.suno.ai/cfce49e8-ed87-4ffc-a797-ece8f7ca15d1.mp4"
-            },
-            {
-                "id": "2a3256be-ace4-492a-a473-72744bdf7e46",
-                "title": "ラブソングが歌えない",
-                "image": "https://cdn2.suno.ai/2a3256be-ace4-492a-a473-72744bdf7e46_f043b080.jpeg",
-                "stream": "https://cdn1.suno.ai/2a3256be-ace4-492a-a473-72744bdf7e46.mp4"
-            },
-            {
-                "id": "c02b278a-528a-4ee8-8986-973e70e47043",
-                "title": "アンソロポス",
-                "image": "https://cdn2.suno.ai/c02b278a-528a-4ee8-8986-973e70e47043_07cbc614.jpeg",
-                "stream": "https://cdn1.suno.ai/c02b278a-528a-4ee8-8986-973e70e47043.mp4"
-            },
-            {
-                "id": "badfaa75-f7a8-4b15-a7a2-52062bf20768",
-                "title": "僕は",
-                "image": "https://cdn2.suno.ai/badfaa75-f7a8-4b15-a7a2-52062bf20768_b7a2529d.jpeg",
-                "stream": "https://cdn1.suno.ai/badfaa75-f7a8-4b15-a7a2-52062bf20768.mp4"
             }
         ]
     },
@@ -744,6 +744,12 @@ const artists = [
         ],
         "sunoTracks": [
             {
+                "id": "789fbe7a-02f2-4106-b3da-8b90c1d374e6",
+                "title": "UNANSWERED",
+                "image": "https://cdn2.suno.ai/3db71f76-69e0-4ecd-9925-95e49b8bdacb.jpeg",
+                "stream": "https://cdn1.suno.ai/789fbe7a-02f2-4106-b3da-8b90c1d374e6.mp4"
+            },
+            {
                 "id": "a3f056ca-1e69-44b7-af87-f6b6e6eefa0a",
                 "title": "UNBROKEN",
                 "image": "https://cdn2.suno.ai/a3f056ca-1e69-44b7-af87-f6b6e6eefa0a_16796497.jpeg",
@@ -754,12 +760,6 @@ const artists = [
                 "title": "UNSCRIPTED",
                 "image": "https://cdn2.suno.ai/f2089d2c-dfeb-46c3-9b22-23f6e8f0bfa1_67f71a7b.jpeg",
                 "stream": "https://cdn1.suno.ai/f2089d2c-dfeb-46c3-9b22-23f6e8f0bfa1.mp4"
-            },
-            {
-                "id": "789fbe7a-02f2-4106-b3da-8b90c1d374e6",
-                "title": "UNANSWERED",
-                "image": "https://cdn2.suno.ai/3db71f76-69e0-4ecd-9925-95e49b8bdacb.jpeg",
-                "stream": "https://cdn1.suno.ai/789fbe7a-02f2-4106-b3da-8b90c1d374e6.mp4"
             }
         ]
     },
