@@ -649,16 +649,23 @@ function renderSunoJukebox(artist, container) {
 
     const playerBox = document.createElement('div');
     playerBox.className = 'suno-player-box';
-    const iframe = document.createElement('iframe');
-    iframe.className = 'suno-embed-frame';
-    iframe.src = `https://suno.com/embed/${tracks[0].id}`;
-    iframe.width = '100%';
-    iframe.height = '180';
-    iframe.style.border = 'none';
-    iframe.loading = 'lazy';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
-    playerBox.appendChild(iframe);
+
+    function switchSunoTrack(trackId) {
+        playerBox.innerHTML = '';
+        const newIframe = document.createElement('iframe');
+        newIframe.className = 'suno-embed-frame';
+        newIframe.src = `https://suno.com/embed/${trackId}`;
+        newIframe.width = '100%';
+        newIframe.height = '180';
+        newIframe.style.border = 'none';
+        newIframe.loading = 'eager';
+        newIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        newIframe.allowFullscreen = true;
+        playerBox.appendChild(newIframe);
+    }
+
+    // Initialize first track
+    switchSunoTrack(tracks[0].id);
 
     const listWrap = document.createElement('div');
     listWrap.className = 'suno-tracklist';
@@ -684,7 +691,7 @@ function renderSunoJukebox(artist, container) {
             if (item.classList.contains('is-active')) return;
             listWrap.querySelectorAll('.suno-track-item').forEach(b => b.classList.remove('is-active'));
             item.classList.add('is-active');
-            iframe.src = `https://suno.com/embed/${track.id}`;
+            switchSunoTrack(track.id);
         });
 
         listWrap.appendChild(item);
