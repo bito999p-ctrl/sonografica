@@ -635,16 +635,16 @@ function renderSunoJukebox(artist, container) {
     if (!tracks || !tracks.length) return;
 
     const wrap = document.createElement('div');
-    wrap.className = 'suno-jukebox';
+    wrap.className = 'media-card suno-jukebox';
 
     const header = document.createElement('div');
-    header.className = 'suno-jukebox-header';
+    header.className = 'media-card-header';
     header.innerHTML = `
-        <div class="suno-jukebox-title">
-            <img src="suno.jpeg" alt="Suno" class="suno-jukebox-logo">
-            <span>Suno Playlist Player</span>
+        <div class="media-card-title">
+            <img src="suno.jpeg" alt="Suno" class="media-card-logo">
+            <span>Suno Playlist</span>
         </div>
-        <span class="suno-jukebox-count">${tracks.length} Tracks</span>
+        <span class="media-card-badge suno-badge">${tracks.length} Tracks</span>
     `;
 
     const playerBox = document.createElement('div');
@@ -655,7 +655,7 @@ function renderSunoJukebox(artist, container) {
         const frame = document.createElement('iframe');
         frame.className = 'suno-embed-frame';
         frame.width = '100%';
-        frame.height = '180';
+        frame.height = '145';
         frame.style.border = 'none';
         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
         frame.allowFullscreen = true;
@@ -721,7 +721,21 @@ function renderYouTube(artist) {
         el.innerHTML = '<div class="empty-frame">Coming Soon</div>';
         return;
     }
+    el.innerHTML = '';
     artist.youtubeUrls.forEach(u => {
+        const card = document.createElement('div');
+        card.className = 'media-card youtube-card';
+
+        const header = document.createElement('div');
+        header.className = 'media-card-header';
+        header.innerHTML = `
+            <div class="media-card-title">
+                <svg class="media-card-icon yt-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <span>YouTube Playlist</span>
+            </div>
+            <span class="media-card-badge">Video</span>
+        `;
+
         const wrap = document.createElement('div');
         wrap.className = 'youtube-item';
         try {
@@ -734,10 +748,11 @@ function renderYouTube(artist) {
             iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
             iframe.allowFullscreen = true;
             wrap.appendChild(iframe);
-        } catch (e) {
-            wrap.innerHTML = '<div class="empty-frame">—</div>';
-        }
-        el.appendChild(wrap);
+        } catch (e) { console.error('YouTube URL error:', u); }
+
+        card.appendChild(header);
+        card.appendChild(wrap);
+        el.appendChild(card);
     });
 }
 

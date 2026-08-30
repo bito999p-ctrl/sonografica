@@ -1641,36 +1641,104 @@ body {
 
 .media-grid {
     display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 28px;
-    align-items: start;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+}
+
+@media (max-width: 860px) {
+    .media-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 }
 
 .media-column {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    height: 100%;
 }
 
-.youtube-item,
-.spotify-col iframe,
-.empty-frame {
+.media-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--surface);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-sm);
     overflow: hidden;
-    background: var(--surface);
-    border: 1px solid rgba(0, 0, 0, 0.06);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 
-.youtube-item:hover,
-.spotify-col iframe:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+.media-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.09);
 }
 
+.media-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 38px;
+    padding: 0 14px;
+    background: #fafaf8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    flex-shrink: 0;
+}
+
+.media-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.media-card-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+.yt-icon {
+    color: #ff0000;
+}
+
+.media-card-logo {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.media-card-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+    background: rgba(0, 0, 0, 0.04);
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    font-weight: 500;
+}
+
+.suno-badge {
+    color: var(--accent-gold);
+    background: rgba(179, 130, 34, 0.08);
+    font-weight: 600;
+}
+
+/* YouTube Item inside Card */
 .youtube-item {
+    flex: 1;
+    width: 100%;
     aspect-ratio: 16/9;
+    background: #000000;
+    line-height: 0;
 }
 
 .youtube-item iframe {
@@ -1685,10 +1753,12 @@ body {
     height: 352px;
     display: block;
     border: none;
+    border-radius: var(--radius-sm);
 }
 
 .empty-frame {
     width: 100%;
+    height: 100%;
     min-height: 200px;
     display: flex;
     align-items: center;
@@ -1698,82 +1768,46 @@ body {
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    background: var(--surface);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: var(--radius-sm);
 }
 
 /* ── Suno Jukebox Interactive Playlist Player ── */
 .suno-jukebox {
     width: 100%;
-    background: var(--surface);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-}
-
-.suno-jukebox:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
-}
-
-.suno-jukebox-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 14px;
-    background: #fafaf8;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.suno-jukebox-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-body);
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--ink);
-}
-
-.suno-jukebox-logo {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.suno-jukebox-count {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--accent-gold);
-    background: rgba(179, 130, 34, 0.08);
-    padding: 2px 8px;
-    border-radius: var(--radius-pill);
-    font-weight: 600;
 }
 
 .suno-player-box {
     width: 100%;
     background: #000000;
+    height: 145px;
+    flex-shrink: 0;
     line-height: 0;
 }
 
 .suno-embed-frame {
     display: block;
     width: 100%;
-    height: 190px;
+    height: 145px;
     border: none;
 }
 
+/* Suno Tracklist - Fills remaining space to be flush with YouTube! */
 .suno-tracklist {
-    display: flex;
-    flex-direction: column;
-    max-height: 160px;
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
     background: var(--surface);
     border-top: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 860px) {
+    .suno-tracklist {
+        max-height: 160px;
+    }
 }
 
 .suno-track-item {
@@ -1791,6 +1825,7 @@ body {
     color: var(--ink-secondary);
     transition: all 0.2s var(--ease);
     width: 100%;
+    flex-shrink: 0;
 }
 
 .suno-track-item:last-child {
@@ -1857,7 +1892,6 @@ body {
 
 .suno-track-item.is-active .suno-track-action {
     opacity: 1;
-    color: var(--accent-rose);
 }
 
 /* ── Tools ── */
