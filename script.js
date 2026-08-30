@@ -1645,20 +1645,37 @@ function renderSunoJukebox(artist, container) {
                 <h4 class="suno-track-title-text">${escapeHtml(tracks[0].title)}</h4>
                 <div class="suno-artist-name-text">${escapeHtml(artist.name)}</div>
 
-                <div class="suno-player-controls">
-                    <button type="button" class="suno-play-pause-btn" aria-label="Play / Pause">
-                        <svg class="suno-icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        <svg class="suno-icon-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                    </button>
-                    <div class="suno-timeline-box">
-                        <div class="suno-time-display">
-                            <span class="suno-cur-time">0:00</span>
-                            <span class="suno-dur-time">--:--</span>
-                        </div>
-                        <div class="suno-progress-track">
-                            <div class="suno-progress-fill" style="width: 0%;"></div>
-                        </div>
+                <div class="suno-timeline-box">
+                    <div class="suno-progress-track">
+                        <div class="suno-progress-fill" style="width: 0%;"></div>
                     </div>
+                    <div class="suno-time-display">
+                        <span class="suno-cur-time">0:00</span>
+                        <span class="suno-dur-time">--:--</span>
+                    </div>
+                </div>
+
+                <div class="suno-player-controls">
+                    <!-- 戻る (Prev) -->
+                    <button type="button" class="suno-ctrl-btn suno-btn-prev" title="前の曲 (Previous)" aria-label="Previous Track">
+                        <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                    </button>
+                    <!-- 再生 (Play) -->
+                    <button type="button" class="suno-ctrl-btn suno-btn-play" title="再生 (Play)" aria-label="Play">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    <!-- 一時停止 (Pause) -->
+                    <button type="button" class="suno-ctrl-btn suno-btn-pause" title="一時停止 (Pause)" aria-label="Pause">
+                        <svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    </button>
+                    <!-- 停止 (Stop) -->
+                    <button type="button" class="suno-ctrl-btn suno-btn-stop" title="停止 (Stop)" aria-label="Stop">
+                        <svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
+                    </button>
+                    <!-- 進む (Next) -->
+                    <button type="button" class="suno-ctrl-btn suno-btn-next" title="次の曲 (Next)" aria-label="Next Track">
+                        <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                    </button>
                 </div>
             </div>
             <div class="suno-screen-brand">
@@ -1671,9 +1688,11 @@ function renderSunoJukebox(artist, container) {
     `;
     playerScreen.appendChild(media);
 
-    const playBtn = playerScreen.querySelector('.suno-play-pause-btn');
-    const iconPlay = playerScreen.querySelector('.suno-icon-play');
-    const iconPause = playerScreen.querySelector('.suno-icon-pause');
+    const btnPrev = playerScreen.querySelector('.suno-btn-prev');
+    const btnPlay = playerScreen.querySelector('.suno-btn-play');
+    const btnPause = playerScreen.querySelector('.suno-btn-pause');
+    const btnStop = playerScreen.querySelector('.suno-btn-stop');
+    const btnNext = playerScreen.querySelector('.suno-btn-next');
     const curTimeEl = playerScreen.querySelector('.suno-cur-time');
     const durTimeEl = playerScreen.querySelector('.suno-dur-time');
     const progressTrack = playerScreen.querySelector('.suno-progress-track');
@@ -1691,29 +1710,60 @@ function renderSunoJukebox(artist, container) {
         return `${m}:${sec.toString().padStart(2, '0')}`;
     }
 
-    function setPlayingState(playing) {
-        if (playing) {
-            iconPlay.style.display = 'none';
-            iconPause.style.display = 'block';
+    function updatePlaybackUI(isPlaying, isPaused = false) {
+        if (isPlaying) {
             playerScreen.classList.add('is-playing');
+            btnPlay.classList.add('is-active');
+            btnPause.classList.remove('is-active');
         } else {
-            iconPlay.style.display = 'block';
-            iconPause.style.display = 'none';
             playerScreen.classList.remove('is-playing');
+            btnPlay.classList.remove('is-active');
+            if (isPaused) {
+                btnPause.classList.add('is-active');
+            } else {
+                btnPause.classList.remove('is-active');
+            }
         }
     }
 
-    playBtn.addEventListener('click', () => {
+    btnPlay.addEventListener('click', () => {
         if (media.paused) {
             if (currentActiveSunoAudio && currentActiveSunoAudio !== media) {
                 currentActiveSunoAudio.pause();
             }
             currentActiveSunoAudio = media;
-            media.play().then(() => setPlayingState(true)).catch(e => console.log('Playback:', e));
-        } else {
-            media.pause();
-            setPlayingState(false);
+            media.play().then(() => updatePlaybackUI(true)).catch(e => console.log('Playback:', e));
         }
+    });
+
+    btnPause.addEventListener('click', () => {
+        if (!media.paused) {
+            media.pause();
+            updatePlaybackUI(false, true);
+        }
+    });
+
+    btnStop.addEventListener('click', () => {
+        media.pause();
+        media.currentTime = 0;
+        progressFill.style.width = '0%';
+        curTimeEl.textContent = '0:00';
+        updatePlaybackUI(false, false);
+    });
+
+    btnPrev.addEventListener('click', () => {
+        if (media.currentTime > 2.5) {
+            media.currentTime = 0;
+            if (!media.paused) media.play().catch(() => {});
+        } else {
+            const prevIdx = (currentIndex - 1 + tracks.length) % tracks.length;
+            switchTrack(prevIdx, !media.paused);
+        }
+    });
+
+    btnNext.addEventListener('click', () => {
+        const nextIdx = (currentIndex + 1) % tracks.length;
+        switchTrack(nextIdx, !media.paused);
     });
 
     media.addEventListener('timeupdate', () => {
@@ -1734,8 +1784,11 @@ function renderSunoJukebox(artist, container) {
         switchTrack(nextIdx, true);
     });
 
-    media.addEventListener('pause', () => setPlayingState(false));
-    media.addEventListener('play', () => setPlayingState(true));
+    media.addEventListener('pause', () => {
+        const isPaused = media.currentTime > 0 && !media.ended;
+        updatePlaybackUI(false, isPaused);
+    });
+    media.addEventListener('play', () => updatePlaybackUI(true));
 
     progressTrack.addEventListener('click', (e) => {
         const rect = progressTrack.getBoundingClientRect();
@@ -1802,10 +1855,10 @@ function renderSunoJukebox(artist, container) {
                 currentActiveSunoAudio.pause();
             }
             currentActiveSunoAudio = media;
-            media.play().then(() => setPlayingState(true)).catch(e => console.log('Playback:', e));
+            media.play().then(() => updatePlaybackUI(true)).catch(e => console.log('Playback:', e));
         } else {
             media.pause();
-            setPlayingState(false);
+            updatePlaybackUI(false, false);
             curTimeEl.textContent = '0:00';
             progressFill.style.width = '0%';
         }

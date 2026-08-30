@@ -2250,46 +2250,12 @@ body.theme-rupture #rupture .media-card {
     color: rgba(255, 255, 255, 0.6);
 }
 
-.suno-player-controls {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-top: 12px;
-}
-
-.suno-play-pause-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #ffffff;
-    color: #0d0e12;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: transform 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
-}
-
-.suno-play-pause-btn:hover {
-    transform: scale(1.08);
-    background: #f5f5f5;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-}
-
-.suno-play-pause-btn svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-}
-
 .suno-timeline-box {
-    flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
+    margin-top: 6px;
     min-width: 0;
 }
 
@@ -2316,6 +2282,87 @@ body.theme-rupture #rupture .media-card {
     background: var(--accent-gold);
     border-radius: 3px;
     transition: width 0.1s linear;
+}
+
+.suno-player-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: nowrap;
+}
+
+.suno-ctrl-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s var(--ease);
+    padding: 0;
+    outline: none;
+}
+
+.suno-ctrl-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-1px);
+}
+
+.suno-ctrl-btn:active {
+    transform: scale(0.92);
+}
+
+.suno-ctrl-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    transition: fill 0.2s;
+}
+
+/* Play button slightly emphasized */
+.suno-btn-play {
+    width: 36px;
+    height: 36px;
+    background: #ffffff;
+    color: #0d0e12;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.suno-btn-play svg {
+    width: 16px;
+    height: 16px;
+}
+
+.suno-btn-play:hover {
+    background: #f5f5f5;
+    color: #000000;
+    transform: scale(1.06);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+}
+
+.suno-btn-play.is-active {
+    background: var(--accent-gold);
+    color: #0d0e12;
+    box-shadow: 0 0 14px rgba(179, 130, 34, 0.6);
+}
+
+.suno-btn-pause.is-active {
+    background: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.suno-btn-stop:hover svg {
+    fill: #ff4d4f;
 }
 
 .suno-screen-brand {
@@ -2666,9 +2713,25 @@ body.theme-rupture #rupture .media-card {
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    .suno-play-pause-btn {
-        width: 38px;
-        height: 38px;
+    .suno-player-controls {
+        gap: 6px;
+        margin-top: 6px;
+    }
+    .suno-ctrl-btn {
+        width: 28px;
+        height: 28px;
+    }
+    .suno-ctrl-btn svg {
+        width: 12px;
+        height: 12px;
+    }
+    .suno-btn-play {
+        width: 32px;
+        height: 32px;
+    }
+    .suno-btn-play svg {
+        width: 14px;
+        height: 14px;
     }
     .suno-accordion-toggle {
         padding: 0 8px;
