@@ -1071,6 +1071,8 @@ function renderSunoJukebox(artist, container) {
         frame.width = '100%';
         frame.height = '295';
         frame.style.border = 'none';
+        frame.loading = 'lazy';
+        frame.title = `${artist.name} - ${track.title} (Suno)`;
         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
         frame.allowFullscreen = true;
         frame.dataset.src = `https://suno.com/embed/${track.id}`;
@@ -1166,8 +1168,23 @@ function renderSunoJukebox(artist, container) {
     container.innerHTML = '';
     container.appendChild(wrap);
 
-    // Activate first track src AFTER container is securely in the DOM
-    iframes[0].src = iframes[0].dataset.src;
+    // Lazily activate first track src ONLY when the artist card scrolls into view
+    // This prevents 10 iframes from flooding auth.suno.com simultaneously (which causes ERR_TOO_MANY_REDIRECTS)
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (iframes[0] && !iframes[0].src && iframes[0].dataset.src) {
+                        iframes[0].src = iframes[0].dataset.src;
+                    }
+                    obs.unobserve(wrap);
+                }
+            });
+        }, { rootMargin: '120px 0px' });
+        observer.observe(wrap);
+    } else {
+        iframes[0].src = iframes[0].dataset.src;
+    }
 }
 
 function renderYouTube(artist) {
