@@ -4,113 +4,520 @@
 
 const artists = [
     {
-        id: "bito", name: "Bito",
-        links: [
-            { type: "twitter", url: "https://x.com/BitoCraftedTune", label: "X" },
-            { type: "tiktok", url: "https://www.tiktok.com/@bito_craft", label: "TikTok" },
-            { type: "spotify", url: "https://open.spotify.com/intl-ja/artist/5PDksV2zctE689I1uOLO2o?si=0d0RFSu7SLaUEGpSITbAdw", label: "Spotify" },
-            { type: "youtube", url: "https://youtube.com/playlist?list=PLxpRgysXp3GlUaHN7GwWZheqxz5XCbdzL&si=YVcTUFljO9vOOcwF", label: "YouTube" },
-            { type: "suno", url: "https://suno.com/@bito999", label: "Suno" },
-            { type: "aisa", url: "https://aisa.radioalps.com/music/artist/bito", label: "AISA RADIO" }
+        "id": "bito",
+        "name": "Bito",
+        "links": [
+            {
+                "type": "twitter",
+                "url": "https://x.com/BitoCraftedTune",
+                "label": "X"
+            },
+            {
+                "type": "tiktok",
+                "url": "https://www.tiktok.com/@bito_craft",
+                "label": "TikTok"
+            },
+            {
+                "type": "spotify",
+                "url": "https://open.spotify.com/intl-ja/artist/5PDksV2zctE689I1uOLO2o?si=0d0RFSu7SLaUEGpSITbAdw",
+                "label": "Spotify"
+            },
+            {
+                "type": "youtube",
+                "url": "https://youtube.com/playlist?list=PLxpRgysXp3GlUaHN7GwWZheqxz5XCbdzL&si=YVcTUFljO9vOOcwF",
+                "label": "YouTube"
+            },
+            {
+                "type": "suno",
+                "url": "https://suno.com/@bito999",
+                "label": "Suno"
+            },
+            {
+                "type": "aisa",
+                "url": "https://aisa.radioalps.com/music/artist/bito",
+                "label": "AISA RADIO"
+            }
         ],
-        spotifyUrls: ["https://open.spotify.com/intl-ja/artist/5PDksV2zctE689I1uOLO2o?si=0d0RFSu7SLaUEGpSITbAdw"],
-        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3GlUaHN7GwWZheqxz5XCbdzL&si=YVcTUFljO9vOOcwF"]
-    },
-    {
-        id: "valotoa", name: "valotoa",
-        links: [
-            { type: "youtube", url: "https://youtube.com/playlist?list=PLOb7KvIzm6NE&si=2InPpcagbd-i9dKD", label: "YouTube" },
-            { type: "suno", url: "https://suno.com/playlist/c95d6dd3-c6ee-41a8-9a9c-8213e6b07dcb", label: "Suno" }
+        "spotifyUrls": [],
+        "youtubeUrls": [
+            "https://youtube.com/playlist?list=PLxpRgysXp3GlUaHN7GwWZheqxz5XCbdzL&si=YVcTUFljO9vOOcwF"
         ],
-        spotifyUrls: [],
-        youtubeUrls: ["https://youtube.com/playlist?list=PLOb7KvIzm6NE&si=2InPpcagbd-i9dKD"]
-    },
-    {
-        id: "hizumi", name: "歪み歪み -hizumi yugami-",
-        links: [
-            { type: "spotify", url: "https://open.spotify.com/intl-ja/artist/3tj9sPIAEwZbTk4SyAtT10", label: "Spotify" },
-            { type: "youtube", url: "https://youtube.com/playlist?list=PLxpRgysXp3Gm6OgQmHL3bSaAfFxF-DK7d&si=H9atE_w5lqlmEo6c", label: "YouTube" },
-            { type: "suno", url: "https://suno.com/playlist/20aa266e-cde7-4115-9795-30e75c164d01", label: "Suno" },
-            { type: "aisa", url: "https://aisa.radioalps.com/music/artist/hizumiyugami", label: "AISA RADIO" }
-        ],
-        spotifyUrls: ["https://open.spotify.com/intl-ja/artist/3tj9sPIAEwZbTk4SyAtT10"],
-        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3Gm6OgQmHL3bSaAfFxF-DK7d&si=H9atE_w5lqlmEo6c"]
-    },
-    {
-        id: "pophoper", name: "pophoper",
-        links: [
-            { type: "spotify", url: "https://open.spotify.com/intl-ja/artist/5fejGOb2AqHlneXYKJVwF7?si=X175bF7MTsO5obPIIs_oEA", label: "Spotify" },
-            { type: "youtube", url: "https://youtube.com/playlist?list=PLxpRgysXp3GnP710vJ5DwL8BC9KyG0AlN&si=B3S3Y9AdjN69LqUV", label: "YouTube" },
-            { type: "suno", url: "https://suno.com/playlist/0635e884-f792-47ac-91c4-c334b605ba0a", label: "Suno" },
-            { type: "aisa", url: "https://aisa.radioalps.com/music/artist/pophoper", label: "AISA RADIO" }
-        ],
-        spotifyUrls: ["https://open.spotify.com/intl-ja/artist/5fejGOb2AqHlneXYKJVwF7?si=X175bF7MTsO5obPIIs_oEA"],
-        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3GnP710vJ5DwL8BC9KyG0AlN&si=B3S3Y9AdjN69LqUV"]
-    },
-    {
-        id: "stray", name: "Stray Glitch Monkeys",
-        links: [
-            { type: "spotify", url: "https://open.spotify.com/intl-ja/artist/280n7G2T6dmFkCRs8JFMeX?si=v1hsCKO3TauIOwhjwdT6ng", label: "Spotify" },
-            { type: "youtube", url: "https://youtube.com/playlist?list=PLxpRgysXp3GlaHKI8Wz0WWATs5SZFC6o4&si=3ffy2M9F2ouSJg32", label: "YouTube" },
-            { type: "suno", url: "https://suno.com/playlist/99f6ddfd-d458-40cc-92e5-65141503e6df", label: "Suno" }
-        ],
-        spotifyUrls: ["https://open.spotify.com/intl-ja/artist/280n7G2T6dmFkCRs8JFMeX?si=v1hsCKO3TauIOwhjwdT6ng"],
-        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3GlaHKI8Wz0WWATs5SZFC6o4&si=3ffy2M9F2ouSJg32"]
-    },
-    {
-        id: "dayendnight", name: "day end night",
-        links: [
-            { type: "youtube", url: "https://youtube.com/playlist?list=PLxpRgysXp3GmFmY4eSMSeAcFM3qjNN4gE&si=3TtpYPlWD63gZ2B3i", label: "YouTube" },
-            { type: "suno", url: "https://suno.com/playlist/c685d560-7182-4a81-b430-b4bf33bcfd4f", label: "Suno" }
-        ],
-        spotifyUrls: [],
-        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3GmFmY4eSMSeAcFM3qjNN4gE&si=3TtpYPlWD63gZ2B3i"]
-    },
-    {
-        id: "asymptote", name: "Asymptote",
-        links: [
-            { type: "youtube", url: "https://youtube.com/playlist?list=PLxpRgysXp3GlPvzX5hzWu4YxyPXrnriyM&si=OeHh87ijcXOVcxWi", label: "YouTube" },
-            { type: "suno", url: "https://suno.com/playlist/c95d6dd3-c6ee-41a8-9a9c-8213e6b07dcb", label: "Suno" }
-        ],
-        spotifyUrls: [],
-        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3GlPvzX5hzWu4YxyPXrnriyM&si=OeHh87ijcXOVcxWi"],
-        sunoTracks: [
-            { id: "ada853d2-1625-43b6-ab1f-8f4205d8394b", title: "The Shape of the Void" },
-            { id: "55de54bb-2a83-46ef-86b5-c9bfdd89c84a", title: "Living is moving toward the end." },
-            { id: "5b40a82e-a49e-4ba2-9453-d37e69a6b6be", title: "Melody of Immersion" },
-            { id: "f721a3c8-4d6d-4c72-8d7c-de249c2bcaae", title: "Returning to the Blue" },
-            { id: "2ae0837b-fabd-4321-8f6d-89076bc7d3b6", title: "Falling" }
+        "sunoTracks": [
+            {
+                "id": "59417355-fbf5-44ed-a815-fb2e28234bb8",
+                "title": "Sonografica #1 : Telaio d'Aria"
+            },
+            {
+                "id": "fce72d26-83d0-4997-a4d8-989c09e3b3bf",
+                "title": "Sonografica #2 : Corda Nuda"
+            },
+            {
+                "id": "f48364e9-327e-49e1-a0e6-c7c7ac2f7788",
+                "title": "Sonografica #3 : Eco Infinito"
+            },
+            {
+                "id": "23b6822d-6670-4066-8465-4f5f6e87f213",
+                "title": "Sonografica #4 : Memoria Pura"
+            },
+            {
+                "id": "8e0fc618-e60c-4c89-9c00-9de2a0e7803b",
+                "title": "Sonografica #5 : Collage Resti"
+            },
+            {
+                "id": "237dcef6-0982-43d8-8d10-c780280ac712",
+                "title": "Sonografica #6 : Dedicato alla Fine"
+            },
+            {
+                "id": "d167ec99-baf5-44f2-89f8-0b307cdbbb7a",
+                "title": "Sonografica #7 : Estetica Animata"
+            }
         ]
     },
     {
-        id: "rupture", name: "RUPTURE",
-        links: [
-            { type: "youtube", url: "https://youtube.com/playlist?list=PLxpRgysXp3Gmw6VX82wfxnStZ8lGeuNp9&si=mujfGGlFHVWnC_kV", label: "YouTube" },
-            { type: "suno", url: "https://suno.com/playlist/bf788bfc-318f-4e1b-849f-aae04e0055c6", label: "Suno" },
-            { type: "aisa", url: "https://aisa.radioalps.com/music/artist/rupture", label: "AISA RADIO" }
+        "id": "valotoa",
+        "name": "valotoa",
+        "links": [
+            {
+                "type": "youtube",
+                "url": "https://youtube.com/playlist?list=PLOb7KvIzm6NE&si=2InPpcagbd-i9dKD",
+                "label": "YouTube"
+            },
+            {
+                "type": "suno",
+                "url": "https://suno.com/playlist/c95d6dd3-c6ee-41a8-9a9c-8213e6b07dcb",
+                "label": "Suno"
+            }
         ],
-        spotifyUrls: [],
-        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3Gmw6VX82wfxnStZ8lGeuNp9&si=mujfGGlFHVWnC_kV"]
+        "spotifyUrls": [],
+        "youtubeUrls": [
+            "https://youtube.com/playlist?list=PLOb7KvIzm6NE&si=2InPpcagbd-i9dKD"
+        ],
+        "sunoTracks": [
+            {
+                "id": "ada853d2-1625-43b6-ab1f-8f4205d8394b",
+                "title": "The Shape of the Void"
+            },
+            {
+                "id": "55de54bb-2a83-46ef-86b5-c9bfdd89c84a",
+                "title": "Living is moving toward the end."
+            },
+            {
+                "id": "5b40a82e-a49e-4ba2-9453-d37e69a6b6be",
+                "title": "Melody of Immersion"
+            },
+            {
+                "id": "f721a3c8-4d6d-4c72-8d7c-de249c2bcaae",
+                "title": "Returning to the Blue"
+            },
+            {
+                "id": "2ae0837b-fabd-4321-8f6d-89076bc7d3b6",
+                "title": "Falling"
+            }
+        ]
     },
     {
-        id: "sonografica-artist", name: "Sonografica",
-        links: [
-            { type: "youtube", url: "https://youtube.com/playlist?list=PLLOIHKwdVqbE&si=k-m1OGcNYQMMIxkj", label: "YouTube" },
-            { type: "suno", url: "https://suno.com/playlist/6e89b45f-0ade-423e-9acd-cec8b0303665", label: "Suno" }
+        "id": "hizumi",
+        "name": "歪み歪み -hizumi yugami-",
+        "links": [
+            {
+                "type": "spotify",
+                "url": "https://open.spotify.com/intl-ja/artist/3tj9sPIAEwZbTk4SyAtT10",
+                "label": "Spotify"
+            },
+            {
+                "type": "youtube",
+                "url": "https://youtube.com/playlist?list=PLxpRgysXp3Gm6OgQmHL3bSaAfFxF-DK7d&si=H9atE_w5lqlmEo6c",
+                "label": "YouTube"
+            },
+            {
+                "type": "suno",
+                "url": "https://suno.com/playlist/20aa266e-cde7-4115-9795-30e75c164d01",
+                "label": "Suno"
+            },
+            {
+                "type": "aisa",
+                "url": "https://aisa.radioalps.com/music/artist/hizumiyugami",
+                "label": "AISA RADIO"
+            }
         ],
-        spotifyUrls: [],
-        youtubeUrls: ["https://youtube.com/playlist?list=PLLOIHKwdVqbE&si=k-m1OGcNYQMMIxkj"]
+        "spotifyUrls": [],
+        "youtubeUrls": [
+            "https://youtube.com/playlist?list=PLxpRgysXp3Gm6OgQmHL3bSaAfFxF-DK7d&si=H9atE_w5lqlmEo6c"
+        ],
+        "sunoTracks": [
+            {
+                "id": "96957030-34a3-4e81-9348-e6ef6d414613",
+                "title": "嘘だよね -欠陥感情四象限-"
+            },
+            {
+                "id": "76a84161-e866-47fb-a194-ccb797574984",
+                "title": "ちょうだい -欠陥感情四象限-"
+            },
+            {
+                "id": "119f610f-0910-4070-8b05-3f0ba18ce724",
+                "title": "おんなじ -欠陥感情四象限-"
+            },
+            {
+                "id": "cfce49e8-ed87-4ffc-a797-ece8f7ca15d1",
+                "title": "ありがとうございました -欠陥感情四象限-"
+            },
+            {
+                "id": "2a3256be-ace4-492a-a473-72744bdf7e46",
+                "title": "ラブソングが歌えない"
+            },
+            {
+                "id": "c02b278a-528a-4ee8-8986-973e70e47043",
+                "title": "アンソロポス"
+            },
+            {
+                "id": "badfaa75-f7a8-4b15-a7a2-52062bf20768",
+                "title": "僕は"
+            }
+        ]
     },
     {
-        id: "metropolitans", name: "THE METROPOLITANS",
-        links: [
-            { type: "spotify", url: "https://open.spotify.com/intl-ja/artist/5lSsV9mEnzTwpDzOSWqPiQ", label: "Spotify" },
-            { type: "youtube", url: "https://youtube.com/playlist?list=PLxpRgysXp3GnkxK3lm_cwHLD_alvdc_3t&si=d-KLo6zSzbX7Y4VP", label: "YouTube" },
-            { type: "suno", url: "https://suno.com/playlist/f59d229a-79fc-4b48-b36a-1efbac94175f", label: "Suno" },
-            { type: "aisa", url: "https://aisa.radioalps.com/music/artist/the-metropolitans", label: "AISA RADIO" }
+        "id": "pophoper",
+        "name": "pophoper",
+        "links": [
+            {
+                "type": "spotify",
+                "url": "https://open.spotify.com/intl-ja/artist/5fejGOb2AqHlneXYKJVwF7?si=X175bF7MTsO5obPIIs_oEA",
+                "label": "Spotify"
+            },
+            {
+                "type": "youtube",
+                "url": "https://youtube.com/playlist?list=PLxpRgysXp3GnP710vJ5DwL8BC9KyG0AlN&si=B3S3Y9AdjN69LqUV",
+                "label": "YouTube"
+            },
+            {
+                "type": "suno",
+                "url": "https://suno.com/playlist/0635e884-f792-47ac-91c4-c334b605ba0a",
+                "label": "Suno"
+            },
+            {
+                "type": "aisa",
+                "url": "https://aisa.radioalps.com/music/artist/pophoper",
+                "label": "AISA RADIO"
+            }
         ],
-        spotifyUrls: ["https://open.spotify.com/intl-ja/artist/5lSsV9mEnzTwpDzOSWqPiQ"],
-        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3GnkxK3lm_cwHLD_alvdc_3t&si=d-KLo6zSzbX7Y4VP"]
+        "spotifyUrls": [],
+        "youtubeUrls": [
+            "https://youtube.com/playlist?list=PLxpRgysXp3GnP710vJ5DwL8BC9KyG0AlN&si=B3S3Y9AdjN69LqUV"
+        ],
+        "sunoTracks": [
+            {
+                "id": "1e64e248-9efe-409d-9c50-0acdc628ec1d",
+                "title": "心音ダイバーサバイバー"
+            },
+            {
+                "id": "72476516-3fc6-43cd-89dc-8919ef531b72",
+                "title": "ふわり、くるり"
+            },
+            {
+                "id": "e1507fa2-07ef-4cd6-ab33-72cb1ff500c2",
+                "title": "愚者具舎ハッピーエンド"
+            },
+            {
+                "id": "261f20ed-f1b7-4441-bcab-d22281fd495b",
+                "title": "答えあわせは死んだあと"
+            },
+            {
+                "id": "13a931a9-b5d5-408f-a66f-4fb3069989c6",
+                "title": "白昼夢ミューート"
+            },
+            {
+                "id": "1cd7a986-56ff-481f-98f4-7a943f388aff",
+                "title": "AM 2:00 サイダー🫧"
+            },
+            {
+                "id": "afd99557-32ae-473b-9bb3-5c02503edc97",
+                "title": "泣き虫エンドロール"
+            },
+            {
+                "id": "790eeec3-3c31-45eb-b5d3-1233e442ba96",
+                "title": "夜いずびゅーてぃふる"
+            },
+            {
+                "id": "8f5205fc-2fc6-4a61-b4c9-f1ffd1132968",
+                "title": "白昼夢ミューート (Remastered)"
+            }
+        ]
+    },
+    {
+        "id": "stray",
+        "name": "Stray Glitch Monkeys",
+        "links": [
+            {
+                "type": "spotify",
+                "url": "https://open.spotify.com/intl-ja/artist/280n7G2T6dmFkCRs8JFMeX?si=v1hsCKO3TauIOwhjwdT6ng",
+                "label": "Spotify"
+            },
+            {
+                "type": "youtube",
+                "url": "https://youtube.com/playlist?list=PLxpRgysXp3GlaHKI8Wz0WWATs5SZFC6o4&si=3ffy2M9F2ouSJg32",
+                "label": "YouTube"
+            },
+            {
+                "type": "suno",
+                "url": "https://suno.com/playlist/99f6ddfd-d458-40cc-92e5-65141503e6df",
+                "label": "Suno"
+            }
+        ],
+        "spotifyUrls": [],
+        "youtubeUrls": [
+            "https://youtube.com/playlist?list=PLxpRgysXp3GlaHKI8Wz0WWATs5SZFC6o4&si=3ffy2M9F2ouSJg32"
+        ],
+        "sunoTracks": [
+            {
+                "id": "a44e668f-29fa-4bed-864b-d303cc4c4a9f",
+                "title": "Distort It"
+            },
+            {
+                "id": "a7543712-f393-4908-9672-94625910c43a",
+                "title": "Deep Wire"
+            },
+            {
+                "id": "69da865c-f023-46fe-b340-34fdcad081cc",
+                "title": "NEO RITUAL"
+            },
+            {
+                "id": "4014cb2e-80af-42d8-a312-34309d5b1bcd",
+                "title": "Funky Chunky Monkey"
+            },
+            {
+                "id": "abb5c6e8-0330-4eb1-88ac-a6bcd38dbf4e",
+                "title": "Chicken Wing Facerock"
+            },
+            {
+                "id": "4256e835-00da-42fd-9ba7-faa7ecdf64b5",
+                "title": "Who Enemy?"
+            },
+            {
+                "id": "96b7fd01-9c1f-461d-871f-87d3e3b5d5f0",
+                "title": "No Sleep Till Stacks"
+            },
+            {
+                "id": "75fe2076-7393-4a9c-829f-a06179b11ed6",
+                "title": "Beat Slam"
+            },
+            {
+                "id": "aafb8bc1-78ec-419f-a249-e508b17e1450",
+                "title": "Stray Glitch Monkeys"
+            }
+        ]
+    },
+    {
+        "id": "dayendnight",
+        "name": "day end night",
+        "links": [
+            {
+                "type": "youtube",
+                "url": "https://youtube.com/playlist?list=PLxpRgysXp3GmFmY4eSMSeAcFM3qjNN4gE&si=3TtpYPlWD63gZ2B3i",
+                "label": "YouTube"
+            },
+            {
+                "type": "suno",
+                "url": "https://suno.com/playlist/c685d560-7182-4a81-b430-b4bf33bcfd4f",
+                "label": "Suno"
+            }
+        ],
+        "spotifyUrls": [],
+        "youtubeUrls": [
+            "https://youtube.com/playlist?list=PLxpRgysXp3GmFmY4eSMSeAcFM3qjNN4gE&si=3TtpYPlWD63gZ2B3i"
+        ],
+        "sunoTracks": [
+            {
+                "id": "5202a310-a816-441f-b896-1dd5c28a4520",
+                "title": "Perpetual Snow, Your Footsteps"
+            },
+            {
+                "id": "a86fc455-6f74-40a9-b6d4-6b31f6f2ddaa",
+                "title": "A yearning for life, beyond the end"
+            },
+            {
+                "id": "ac24a748-79ea-44b2-9540-545e0ee6aa42",
+                "title": "Gray Surface, Unreached Light"
+            },
+            {
+                "id": "6d91a19d-d7d2-4b30-8222-a2046552f303",
+                "title": "A small shoe in the dust"
+            }
+        ]
+    },
+    {
+        "id": "asymptote",
+        "name": "Asymptote",
+        "links": [
+            {
+                "type": "youtube",
+                "url": "https://youtube.com/playlist?list=PLxpRgysXp3GlPvzX5hzWu4YxyPXrnriyM&si=OeHh87ijcXOVcxWi",
+                "label": "YouTube"
+            },
+            {
+                "type": "suno",
+                "url": "https://suno.com/playlist/c95d6dd3-c6ee-41a8-9a9c-8213e6b07dcb",
+                "label": "Suno"
+            }
+        ],
+        "spotifyUrls": [],
+        "youtubeUrls": [
+            "https://youtube.com/playlist?list=PLxpRgysXp3GlPvzX5hzWu4YxyPXrnriyM&si=OeHh87ijcXOVcxWi"
+        ],
+        "sunoTracks": [
+            {
+                "id": "ada853d2-1625-43b6-ab1f-8f4205d8394b",
+                "title": "The Shape of the Void"
+            },
+            {
+                "id": "55de54bb-2a83-46ef-86b5-c9bfdd89c84a",
+                "title": "Living is moving toward the end."
+            },
+            {
+                "id": "5b40a82e-a49e-4ba2-9453-d37e69a6b6be",
+                "title": "Melody of Immersion"
+            },
+            {
+                "id": "f721a3c8-4d6d-4c72-8d7c-de249c2bcaae",
+                "title": "Returning to the Blue"
+            },
+            {
+                "id": "2ae0837b-fabd-4321-8f6d-89076bc7d3b6",
+                "title": "Falling"
+            }
+        ]
+    },
+    {
+        "id": "rupture",
+        "name": "RUPTURE",
+        "links": [
+            {
+                "type": "youtube",
+                "url": "https://youtube.com/playlist?list=PLxpRgysXp3Gmw6VX82wfxnStZ8lGeuNp9&si=mujfGGlFHVWnC_kV",
+                "label": "YouTube"
+            },
+            {
+                "type": "suno",
+                "url": "https://suno.com/playlist/bf788bfc-318f-4e1b-849f-aae04e0055c6",
+                "label": "Suno"
+            },
+            {
+                "type": "aisa",
+                "url": "https://aisa.radioalps.com/music/artist/rupture",
+                "label": "AISA RADIO"
+            }
+        ],
+        "spotifyUrls": [],
+        "youtubeUrls": [
+            "https://youtube.com/playlist?list=PLxpRgysXp3Gmw6VX82wfxnStZ8lGeuNp9&si=mujfGGlFHVWnC_kV"
+        ],
+        "sunoTracks": [
+            {
+                "id": "a3f056ca-1e69-44b7-af87-f6b6e6eefa0a",
+                "title": "UNBROKEN"
+            },
+            {
+                "id": "f2089d2c-dfeb-46c3-9b22-23f6e8f0bfa1",
+                "title": "UNSCRIPTED"
+            },
+            {
+                "id": "789fbe7a-02f2-4106-b3da-8b90c1d374e6",
+                "title": "UNANSWERED"
+            }
+        ]
+    },
+    {
+        "id": "sonografica-artist",
+        "name": "Sonografica",
+        "links": [
+            {
+                "type": "youtube",
+                "url": "https://youtube.com/playlist?list=PLLOIHKwdVqbE&si=k-m1OGcNYQMMIxkj",
+                "label": "YouTube"
+            },
+            {
+                "type": "suno",
+                "url": "https://suno.com/playlist/6e89b45f-0ade-423e-9acd-cec8b0303665",
+                "label": "Suno"
+            }
+        ],
+        "spotifyUrls": [],
+        "youtubeUrls": [
+            "https://youtube.com/playlist?list=PLLOIHKwdVqbE&si=k-m1OGcNYQMMIxkj"
+        ],
+        "sunoTracks": [
+            {
+                "id": "59417355-fbf5-44ed-a815-fb2e28234bb8",
+                "title": "Sonografica #1 : Telaio d'Aria"
+            },
+            {
+                "id": "fce72d26-83d0-4997-a4d8-989c09e3b3bf",
+                "title": "Sonografica #2 : Corda Nuda"
+            },
+            {
+                "id": "f48364e9-327e-49e1-a0e6-c7c7ac2f7788",
+                "title": "Sonografica #3 : Eco Infinito"
+            },
+            {
+                "id": "23b6822d-6670-4066-8465-4f5f6e87f213",
+                "title": "Sonografica #4 : Memoria Pura"
+            },
+            {
+                "id": "8e0fc618-e60c-4c89-9c00-9de2a0e7803b",
+                "title": "Sonografica #5 : Collage Resti"
+            },
+            {
+                "id": "237dcef6-0982-43d8-8d10-c780280ac712",
+                "title": "Sonografica #6 : Dedicato alla Fine"
+            },
+            {
+                "id": "d167ec99-baf5-44f2-89f8-0b307cdbbb7a",
+                "title": "Sonografica #7 : Estetica Animata"
+            }
+        ]
+    },
+    {
+        "id": "metropolitans",
+        "name": "THE METROPOLITANS",
+        "links": [
+            {
+                "type": "spotify",
+                "url": "https://open.spotify.com/intl-ja/artist/5lSsV9mEnzTwpDzOSWqPiQ",
+                "label": "Spotify"
+            },
+            {
+                "type": "youtube",
+                "url": "https://youtube.com/playlist?list=PLxpRgysXp3GnkxK3lm_cwHLD_alvdc_3t&si=d-KLo6zSzbX7Y4VP",
+                "label": "YouTube"
+            },
+            {
+                "type": "suno",
+                "url": "https://suno.com/playlist/f59d229a-79fc-4b48-b36a-1efbac94175f",
+                "label": "Suno"
+            },
+            {
+                "type": "aisa",
+                "url": "https://aisa.radioalps.com/music/artist/the-metropolitans",
+                "label": "AISA RADIO"
+            }
+        ],
+        "spotifyUrls": [],
+        "youtubeUrls": [
+            "https://youtube.com/playlist?list=PLxpRgysXp3GnkxK3lm_cwHLD_alvdc_3t&si=d-KLo6zSzbX7Y4VP"
+        ],
+        "sunoTracks": [
+            {
+                "id": "1221ba37-1558-4e1a-bb05-da8d660862e3",
+                "title": "Bullet Line"
+            },
+            {
+                "id": "b6551fa8-6689-4b35-ac4c-af43e5b509c2",
+                "title": "Noir  Battlefield"
+            },
+            {
+                "id": "6508607b-f5d6-4dba-b469-59ee6c4e5ada",
+                "title": "Midnight Friction"
+            }
+        ]
     }
 ];
 
@@ -655,7 +1062,7 @@ function renderSunoJukebox(artist, container) {
         const frame = document.createElement('iframe');
         frame.className = 'suno-embed-frame';
         frame.width = '100%';
-        frame.height = '220';
+        frame.height = '250';
         frame.style.border = 'none';
         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
         frame.allowFullscreen = true;
