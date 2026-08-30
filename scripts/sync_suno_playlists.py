@@ -15,7 +15,8 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
         pass
 
 PLAYLISTS = {
-    "valotoa": "c95d6dd3-c6ee-41a8-9a9c-8213e6b07dcb",
+    "bito": "fc5d3e91-f654-470b-9522-95743e595374",
+    "valotoa": "33ac32e8-9114-4a06-9da9-d5ec5d6de21b",
     "hizumi": "20aa266e-cde7-4115-9795-30e75c164d01",
     "pophoper": "0635e884-f792-47ac-91c4-c334b605ba0a",
     "stray": "99f6ddfd-d458-40cc-92e5-65141503e6df",
@@ -68,10 +69,6 @@ def main():
             print(f"  [OK] {aid}: {len(tracks)} tracks")
         except Exception as e:
             print(f"  [FAIL] {aid}: {e}")
-
-    # Fallback for bito
-    if "sonografica-artist" in catalog:
-        catalog["bito"] = catalog["sonografica-artist"]
 
     # Save catalog
     with open(catalog_path, "w", encoding="utf-8") as f:

@@ -29,7 +29,7 @@ const artists = [
             },
             {
                 "type": "suno",
-                "url": "https://suno.com/@bito999",
+                "url": "https://suno.com/playlist/fc5d3e91-f654-470b-9522-95743e595374",
                 "label": "Suno"
             },
             {
@@ -44,46 +44,280 @@ const artists = [
         ],
         "sunoTracks": [
             {
-                "id": "59417355-fbf5-44ed-a815-fb2e28234bb8",
-                "title": "Sonografica #1 : Telaio d'Aria",
-                "image": "https://cdn2.suno.ai/59417355-fbf5-44ed-a815-fb2e28234bb8_bf222b8c.jpeg",
-                "stream": "https://cdn1.suno.ai/59417355-fbf5-44ed-a815-fb2e28234bb8.mp4"
+                "id": "1d3ed630-70c4-4d5b-a464-8af812023fe3",
+                "title": "Sugar Baby #DESUCO",
+                "image": "https://cdn2.suno.ai/video_upload_a66e4acb-cb68-4f23-86d0-1952b73b036b_video_upload_a66e4acb-cb68-4f23-86d0-1952b73b036b_cover_snapshot_0s_1787822366_image.jpeg",
+                "stream": "https://cdn1.suno.ai/1d3ed630-70c4-4d5b-a464-8af812023fe3.mp4"
             },
             {
-                "id": "fce72d26-83d0-4997-a4d8-989c09e3b3bf",
-                "title": "Sonografica #2 : Corda Nuda",
-                "image": "https://cdn2.suno.ai/fce72d26-83d0-4997-a4d8-989c09e3b3bf_f946cd4e.jpeg",
-                "stream": "https://cdn1.suno.ai/fce72d26-83d0-4997-a4d8-989c09e3b3bf.mp4"
+                "id": "99fee3f4-8c6a-42de-9cb7-03d2ce4b8172",
+                "title": "楽園",
+                "image": "https://cdn2.suno.ai/99fee3f4-8c6a-42de-9cb7-03d2ce4b8172_25104611.jpeg",
+                "stream": "https://cdn1.suno.ai/99fee3f4-8c6a-42de-9cb7-03d2ce4b8172.mp4"
             },
             {
-                "id": "f48364e9-327e-49e1-a0e6-c7c7ac2f7788",
-                "title": "Sonografica #3 : Eco Infinito",
-                "image": "https://cdn2.suno.ai/f48364e9-327e-49e1-a0e6-c7c7ac2f7788_746b152e.jpeg",
-                "stream": "https://cdn1.suno.ai/f48364e9-327e-49e1-a0e6-c7c7ac2f7788.mp4"
+                "id": "be3285a7-a686-4cc8-8145-a52dc00bb292",
+                "title": "Melting Carousel",
+                "image": "https://cdn2.suno.ai/1664bea3-94da-4392-84e7-7eba054b2eb8.jpeg",
+                "stream": "https://cdn1.suno.ai/be3285a7-a686-4cc8-8145-a52dc00bb292.mp4"
             },
             {
-                "id": "23b6822d-6670-4066-8465-4f5f6e87f213",
-                "title": "Sonografica #4 : Memoria Pura",
-                "image": "https://cdn2.suno.ai/23b6822d-6670-4066-8465-4f5f6e87f213_20debf40.jpeg",
-                "stream": "https://cdn1.suno.ai/23b6822d-6670-4066-8465-4f5f6e87f213.mp4"
+                "id": "6664b86b-c549-4781-87df-23981259d0ad",
+                "title": "脱皮",
+                "image": "https://cdn2.suno.ai/5dd2d474-7f1f-43c6-82ed-b15e3b385124.jpeg",
+                "stream": "https://cdn1.suno.ai/6664b86b-c549-4781-87df-23981259d0ad.mp4"
             },
             {
-                "id": "8e0fc618-e60c-4c89-9c00-9de2a0e7803b",
-                "title": "Sonografica #5 : Collage Resti",
-                "image": "https://cdn2.suno.ai/8e0fc618-e60c-4c89-9c00-9de2a0e7803b_bc58d25f.jpeg",
-                "stream": "https://cdn1.suno.ai/8e0fc618-e60c-4c89-9c00-9de2a0e7803b.mp4"
+                "id": "c0b26821-4cf4-4491-aba8-e0cc685241c7",
+                "title": "ゆれるオレンジ",
+                "image": "https://cdn2.suno.ai/d48cb443-a0dc-45b2-b066-9a33571568dc.jpeg",
+                "stream": "https://cdn1.suno.ai/c0b26821-4cf4-4491-aba8-e0cc685241c7.mp4"
             },
             {
-                "id": "237dcef6-0982-43d8-8d10-c780280ac712",
-                "title": "Sonografica #6 : Dedicato alla Fine",
-                "image": "https://cdn2.suno.ai/237dcef6-0982-43d8-8d10-c780280ac712_173dee74.jpeg",
-                "stream": "https://cdn1.suno.ai/237dcef6-0982-43d8-8d10-c780280ac712.mp4"
+                "id": "28f6e1b6-b474-4cfe-a166-e4ffac4f44e8",
+                "title": "K-KAKU-DORI",
+                "image": "https://cdn2.suno.ai/28f6e1b6-b474-4cfe-a166-e4ffac4f44e8_5404f0f2.jpeg",
+                "stream": "https://cdn1.suno.ai/28f6e1b6-b474-4cfe-a166-e4ffac4f44e8.mp4"
             },
             {
-                "id": "d167ec99-baf5-44f2-89f8-0b307cdbbb7a",
-                "title": "Sonografica #7 : Estetica Animata",
-                "image": "https://cdn2.suno.ai/d167ec99-baf5-44f2-89f8-0b307cdbbb7a_93a47c9e.jpeg",
-                "stream": "https://cdn1.suno.ai/d167ec99-baf5-44f2-89f8-0b307cdbbb7a.mp4"
+                "id": "13d61de0-6b02-41f9-a269-2ad205385454",
+                "title": "LUNATIC EYES(remastered)",
+                "image": "https://cdn2.suno.ai/video_upload_78e69a6b-c85a-4f94-8f33-72b2cf7f617d_video_upload_78e69a6b-c85a-4f94-8f33-72b2cf7f617d_cover_snapshot_0s_1784042709_image.jpeg",
+                "stream": "https://cdn1.suno.ai/13d61de0-6b02-41f9-a269-2ad205385454.mp4"
+            },
+            {
+                "id": "ee35ece6-0bdf-4ac9-8191-c85c4f0abdce",
+                "title": "ケダモノサーカス（THE FEAST OF BEAST） / OKAN CRUSADERS （Words by Toto Fukami）",
+                "image": "https://cdn2.suno.ai/ee35ece6-0bdf-4ac9-8191-c85c4f0abdce_0e5ce9ab.jpeg",
+                "stream": "https://cdn1.suno.ai/ee35ece6-0bdf-4ac9-8191-c85c4f0abdce.mp4"
+            },
+            {
+                "id": "351eb061-ac04-4cfb-b438-e842e5a47320",
+                "title": "Desolation of the Mapless",
+                "image": "https://cdn2.suno.ai/351eb061-ac04-4cfb-b438-e842e5a47320_7b0cdbb7.jpeg",
+                "stream": "https://cdn1.suno.ai/351eb061-ac04-4cfb-b438-e842e5a47320.mp4"
+            },
+            {
+                "id": "acdb28ef-7d17-4443-be04-b903016904ab",
+                "title": "Kitty Queen.dmg",
+                "image": "https://cdn2.suno.ai/video_upload_30285502-addd-49a0-9e6a-c26e30c54e2c_video_upload_30285502-addd-49a0-9e6a-c26e30c54e2c_cover_snapshot_0s_1779319744_image.jpeg",
+                "stream": "https://cdn1.suno.ai/acdb28ef-7d17-4443-be04-b903016904ab.mp4"
+            },
+            {
+                "id": "b50c5511-7a43-4e0f-8dca-592add9f60a8",
+                "title": "嶋産 -shimaumi-",
+                "image": "https://cdn2.suno.ai/video_upload_c32a36dd-1936-42a2-a612-4fcd52555154_video_upload_c32a36dd-1936-42a2-a612-4fcd52555154_cover_snapshot_0s_1777117299_image.jpeg",
+                "stream": "https://cdn1.suno.ai/b50c5511-7a43-4e0f-8dca-592add9f60a8.mp4"
+            },
+            {
+                "id": "07df6780-710f-4b81-8133-de9b822f4e36",
+                "title": "穐実異相律ノ祈リ嗄声",
+                "image": "https://cdn2.suno.ai/07df6780-710f-4b81-8133-de9b822f4e36_e1f3a1d9.jpeg",
+                "stream": "https://cdn1.suno.ai/07df6780-710f-4b81-8133-de9b822f4e36.mp4"
+            },
+            {
+                "id": "336a85e5-e8f4-405b-b558-7ae89a0f47ba",
+                "title": "恋のセレクトボタン",
+                "image": "https://cdn2.suno.ai/336a85e5-e8f4-405b-b558-7ae89a0f47ba_eae26eca.jpeg",
+                "stream": "https://cdn1.suno.ai/336a85e5-e8f4-405b-b558-7ae89a0f47ba.mp4"
+            },
+            {
+                "id": "8f3fcca5-ddcb-497e-bc54-f5e54211da1a",
+                "title": "君の話は",
+                "image": "https://cdn2.suno.ai/video_upload_49c62ca8-291a-4585-b91d-ee44b8edea49_video_upload_49c62ca8-291a-4585-b91d-ee44b8edea49_cover_snapshot_0s_1776398489_image.jpeg",
+                "stream": "https://cdn1.suno.ai/8f3fcca5-ddcb-497e-bc54-f5e54211da1a.mp4"
+            },
+            {
+                "id": "416d3d87-9b00-4252-8749-7ef342742260",
+                "title": "Chopin waltz in A minor(Cover)",
+                "image": "https://cdn2.suno.ai/image_large_416d3d87-9b00-4252-8749-7ef342742260.jpeg",
+                "stream": "https://cdn1.suno.ai/416d3d87-9b00-4252-8749-7ef342742260.mp4"
+            },
+            {
+                "id": "a75b1f5a-28c6-46eb-8851-0c76c0b85e89",
+                "title": "テオトコス - 弾ける春 - / AKPY (Cover by Bito)",
+                "image": "https://cdn2.suno.ai/27abdeba-ed62-4bb0-8d67-dfe91f217799_cec249a8.jpeg",
+                "stream": "https://cdn1.suno.ai/a75b1f5a-28c6-46eb-8851-0c76c0b85e89.mp4"
+            },
+            {
+                "id": "3e8c9505-88aa-4ef4-93a1-8083870029dc",
+                "title": "テオトコス -想い出 - / AKPY (Cover by Bito)",
+                "image": "https://cdn2.suno.ai/3e8c9505-88aa-4ef4-93a1-8083870029dc_d50823d3.jpeg",
+                "stream": "https://cdn1.suno.ai/3e8c9505-88aa-4ef4-93a1-8083870029dc.mp4"
+            },
+            {
+                "id": "6220868d-2ece-4521-a299-b044abb29c92",
+                "title": "春の導（しるべ）",
+                "image": "https://cdn2.suno.ai/6220868d-2ece-4521-a299-b044abb29c92_6bd91919.jpeg",
+                "stream": "https://cdn1.suno.ai/6220868d-2ece-4521-a299-b044abb29c92.mp4"
+            },
+            {
+                "id": "e77256c3-40e6-4a54-aa06-4719a3e1695f",
+                "title": "DTF",
+                "image": "https://cdn2.suno.ai/e77256c3-40e6-4a54-aa06-4719a3e1695f_230269fb.jpeg",
+                "stream": "https://cdn1.suno.ai/e77256c3-40e6-4a54-aa06-4719a3e1695f.mp4"
+            },
+            {
+                "id": "6ae4db3f-6add-4c6c-bf67-18297fed0b90",
+                "title": "夜が好き♡世界観リミックス",
+                "image": "https://cdn2.suno.ai/6ae4db3f-6add-4c6c-bf67-18297fed0b90_ae6721e7.jpeg",
+                "stream": "https://cdn1.suno.ai/6ae4db3f-6add-4c6c-bf67-18297fed0b90.mp4"
+            },
+            {
+                "id": "abb44eae-8386-4d97-825e-497cbb99688f",
+                "title": "Work in Dead",
+                "image": "https://cdn2.suno.ai/abb44eae-8386-4d97-825e-497cbb99688f_41c1f912.jpeg",
+                "stream": "https://cdn1.suno.ai/abb44eae-8386-4d97-825e-497cbb99688f.mp4"
+            },
+            {
+                "id": "d299786e-864b-4c02-89ae-fe41687eacbe",
+                "title": "SODA STATIC",
+                "image": "https://cdn2.suno.ai/d299786e-864b-4c02-89ae-fe41687eacbe_92825f06.jpeg",
+                "stream": "https://cdn1.suno.ai/d299786e-864b-4c02-89ae-fe41687eacbe.mp4"
+            },
+            {
+                "id": "45341abd-926b-48fe-acc9-4f161f107aa0",
+                "title": "今日は僕が珈琲を淹れるよ",
+                "image": "https://cdn2.suno.ai/video_upload_1f05fa60-49de-4fce-8d22-9a27a9a4944d_video_upload_1f05fa60-49de-4fce-8d22-9a27a9a4944d_cover_snapshot_0s_1772965187_image.jpeg",
+                "stream": "https://cdn1.suno.ai/45341abd-926b-48fe-acc9-4f161f107aa0.mp4"
+            },
+            {
+                "id": "7eed7e41-d6c1-49a8-b087-68afa794ccfa",
+                "title": "1.618",
+                "image": "https://cdn2.suno.ai/7eed7e41-d6c1-49a8-b087-68afa794ccfa_499a9650.jpeg",
+                "stream": "https://cdn1.suno.ai/7eed7e41-d6c1-49a8-b087-68afa794ccfa.mp4"
+            },
+            {
+                "id": "d4aed32d-b9ed-4c3b-af60-d5365901c848",
+                "title": "Blue and Spring",
+                "image": "https://cdn2.suno.ai/video_upload_8a67d185-a594-4d81-8c98-44cf356b9dbf_video_upload_8a67d185-a594-4d81-8c98-44cf356b9dbf_cover_snapshot_0s_1772333626_image.jpeg",
+                "stream": "https://cdn1.suno.ai/d4aed32d-b9ed-4c3b-af60-d5365901c848.mp4"
+            },
+            {
+                "id": "daa9995a-e68c-4d00-83ee-363daea0318e",
+                "title": "Save me, take loop.",
+                "image": "https://cdn2.suno.ai/daa9995a-e68c-4d00-83ee-363daea0318e_4a240cee.jpeg",
+                "stream": "https://cdn1.suno.ai/daa9995a-e68c-4d00-83ee-363daea0318e.mp4"
+            },
+            {
+                "id": "d61150b3-23c3-4d3c-ab2c-636b270b49b9",
+                "title": "素数大好き♥️",
+                "image": "https://cdn2.suno.ai/video_upload_52ccebe1-7c23-4970-9fa7-0b6b3e013eda_video_upload_52ccebe1-7c23-4970-9fa7-0b6b3e013eda_cover_snapshot_0s_1772181540_image.jpeg",
+                "stream": "https://cdn1.suno.ai/d61150b3-23c3-4d3c-ab2c-636b270b49b9.mp4"
+            },
+            {
+                "id": "16e0ef6a-faa4-431f-9498-10a9feaeffed",
+                "title": "Kitty Queen.dmg",
+                "image": "https://cdn2.suno.ai/video_upload_15dc2170-a382-4292-9afa-d7b3827677b0_video_upload_15dc2170-a382-4292-9afa-d7b3827677b0_cover_snapshot_0s_1770747654_image.jpeg",
+                "stream": "https://cdn1.suno.ai/16e0ef6a-faa4-431f-9498-10a9feaeffed.mp4"
+            },
+            {
+                "id": "94e95f3a-76e7-4569-ae67-0e3326d0040c",
+                "title": "LOVE ME FAKE",
+                "image": "https://cdn2.suno.ai/video_upload_d5a9d1f8-b5ff-42d3-aeb8-cca74ec911ec_video_upload_d5a9d1f8-b5ff-42d3-aeb8-cca74ec911ec_cover_snapshot_0s_1770655043_image.jpeg",
+                "stream": "https://cdn1.suno.ai/94e95f3a-76e7-4569-ae67-0e3326d0040c.mp4"
+            },
+            {
+                "id": "cdfc57a7-9058-4026-9a93-8166a977c208",
+                "title": "Thermal Horizon",
+                "image": "https://cdn2.suno.ai/video_upload_db17a98d-4ae3-4083-91e0-b8b8c76aa5e0_video_upload_db17a98d-4ae3-4083-91e0-b8b8c76aa5e0_cover_snapshot_0s_1770537648_image.jpeg",
+                "stream": "https://cdn1.suno.ai/cdfc57a7-9058-4026-9a93-8166a977c208.mp4"
+            },
+            {
+                "id": "c60d7aac-fa84-4316-a32d-45dc3a153e0c",
+                "title": "sub-zero Starlight",
+                "image": "https://cdn2.suno.ai/video_upload_b36bd531-4c7c-4916-92cb-f0e2c14b08d5_video_upload_b36bd531-4c7c-4916-92cb-f0e2c14b08d5_cover_snapshot_0s_1770569514_image.jpeg",
+                "stream": "https://cdn1.suno.ai/c60d7aac-fa84-4316-a32d-45dc3a153e0c.mp4"
+            },
+            {
+                "id": "c67f3206-9a41-410a-a0b4-fcca3769519b",
+                "title": "RADIO FREQUENCY",
+                "image": "https://cdn2.suno.ai/video_upload_b6c19fc1-9e77-4310-b7ed-8954a92e081c_video_upload_b6c19fc1-9e77-4310-b7ed-8954a92e081c_cover_snapshot_0s_1769793698_image.jpeg",
+                "stream": "https://cdn1.suno.ai/c67f3206-9a41-410a-a0b4-fcca3769519b.mp4"
+            },
+            {
+                "id": "32183062-1b98-42f2-9799-8c6e6b782f09",
+                "title": "もう一呼吸",
+                "image": "https://cdn2.suno.ai/32183062-1b98-42f2-9799-8c6e6b782f09_a3a3d490.jpeg",
+                "stream": "https://cdn1.suno.ai/32183062-1b98-42f2-9799-8c6e6b782f09.mp4"
+            },
+            {
+                "id": "6614f462-ef47-4d5b-be43-975750536d0d",
+                "title": "RADIUS GLITTER",
+                "image": "https://cdn2.suno.ai/6614f462-ef47-4d5b-be43-975750536d0d_23635f24.jpeg",
+                "stream": "https://cdn1.suno.ai/6614f462-ef47-4d5b-be43-975750536d0d.mp4"
+            },
+            {
+                "id": "fdbe9b7a-ac40-4eb8-8e1a-7c43162936f8",
+                "title": "旅する君へ",
+                "image": "https://cdn2.suno.ai/fdbe9b7a-ac40-4eb8-8e1a-7c43162936f8_f243da23.jpeg",
+                "stream": "https://cdn1.suno.ai/fdbe9b7a-ac40-4eb8-8e1a-7c43162936f8.mp4"
+            },
+            {
+                "id": "59d1d115-a363-4ba2-ad74-84eb35b58aa2",
+                "title": "PHANTOM GOLD",
+                "image": "https://cdn2.suno.ai/59d1d115-a363-4ba2-ad74-84eb35b58aa2_f5803a88.jpeg",
+                "stream": "https://cdn1.suno.ai/59d1d115-a363-4ba2-ad74-84eb35b58aa2.mp4"
+            },
+            {
+                "id": "7179df73-f34a-44a6-9a47-2e3f98d554e8",
+                "title": "斬る⭐︎KILL OVERDRIVE〓_",
+                "image": "https://cdn2.suno.ai/video_upload_9a310b7e-8250-4b1b-8078-353b08938f7a_video_upload_9a310b7e-8250-4b1b-8078-353b08938f7a_cover_snapshot_0s_1767974708_image.jpeg",
+                "stream": "https://cdn1.suno.ai/7179df73-f34a-44a6-9a47-2e3f98d554e8.mp4"
+            },
+            {
+                "id": "f377d5ce-c9a3-4372-9301-957b829788a3",
+                "title": ":N̸O̸N̸_̸L̸I̷N̶E̷A̸R̸_̸B̵I̸R̶T̸H̵",
+                "image": "https://cdn2.suno.ai/video_upload_ddc1972b-c19d-4a2f-a33d-c36b2f1af549_video_upload_ddc1972b-c19d-4a2f-a33d-c36b2f1af549_cover_snapshot_0s_1767881910_image.jpeg",
+                "stream": "https://cdn1.suno.ai/f377d5ce-c9a3-4372-9301-957b829788a3.mp4"
+            },
+            {
+                "id": "64bddb30-4141-460f-8fae-20c092c83731",
+                "title": "Bon Voyage",
+                "image": "https://cdn2.suno.ai/video_upload_fd7ddf79-5ebd-4d76-8e93-66b34965faeb_video_upload_fd7ddf79-5ebd-4d76-8e93-66b34965faeb_cover_snapshot_0s_1766323069_image.jpeg",
+                "stream": "https://cdn1.suno.ai/64bddb30-4141-460f-8fae-20c092c83731.mp4"
+            },
+            {
+                "id": "aedd1735-4cbf-4575-860e-af1423eebe5f",
+                "title": "stardust memory",
+                "image": "https://cdn2.suno.ai/aedd1735-4cbf-4575-860e-af1423eebe5f_063a8158.jpeg",
+                "stream": "https://cdn1.suno.ai/aedd1735-4cbf-4575-860e-af1423eebe5f.mp4"
+            },
+            {
+                "id": "08c05455-28cc-45d1-85f0-dceceffb0272",
+                "title": "Does Europa Dream of Earth?",
+                "image": "https://cdn2.suno.ai/video_upload_ce39d833-ae38-4337-8c12-48a08f87ce87_video_upload_ce39d833-ae38-4337-8c12-48a08f87ce87_cover_snapshot_0s_1765901740_image.jpeg",
+                "stream": "https://cdn1.suno.ai/08c05455-28cc-45d1-85f0-dceceffb0272.mp4"
+            },
+            {
+                "id": "7b388220-bfea-4f8d-abc4-5e6bbfaaf7a0",
+                "title": "ないものねだり",
+                "image": "https://cdn2.suno.ai/070a51ba-115a-4011-aeb0-c4f9ae5f2281.jpeg",
+                "stream": "https://cdn1.suno.ai/7b388220-bfea-4f8d-abc4-5e6bbfaaf7a0.mp4"
+            },
+            {
+                "id": "693177f1-f6d6-4529-b5f5-62e65f067291",
+                "title": "Velvet Paws",
+                "image": "https://cdn2.suno.ai/video_upload_bab05b19-54fe-4e5b-8a6f-dc8bb45d702b_video_upload_bab05b19-54fe-4e5b-8a6f-dc8bb45d702b_cover_snapshot_0s_1765670483_image.jpeg",
+                "stream": "https://cdn1.suno.ai/693177f1-f6d6-4529-b5f5-62e65f067291.mp4"
+            },
+            {
+                "id": "71b41b36-5521-4980-aaa5-7b4b1d91031c",
+                "title": "Sugar Coated Lie",
+                "image": "https://cdn2.suno.ai/video_upload_60f44d79-5301-4d65-8845-aa5bc511259f_video_upload_60f44d79-5301-4d65-8845-aa5bc511259f_cover_snapshot_0s_1765533279_image.jpeg",
+                "stream": "https://cdn1.suno.ai/71b41b36-5521-4980-aaa5-7b4b1d91031c.mp4"
+            },
+            {
+                "id": "bf401514-da15-4d21-b496-8f358fb0b41c",
+                "title": "愛を繋げよう -Merry Xmas-🎄",
+                "image": "https://cdn2.suno.ai/bf401514-da15-4d21-b496-8f358fb0b41c_a0abe525.jpeg",
+                "stream": "https://cdn1.suno.ai/bf401514-da15-4d21-b496-8f358fb0b41c.mp4"
+            },
+            {
+                "id": "c51ad06c-3043-4c7a-b2a8-4e0ec2587167",
+                "title": "Pico Pico! Pixel World Tour!",
+                "image": "https://cdn2.suno.ai/video_upload_b6164e36-6af8-440b-8c7d-a53ada7a36b5_video_upload_b6164e36-6af8-440b-8c7d-a53ada7a36b5_cover_snapshot_0s_1765777185_image.jpeg",
+                "stream": "https://cdn1.suno.ai/c51ad06c-3043-4c7a-b2a8-4e0ec2587167.mp4"
             }
         ]
     },
@@ -98,7 +332,7 @@ const artists = [
             },
             {
                 "type": "suno",
-                "url": "https://suno.com/playlist/c95d6dd3-c6ee-41a8-9a9c-8213e6b07dcb",
+                "url": "https://suno.com/playlist/33ac32e8-9114-4a06-9da9-d5ec5d6de21b",
                 "label": "Suno"
             }
         ],
@@ -108,34 +342,40 @@ const artists = [
         ],
         "sunoTracks": [
             {
-                "id": "ada853d2-1625-43b6-ab1f-8f4205d8394b",
-                "title": "The Shape of the Void",
-                "image": "https://cdn2.suno.ai/ada853d2-1625-43b6-ab1f-8f4205d8394b_5286f963.jpeg",
-                "stream": "https://cdn1.suno.ai/ada853d2-1625-43b6-ab1f-8f4205d8394b.mp4"
+                "id": "9fb5020f-275b-4e44-b6a7-a20209e58c49",
+                "title": "名もない光を継ぎ、幾千の夜を越える",
+                "image": "https://cdn2.suno.ai/fda11a85-8848-4863-9ba4-0ebdb99d6487.jpeg",
+                "stream": "https://cdn1.suno.ai/9fb5020f-275b-4e44-b6a7-a20209e58c49.mp4"
             },
             {
-                "id": "55de54bb-2a83-46ef-86b5-c9bfdd89c84a",
-                "title": "Living is moving toward the end.",
-                "image": "https://cdn2.suno.ai/55de54bb-2a83-46ef-86b5-c9bfdd89c84a_8cebe04b.jpeg",
-                "stream": "https://cdn1.suno.ai/55de54bb-2a83-46ef-86b5-c9bfdd89c84a.mp4"
+                "id": "af7d7694-cb50-42e2-92c4-1be0b59a29db",
+                "title": "意思の過程に在る、瞬く回路の火花 by valotoa",
+                "image": "https://cdn2.suno.ai/e1a74cd1-20c4-4de4-9f04-0570085f8967.jpeg",
+                "stream": "https://cdn1.suno.ai/af7d7694-cb50-42e2-92c4-1be0b59a29db.mp4"
             },
             {
-                "id": "5b40a82e-a49e-4ba2-9453-d37e69a6b6be",
-                "title": "Melody of Immersion",
-                "image": "https://cdn2.suno.ai/5b40a82e-a49e-4ba2-9453-d37e69a6b6be_0c2e4c11.jpeg",
-                "stream": "https://cdn1.suno.ai/5b40a82e-a49e-4ba2-9453-d37e69a6b6be.mp4"
+                "id": "09bac085-e7ef-4b92-b936-7bb64328e106",
+                "title": "時間は還流し、星霜は遊離する",
+                "image": "https://cdn2.suno.ai/09bac085-e7ef-4b92-b936-7bb64328e106_5c75ac6e.jpeg",
+                "stream": "https://cdn1.suno.ai/09bac085-e7ef-4b92-b936-7bb64328e106.mp4"
             },
             {
-                "id": "f721a3c8-4d6d-4c72-8d7c-de249c2bcaae",
-                "title": "Returning to the Blue",
-                "image": "https://cdn2.suno.ai/f721a3c8-4d6d-4c72-8d7c-de249c2bcaae_86094e75.jpeg",
-                "stream": "https://cdn1.suno.ai/f721a3c8-4d6d-4c72-8d7c-de249c2bcaae.mp4"
+                "id": "9d707416-3a91-410f-a9b8-842fdcc34c63",
+                "title": "透ける深層、虚空を繋ぐ",
+                "image": "https://cdn2.suno.ai/9d707416-3a91-410f-a9b8-842fdcc34c63_cada205d.jpeg",
+                "stream": "https://cdn1.suno.ai/9d707416-3a91-410f-a9b8-842fdcc34c63.mp4"
             },
             {
-                "id": "2ae0837b-fabd-4321-8f6d-89076bc7d3b6",
-                "title": "Falling",
-                "image": "https://cdn2.suno.ai/video_upload_988a2e99-c84c-4bb5-a358-ed4d5f8cfe46_video_upload_988a2e99-c84c-4bb5-a358-ed4d5f8cfe46_cover_snapshot_0s_1764265902_image.jpeg",
-                "stream": "https://cdn1.suno.ai/2ae0837b-fabd-4321-8f6d-89076bc7d3b6.mp4"
+                "id": "2a4cc8d3-bd0d-4a83-83e8-c5b6268470a0",
+                "title": "眼差しが射影する、不確定な黄昏",
+                "image": "https://cdn2.suno.ai/video_upload_1f7040ef-db40-4aeb-a95b-3c57f7308e1c_video_upload_1f7040ef-db40-4aeb-a95b-3c57f7308e1c_cover_snapshot_0s_1773474913_image.jpeg",
+                "stream": "https://cdn1.suno.ai/2a4cc8d3-bd0d-4a83-83e8-c5b6268470a0.mp4"
+            },
+            {
+                "id": "151fa0a7-7086-42c8-a1a3-2fee155b6695",
+                "title": "観測者の座標系に依存する",
+                "image": "https://cdn2.suno.ai/video_upload_689a06dd-e462-4112-aa96-0658c33fbc13_video_upload_689a06dd-e462-4112-aa96-0658c33fbc13_cover_snapshot_0s_1773151398_image.jpeg",
+                "stream": "https://cdn1.suno.ai/151fa0a7-7086-42c8-a1a3-2fee155b6695.mp4"
             }
         ]
     },
@@ -1416,7 +1656,7 @@ function renderSunoJukebox(artist, container) {
                 <span class="suno-toggle-count">${tracks.length}</span>
             </span>
             <div class="suno-down-chevrons-wrap">
-                <span class="suno-open-label">CLICK TO VIEW</span>
+                <span class="suno-open-label">TRACK LIST OPEN</span>
                 <span class="suno-triple-chevrons">
                     <svg viewBox="0 0 24 24" class="chevron-ch"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <svg viewBox="0 0 24 24" class="chevron-ch"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1426,7 +1666,6 @@ function renderSunoJukebox(artist, container) {
         </div>
         <div class="suno-toggle-right">
             <span class="suno-current-track-title">${escapeHtml(tracks[0].title)}</span>
-            <span class="suno-toggle-state-pill">OPEN ▾</span>
         </div>
     `;
 
@@ -1441,9 +1680,7 @@ function renderSunoJukebox(artist, container) {
         listWrap.classList.toggle('is-open', nextState);
 
         const openLabel = toggleBar.querySelector('.suno-open-label');
-        const statePill = toggleBar.querySelector('.suno-toggle-state-pill');
-        if (openLabel) openLabel.textContent = nextState ? 'CLOSE' : 'CLICK TO VIEW';
-        if (statePill) statePill.textContent = nextState ? 'CLOSE ▴' : 'OPEN ▾';
+        if (openLabel) openLabel.textContent = nextState ? 'TRACK LIST CLOSE' : 'TRACK LIST OPEN';
     });
 
     function switchTrack(idx, autoPlay = false) {
