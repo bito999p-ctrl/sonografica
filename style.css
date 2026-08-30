@@ -87,15 +87,35 @@ body {
     transition: background 0.85s ease;
 }
 
-.ambient-bg-image {
+.ambient-artist-bg {
     position: absolute;
     inset: -30px;
     background-size: cover;
     background-position: center;
     opacity: 0;
     transform: scale(1.04);
-    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
     filter: brightness(0.68) contrast(1.15) saturate(1.1);
+    pointer-events: none;
+}
+
+.ambient-artist-bg.bg-valotoa {
+    background-image: url('assets/valotoa_bg.jpg');
+}
+.ambient-artist-bg.bg-hizumi {
+    background-image: url('assets/hizumi_bg.jpg');
+}
+.ambient-artist-bg.bg-pophoper {
+    background-image: url('assets/pophoper_bg.jpg');
+}
+.ambient-artist-bg.bg-stray {
+    background-image: url('assets/stray_bg.png');
+}
+.ambient-artist-bg.bg-dayendnight {
+    background-image: url('assets/dayendnight_bg.jpg');
+}
+.ambient-artist-bg.bg-rupture {
+    background-image: url('assets/rupture_bg.jpg');
 }
 
 .ambient-vignette {
@@ -122,10 +142,9 @@ body[class*="theme-"] .nav-toggle span {
 body.theme-valotoa .ambient-bg-color {
     background: radial-gradient(circle at 50% 35%, rgba(180, 195, 215, 0.2) 0%, rgba(16, 18, 22, 0.95) 75%, rgba(8, 9, 12, 0.98) 100%);
 }
-body.theme-valotoa .ambient-bg-image {
+body.theme-valotoa .ambient-artist-bg.bg-valotoa {
     opacity: 0.24;
     transform: scale(1);
-    background-image: url('assets/valotoa_bg.jpg');
 }
 body.theme-valotoa .main-nav {
     background: rgba(14, 16, 20, 0.92);
@@ -149,10 +168,9 @@ body.theme-valotoa #valotoa .media-card {
 body.theme-hizumi .ambient-bg-color {
     background: radial-gradient(circle at 50% 35%, rgba(180, 18, 30, 0.38) 0%, rgba(12, 5, 8, 0.94) 80%, rgba(8, 3, 5, 0.98) 100%);
 }
-body.theme-hizumi .ambient-bg-image {
+body.theme-hizumi .ambient-artist-bg.bg-hizumi {
     opacity: 0.28;
     transform: scale(1);
-    background-image: url('assets/hizumi_bg.jpg');
 }
 body.theme-hizumi .main-nav {
     background: rgba(14, 6, 9, 0.92);
@@ -176,10 +194,9 @@ body.theme-hizumi #hizumi .media-card {
 body.theme-pophoper .ambient-bg-color {
     background: radial-gradient(circle at 50% 35%, rgba(245, 158, 11, 0.28) 0%, rgba(26, 14, 6, 0.94) 75%, rgba(12, 6, 3, 0.98) 100%);
 }
-body.theme-pophoper .ambient-bg-image {
+body.theme-pophoper .ambient-artist-bg.bg-pophoper {
     opacity: 0.26;
     transform: scale(1);
-    background-image: url('assets/pophoper_bg.jpg');
 }
 body.theme-pophoper .main-nav {
     background: rgba(18, 10, 5, 0.92);
@@ -203,10 +220,9 @@ body.theme-pophoper #pophoper .media-card {
 body.theme-stray .ambient-bg-color {
     background: radial-gradient(circle at 50% 35%, rgba(56, 189, 248, 0.2) 0%, rgba(14, 19, 28, 0.95) 75%, rgba(8, 11, 16, 0.98) 100%);
 }
-body.theme-stray .ambient-bg-image {
+body.theme-stray .ambient-artist-bg.bg-stray {
     opacity: 0.25;
     transform: scale(1);
-    background-image: url('assets/stray_bg.png');
 }
 body.theme-stray .main-nav {
     background: rgba(11, 15, 22, 0.92);
@@ -230,10 +246,9 @@ body.theme-stray #stray .media-card {
 body.theme-dayendnight .ambient-bg-color {
     background: radial-gradient(circle at 50% 40%, rgba(70, 78, 90, 0.3) 0%, rgba(14, 16, 20, 0.96) 80%, rgba(7, 8, 10, 0.99) 100%);
 }
-body.theme-dayendnight .ambient-bg-image {
+body.theme-dayendnight .ambient-artist-bg.bg-dayendnight {
     opacity: 0.28;
     transform: scale(1);
-    background-image: url('assets/dayendnight_bg.jpg');
 }
 body.theme-dayendnight .main-nav {
     background: rgba(12, 14, 18, 0.92);
@@ -257,10 +272,9 @@ body.theme-dayendnight #dayendnight .media-card {
 body.theme-rupture .ambient-bg-color {
     background: radial-gradient(circle at 50% 35%, rgba(239, 68, 68, 0.36) 0%, rgba(28, 7, 7, 0.95) 80%, rgba(10, 2, 2, 0.99) 100%);
 }
-body.theme-rupture .ambient-bg-image {
+body.theme-rupture .ambient-artist-bg.bg-rupture {
     opacity: 0.27;
     transform: scale(1);
-    background-image: url('assets/rupture_bg.jpg');
 }
 body.theme-rupture .main-nav {
     background: rgba(18, 6, 6, 0.92);
