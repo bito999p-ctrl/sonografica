@@ -1660,13 +1660,10 @@ function renderSunoJukebox(artist, container) {
                     <button type="button" class="suno-ctrl-btn suno-btn-prev" title="前の曲 (Previous)" aria-label="Previous Track">
                         <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
                     </button>
-                    <!-- 再生 (Play) -->
-                    <button type="button" class="suno-ctrl-btn suno-btn-play" title="再生 (Play)" aria-label="Play">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </button>
-                    <!-- 一時停止 (Pause) -->
-                    <button type="button" class="suno-ctrl-btn suno-btn-pause" title="一時停止 (Pause)" aria-label="Pause">
-                        <svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    <!-- 再生 / 一時停止 (Play / Pause toggle) -->
+                    <button type="button" class="suno-ctrl-btn suno-btn-play-pause" title="再生 (Play)" aria-label="Play / Pause">
+                        <svg class="suno-icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        <svg class="suno-icon-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
                     </button>
                     <!-- 停止 (Stop) -->
                     <button type="button" class="suno-ctrl-btn suno-btn-stop" title="停止 (Stop)" aria-label="Stop">
@@ -1689,8 +1686,9 @@ function renderSunoJukebox(artist, container) {
     playerScreen.appendChild(media);
 
     const btnPrev = playerScreen.querySelector('.suno-btn-prev');
-    const btnPlay = playerScreen.querySelector('.suno-btn-play');
-    const btnPause = playerScreen.querySelector('.suno-btn-pause');
+    const btnPlayPause = playerScreen.querySelector('.suno-btn-play-pause');
+    const iconPlay = playerScreen.querySelector('.suno-icon-play');
+    const iconPause = playerScreen.querySelector('.suno-icon-pause');
     const btnStop = playerScreen.querySelector('.suno-btn-stop');
     const btnNext = playerScreen.querySelector('.suno-btn-next');
     const curTimeEl = playerScreen.querySelector('.suno-cur-time');
@@ -1710,36 +1708,32 @@ function renderSunoJukebox(artist, container) {
         return `${m}:${sec.toString().padStart(2, '0')}`;
     }
 
-    function updatePlaybackUI(isPlaying, isPaused = false) {
+    function updatePlaybackUI(isPlaying) {
         if (isPlaying) {
             playerScreen.classList.add('is-playing');
-            btnPlay.classList.add('is-active');
-            btnPause.classList.remove('is-active');
+            btnPlayPause.classList.add('is-active');
+            btnPlayPause.setAttribute('title', '一時停止 (Pause)');
+            iconPlay.style.display = 'none';
+            iconPause.style.display = 'block';
         } else {
             playerScreen.classList.remove('is-playing');
-            btnPlay.classList.remove('is-active');
-            if (isPaused) {
-                btnPause.classList.add('is-active');
-            } else {
-                btnPause.classList.remove('is-active');
-            }
+            btnPlayPause.classList.remove('is-active');
+            btnPlayPause.setAttribute('title', '再生 (Play)');
+            iconPlay.style.display = 'block';
+            iconPause.style.display = 'none';
         }
     }
 
-    btnPlay.addEventListener('click', () => {
+    btnPlayPause.addEventListener('click', () => {
         if (media.paused) {
             if (currentActiveSunoAudio && currentActiveSunoAudio !== media) {
                 currentActiveSunoAudio.pause();
             }
             currentActiveSunoAudio = media;
             media.play().then(() => updatePlaybackUI(true)).catch(e => console.log('Playback:', e));
-        }
-    });
-
-    btnPause.addEventListener('click', () => {
-        if (!media.paused) {
+        } else {
             media.pause();
-            updatePlaybackUI(false, true);
+            updatePlaybackUI(false);
         }
     });
 
@@ -1748,7 +1742,7 @@ function renderSunoJukebox(artist, container) {
         media.currentTime = 0;
         progressFill.style.width = '0%';
         curTimeEl.textContent = '0:00';
-        updatePlaybackUI(false, false);
+        updatePlaybackUI(false);
     });
 
     btnPrev.addEventListener('click', () => {
@@ -1784,10 +1778,7 @@ function renderSunoJukebox(artist, container) {
         switchTrack(nextIdx, true);
     });
 
-    media.addEventListener('pause', () => {
-        const isPaused = media.currentTime > 0 && !media.ended;
-        updatePlaybackUI(false, isPaused);
-    });
+    media.addEventListener('pause', () => updatePlaybackUI(false));
     media.addEventListener('play', () => updatePlaybackUI(true));
 
     progressTrack.addEventListener('click', (e) => {

@@ -2327,38 +2327,32 @@ body.theme-rupture #rupture .media-card {
     transition: fill 0.2s;
 }
 
-/* Play button slightly emphasized */
-.suno-btn-play {
-    width: 36px;
-    height: 36px;
+/* Play/Pause toggle button emphasized */
+.suno-btn-play-pause {
+    width: 38px;
+    height: 38px;
     background: #ffffff;
     color: #0d0e12;
     border: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
-.suno-btn-play svg {
+.suno-btn-play-pause svg {
     width: 16px;
     height: 16px;
 }
 
-.suno-btn-play:hover {
+.suno-btn-play-pause:hover {
     background: #f5f5f5;
     color: #000000;
     transform: scale(1.06);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
 }
 
-.suno-btn-play.is-active {
+.suno-btn-play-pause.is-active {
     background: var(--accent-gold);
     color: #0d0e12;
     box-shadow: 0 0 14px rgba(179, 130, 34, 0.6);
-}
-
-.suno-btn-pause.is-active {
-    background: rgba(255, 255, 255, 0.3);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .suno-btn-stop:hover svg {
@@ -2725,11 +2719,11 @@ body.theme-rupture #rupture .media-card {
         width: 12px;
         height: 12px;
     }
-    .suno-btn-play {
-        width: 32px;
-        height: 32px;
+    .suno-btn-play-pause {
+        width: 34px;
+        height: 34px;
     }
-    .suno-btn-play svg {
+    .suno-btn-play-pause svg {
         width: 14px;
         height: 14px;
     }
