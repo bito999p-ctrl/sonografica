@@ -898,61 +898,43 @@ document.addEventListener('DOMContentLoaded', () => {
     setupArtistAmbientObserver();
 });
 
-/* ── Artist Ambient Background Theming (Scroll Observer) ── */
+/* ── Artist Ambient Background Theming (Focal Zone Observer) ── */
 function setupArtistAmbientObserver() {
-    const artistBlocks = document.querySelectorAll('.artist-block');
-    if (!artistBlocks.length) return;
+    const hizumiEl = document.getElementById('hizumi');
+    if (!hizumiEl) return;
 
-    const observer = new IntersectionObserver((entries) => {
-        let hizumiIntersecting = false;
-        let otherDominant = false;
+    let ticking = false;
 
-        entries.forEach(entry => {
-            if (entry.target.id === 'hizumi') {
-                if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
-                    hizumiIntersecting = true;
-                }
-            } else if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
-                otherDominant = true;
-            }
-        });
+    function checkActiveArtist() {
+        const rect = hizumiEl.getBoundingClientRect();
+        const vHeight = window.innerHeight;
+        // The focal zone is the central 30% of the screen (35% to 65% from top)
+        // Hizumi is active ONLY if its block actually occupies this central focal zone
+        const focalTop = vHeight * 0.35;
+        const focalBottom = vHeight * 0.65;
+        const isHizumiFocused = rect.top <= focalBottom && rect.bottom >= focalTop;
 
-        if (hizumiIntersecting && !otherDominant) {
+        if (isHizumiFocused) {
             document.body.classList.add('theme-hizumi');
-        } else if (otherDominant) {
+        } else {
             document.body.classList.remove('theme-hizumi');
-        } else if (!hizumiIntersecting) {
-            // If hizumi is not in entries or not intersecting
-            const hizumiEl = document.getElementById('hizumi');
-            if (hizumiEl) {
-                const rect = hizumiEl.getBoundingClientRect();
-                const inView = rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25;
-                if (inView) {
-                    document.body.classList.add('theme-hizumi');
-                } else {
-                    document.body.classList.remove('theme-hizumi');
-                }
-            }
         }
-    }, {
-        root: null,
-        rootMargin: '-10% 0px -10% 0px',
-        threshold: [0.1, 0.2, 0.35, 0.5, 0.7]
-    });
+    }
 
-    artistBlocks.forEach(b => observer.observe(b));
-
-    // Reset when leaving artists section entirely (Header/Hero or Tools/Thanks)
-    window.addEventListener('scroll', () => {
-        const hizumiEl = document.getElementById('hizumi');
-        if (hizumiEl) {
-            const rect = hizumiEl.getBoundingClientRect();
-            const inView = rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
-            if (!inView && document.body.classList.contains('theme-hizumi')) {
-                document.body.classList.remove('theme-hizumi');
-            }
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                checkActiveArtist();
+                ticking = false;
+            });
+            ticking = true;
         }
-    }, { passive: true });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', checkActiveArtist, { passive: true });
+    // Initial check
+    checkActiveArtist();
 }
 
 function setupPlayerHeightSync() {
