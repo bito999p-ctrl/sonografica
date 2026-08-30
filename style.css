@@ -207,7 +207,7 @@ body.theme-hizumi .ambient-bg-color {
     background: radial-gradient(circle at 50% 35%, rgba(180, 18, 30, 0.38) 0%, rgba(12, 5, 8, 0.94) 80%, rgba(8, 3, 5, 0.98) 100%);
 }
 body.theme-hizumi .ambient-artist-bg.bg-hizumi {
-    opacity: 0.32;
+    opacity: 0.28;
     transform: scale(1);
 }
 body.theme-hizumi .main-nav {
