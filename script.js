@@ -893,7 +893,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Synchronize closed Suno card height with YouTube card
     setupPlayerHeightSync();
+
+    // Ambient background theming per artist on scroll
+    setupArtistAmbientObserver();
 });
+
+/* ── Artist Ambient Background Theming (Scroll Observer) ── */
+function setupArtistAmbientObserver() {
+    const artistBlocks = document.querySelectorAll('.artist-block');
+    if (!artistBlocks.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        let hizumiIntersecting = false;
+        let otherDominant = false;
+
+        entries.forEach(entry => {
+            if (entry.target.id === 'hizumi') {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
+                    hizumiIntersecting = true;
+                }
+            } else if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+                otherDominant = true;
+            }
+        });
+
+        if (hizumiIntersecting && !otherDominant) {
+            document.body.classList.add('theme-hizumi');
+        } else if (otherDominant) {
+            document.body.classList.remove('theme-hizumi');
+        } else if (!hizumiIntersecting) {
+            // If hizumi is not in entries or not intersecting
+            const hizumiEl = document.getElementById('hizumi');
+            if (hizumiEl) {
+                const rect = hizumiEl.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25;
+                if (inView) {
+                    document.body.classList.add('theme-hizumi');
+                } else {
+                    document.body.classList.remove('theme-hizumi');
+                }
+            }
+        }
+    }, {
+        root: null,
+        rootMargin: '-10% 0px -10% 0px',
+        threshold: [0.1, 0.2, 0.35, 0.5, 0.7]
+    });
+
+    artistBlocks.forEach(b => observer.observe(b));
+
+    // Reset when leaving artists section entirely (Header/Hero or Tools/Thanks)
+    window.addEventListener('scroll', () => {
+        const hizumiEl = document.getElementById('hizumi');
+        if (hizumiEl) {
+            const rect = hizumiEl.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
+            if (!inView && document.body.classList.contains('theme-hizumi')) {
+                document.body.classList.remove('theme-hizumi');
+            }
+        }
+    }, { passive: true });
+}
 
 function setupPlayerHeightSync() {
     syncPlayerHeights();

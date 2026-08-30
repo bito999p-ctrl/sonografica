@@ -68,6 +68,87 @@ body {
     opacity: 0.65;
 }
 
+/* ── Dynamic Ambient Backdrop Layer ── */
+.ambient-backdrop {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow: hidden;
+}
+
+.ambient-bg-color {
+    position: absolute;
+    inset: 0;
+    transition: background 0.85s ease;
+}
+
+.ambient-bg-image {
+    position: absolute;
+    inset: -30px;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.04);
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    filter: brightness(0.68) contrast(1.15) saturate(1.1);
+}
+
+.ambient-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, rgba(10, 5, 7, 0.75) 75%, rgba(10, 5, 7, 0.96) 100%);
+}
+
+/* ── 歪み歪み (Hizumi Hizumi) Immersive Theme ── */
+body.theme-hizumi .ambient-backdrop {
+    opacity: 1;
+}
+
+body.theme-hizumi .ambient-bg-color {
+    background: radial-gradient(circle at 50% 35%, rgba(180, 18, 30, 0.38) 0%, rgba(12, 5, 8, 0.94) 80%, rgba(8, 3, 5, 0.98) 100%);
+}
+
+body.theme-hizumi .ambient-bg-image {
+    opacity: 0.28;
+    transform: scale(1);
+    background-image: url('assets/hizumi_bg.jpg');
+}
+
+body.theme-hizumi .main-nav {
+    background: rgba(14, 6, 9, 0.92);
+    border-bottom-color: rgba(255, 45, 65, 0.18);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+body.theme-hizumi .brand-logo,
+body.theme-hizumi .nav-link {
+    color: #f1f1f1;
+}
+
+body.theme-hizumi .nav-toggle span {
+    background: #f1f1f1;
+}
+
+body.theme-hizumi #hizumi .artist-num {
+    color: #ff3344;
+    text-shadow: 0 0 16px rgba(255, 51, 68, 0.6);
+}
+
+body.theme-hizumi #hizumi .artist-name {
+    color: #ffffff;
+    text-shadow: 0 2px 24px rgba(255, 30, 50, 0.4);
+}
+
+body.theme-hizumi #hizumi .media-card {
+    border-color: rgba(255, 45, 65, 0.22);
+    box-shadow: 0 12px 36px rgba(180, 10, 20, 0.22);
+}
+
 /* ── Layout ── */
 .container {
     max-width: 1200px;
