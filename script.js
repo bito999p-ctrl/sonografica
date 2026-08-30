@@ -1909,6 +1909,29 @@ function renderSunoJukebox(artist, container) {
     container.appendChild(wrap);
 }
 
+/* ── Shared YouTube IntersectionObserver for Data Saving ── */
+let ytObserver = null;
+function getYouTubeObserver() {
+    if (!ytObserver && 'IntersectionObserver' in window) {
+        ytObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const wrap = entry.target;
+                    const iframe = wrap.querySelector('iframe[data-src]');
+                    if (iframe && !iframe.src) {
+                        iframe.src = iframe.dataset.src;
+                        iframe.removeAttribute('data-src');
+                    }
+                    observer.unobserve(wrap);
+                }
+            });
+        }, {
+            rootMargin: '300px 0px 300px 0px' // Pre-load smoothly 300px before scrolling into view
+        });
+    }
+    return ytObserver;
+}
+
 function renderYouTube(artist) {
     const el = document.getElementById(`youtube-${artist.id}`);
     if (!el) return;
@@ -1939,10 +1962,22 @@ function renderYouTube(artist) {
                 ? `https://www.youtube.com/embed/videoseries?list=${info.id}`
                 : `https://www.youtube.com/embed/${info.id}`;
             const iframe = document.createElement('iframe');
-            iframe.src = src; iframe.title = 'YouTube'; iframe.frameBorder = '0';
+            iframe.loading = 'lazy';
+            iframe.title = `${artist.name} - YouTube`;
+            iframe.frameBorder = '0';
             iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
             iframe.allowFullscreen = true;
-            wrap.appendChild(iframe);
+
+            const observer = getYouTubeObserver();
+            if (observer) {
+                // Defer loading src until user scrolls near the card
+                iframe.dataset.src = src;
+                wrap.appendChild(iframe);
+                observer.observe(wrap);
+            } else {
+                iframe.src = src;
+                wrap.appendChild(iframe);
+            }
         } catch (e) { console.error('YouTube URL error:', u); }
 
         card.appendChild(header);
