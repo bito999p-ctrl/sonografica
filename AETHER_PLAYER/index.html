@@ -68,15 +68,51 @@
         </div>
         <p class="landing-subtitle">Sunoの公開曲やプレイリストを、AetherMasterの高音質AI AUTOマスタリング技術で再生する専用プレイヤー</p>
         
+        <!-- Service Discontinuation Notice -->
+        <div class="service-notice-box" style="
+          margin: 16px 0 24px;
+          padding: 18px 20px;
+          background: rgba(239, 68, 68, 0.08);
+          border: 1px solid rgba(239, 68, 68, 0.3);
+          border-radius: 12px;
+          text-align: left;
+        ">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <span style="
+              background: #ef4444;
+              color: #ffffff;
+              font-family: monospace;
+              font-size: 0.68rem;
+              font-weight: 800;
+              letter-spacing: 0.08em;
+              padding: 2px 8px;
+              border-radius: 4px;
+            ">SERVICE NOTICE</span>
+            <span style="font-size: 0.78rem; color: #ef4444; font-weight: 600;">※現在音源読み込み機能は停止しております</span>
+          </div>
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #ffffff; margin-bottom: 6px; line-height: 1.4;">
+            Suno公式の外部ダウンロード・配信制限に伴う機能停止について
+          </h3>
+          <p style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.75); line-height: 1.6; margin-bottom: 10px;">
+            Suno公式によるメディア配信仕様の変更（ダウンロード防止対策およびDirect CDNストリーミング制限）に伴い、現在AetherPlayerでの音源ストリーミング・自動取得機能はご利用いただけなくなっております。<br>
+            これまでご利用いただき、誠にありがとうございました。
+          </p>
+          <div style="font-size: 0.78rem; color: rgba(255, 255, 255, 0.6); border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 8px;">
+            ※手持ちの音声ファイル（WAV/MP3）の高音質AIマスタリングには、引き続き <a href="https://bito999p-ctrl.github.io/aether_master/" target="_blank" style="color: #00f2fe; text-decoration: underline; font-weight: 600;">AetherMaster</a> をご利用いただけます。
+          </div>
+        </div>
+
         <div class="landing-import-box">
           <input 
             type="text" 
             id="landing-input" 
-            placeholder="ユーザー名 (例: @bito999) または プレイリストURL / ID..." 
+            placeholder="現在音源読み込み機能は停止しております (Service Unavailable)" 
             autocomplete="off"
+            disabled
+            style="opacity: 0.6; cursor: not-allowed;"
           >
-          <button id="landing-btn" class="btn btn-primary">
-            <span id="landing-btn-text">読み込む</span>
+          <button id="landing-btn" class="btn btn-primary" disabled style="opacity: 0.5; cursor: not-allowed; filter: grayscale(1);">
+            <span id="landing-btn-text">停止中 (Unavailable)</span>
             <span id="landing-btn-loader" class="loader hidden"></span>
           </button>
         </div>
