@@ -901,16 +901,20 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ── Artist Ambient Background Theming (Focal Zone Observer) ── */
 function setupArtistAmbientObserver() {
     const THEMED_ARTISTS = [
-        'valotoa',
-        'hizumi',
-        'pophoper',
-        'stray',
-        'dayendnight',
-        'rupture'
+        { id: 'bito', theme: 'theme-bito' },
+        { id: 'valotoa', theme: 'theme-valotoa' },
+        { id: 'hizumi', theme: 'theme-hizumi' },
+        { id: 'pophoper', theme: 'theme-pophoper' },
+        { id: 'stray', theme: 'theme-stray' },
+        { id: 'dayendnight', theme: 'theme-dayendnight' },
+        { id: 'asymptote', theme: 'theme-asymptote' },
+        { id: 'rupture', theme: 'theme-rupture' },
+        { id: 'sonografica-artist', theme: 'theme-sonografica' },
+        { id: 'metropolitans', theme: 'theme-metropolitans' }
     ];
 
     const artistEls = THEMED_ARTISTS
-        .map(id => ({ id, el: document.getElementById(id) }))
+        .map(item => ({ ...item, el: document.getElementById(item.id) }))
         .filter(item => item.el);
 
     if (!artistEls.length) return;
@@ -923,26 +927,24 @@ function setupArtistAmbientObserver() {
         const focalTop = vHeight * 0.35;
         const focalBottom = vHeight * 0.65;
 
-        let activeArtistId = null;
+        let activeTheme = '';
 
         for (const item of artistEls) {
             const rect = item.el.getBoundingClientRect();
             if (rect.top <= focalBottom && rect.bottom >= focalTop) {
-                activeArtistId = item.id;
+                activeTheme = item.theme;
                 break;
             }
         }
 
-        const newThemeClass = activeArtistId ? `theme-${activeArtistId}` : '';
-
-        if (newThemeClass !== currentThemeClass) {
+        if (activeTheme !== currentThemeClass) {
             if (currentThemeClass) {
                 document.body.classList.remove(currentThemeClass);
             }
-            if (newThemeClass) {
-                document.body.classList.add(newThemeClass);
+            if (activeTheme) {
+                document.body.classList.add(activeTheme);
             }
-            currentThemeClass = newThemeClass;
+            currentThemeClass = activeTheme;
         }
     }
 

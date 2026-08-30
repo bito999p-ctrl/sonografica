@@ -99,6 +99,9 @@ body {
     pointer-events: none;
 }
 
+.ambient-artist-bg.bg-bito {
+    background-image: url('assets/bito_bg.jpg');
+}
 .ambient-artist-bg.bg-valotoa {
     background-image: url('assets/valotoa_bg.jpg');
 }
@@ -114,8 +117,17 @@ body {
 .ambient-artist-bg.bg-dayendnight {
     background-image: url('assets/dayendnight_bg.jpg');
 }
+.ambient-artist-bg.bg-asymptote {
+    background-image: url('assets/asymptote_bg.jpg');
+}
 .ambient-artist-bg.bg-rupture {
     background-image: url('assets/rupture_bg.jpg');
+}
+.ambient-artist-bg.bg-sonografica {
+    background-image: url('assets/sonografica_bg.jpg');
+}
+.ambient-artist-bg.bg-metropolitans {
+    background-image: url('assets/metropolitans_bg.jpg');
 }
 
 .ambient-vignette {
@@ -136,6 +148,32 @@ body[class*="theme-"] .nav-link {
 
 body[class*="theme-"] .nav-toggle span {
     background: #f1f1f1;
+}
+
+/* 01. Bito Immersive Theme (Soundwave Holograph & Cyber Violet/Gold) */
+body.theme-bito .ambient-bg-color {
+    background: radial-gradient(circle at 50% 35%, rgba(139, 92, 246, 0.22) 0%, rgba(15, 12, 24, 0.96) 75%, rgba(7, 5, 12, 0.99) 100%);
+}
+body.theme-bito .ambient-artist-bg.bg-bito {
+    opacity: 0.26;
+    transform: scale(1);
+}
+body.theme-bito .main-nav {
+    background: rgba(14, 11, 22, 0.92);
+    border-bottom-color: rgba(167, 139, 250, 0.18);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+body.theme-bito #bito .artist-num {
+    color: #a78bfa;
+    text-shadow: 0 0 16px rgba(167, 139, 250, 0.65);
+}
+body.theme-bito #bito .artist-name {
+    color: #ffffff;
+    text-shadow: 0 2px 24px rgba(167, 139, 250, 0.35);
+}
+body.theme-bito #bito .media-card {
+    border-color: rgba(167, 139, 250, 0.2);
+    box-shadow: 0 12px 36px rgba(12, 8, 20, 0.4);
 }
 
 /* 02. valotoa Immersive Theme (Razor-Sharp Monochrome & Platinum Silver) */
@@ -268,6 +306,32 @@ body.theme-dayendnight #dayendnight .media-card {
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
 }
 
+/* 07. Asymptote Immersive Theme (Fine Ink & Ethereal Blush Watercolor) */
+body.theme-asymptote .ambient-bg-color {
+    background: radial-gradient(circle at 50% 35%, rgba(244, 182, 193, 0.2) 0%, rgba(20, 18, 22, 0.95) 75%, rgba(10, 9, 12, 0.98) 100%);
+}
+body.theme-asymptote .ambient-artist-bg.bg-asymptote {
+    opacity: 0.28;
+    transform: scale(1);
+}
+body.theme-asymptote .main-nav {
+    background: rgba(16, 14, 18, 0.92);
+    border-bottom-color: rgba(244, 182, 193, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+body.theme-asymptote #asymptote .artist-num {
+    color: #f4b6c2;
+    text-shadow: 0 0 16px rgba(244, 182, 193, 0.7);
+}
+body.theme-asymptote #asymptote .artist-name {
+    color: #ffffff;
+    text-shadow: 0 2px 24px rgba(244, 182, 193, 0.35);
+}
+body.theme-asymptote #asymptote .media-card {
+    border-color: rgba(244, 182, 193, 0.22);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.38);
+}
+
 /* 08. RUPTURE Immersive Theme (Explosive Punk Live Stage & Fiery Red) */
 body.theme-rupture .ambient-bg-color {
     background: radial-gradient(circle at 50% 35%, rgba(239, 68, 68, 0.36) 0%, rgba(28, 7, 7, 0.95) 80%, rgba(10, 2, 2, 0.99) 100%);
@@ -292,6 +356,58 @@ body.theme-rupture #rupture .artist-name {
 body.theme-rupture #rupture .media-card {
     border-color: rgba(239, 68, 68, 0.25);
     box-shadow: 0 12px 36px rgba(220, 38, 38, 0.22);
+}
+
+/* 09. Sonografica Immersive Theme (Dramatic Stage Smoke & Ethereal Silver Light) */
+body.theme-sonografica .ambient-bg-color {
+    background: radial-gradient(circle at 50% 35%, rgba(210, 225, 240, 0.26) 0%, rgba(16, 20, 26, 0.95) 75%, rgba(8, 10, 14, 0.99) 100%);
+}
+body.theme-sonografica .ambient-artist-bg.bg-sonografica {
+    opacity: 0.27;
+    transform: scale(1);
+}
+body.theme-sonografica .main-nav {
+    background: rgba(12, 16, 22, 0.92);
+    border-bottom-color: rgba(226, 232, 240, 0.18);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+body.theme-sonografica #sonografica-artist .artist-num {
+    color: #e2e8f0;
+    text-shadow: 0 0 16px rgba(226, 232, 240, 0.75);
+}
+body.theme-sonografica #sonografica-artist .artist-name {
+    color: #ffffff;
+    text-shadow: 0 2px 24px rgba(210, 225, 240, 0.4);
+}
+body.theme-sonografica #sonografica-artist .media-card {
+    border-color: rgba(226, 232, 240, 0.22);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+}
+
+/* 10. THE METROPOLITANS Immersive Theme (Vintage Blue Note Jazz & Amber Streetlamp) */
+body.theme-metropolitans .ambient-bg-color {
+    background: radial-gradient(circle at 50% 35%, rgba(217, 145, 60, 0.24) 0%, rgba(18, 14, 11, 0.96) 75%, rgba(9, 7, 5, 0.99) 100%);
+}
+body.theme-metropolitans .ambient-artist-bg.bg-metropolitans {
+    opacity: 0.28;
+    transform: scale(1);
+}
+body.theme-metropolitans .main-nav {
+    background: rgba(16, 12, 9, 0.92);
+    border-bottom-color: rgba(217, 145, 60, 0.22);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+body.theme-metropolitans #metropolitans .artist-num {
+    color: #d9913c;
+    text-shadow: 0 0 16px rgba(217, 145, 60, 0.7);
+}
+body.theme-metropolitans #metropolitans .artist-name {
+    color: #ffffff;
+    text-shadow: 0 2px 24px rgba(217, 145, 60, 0.35);
+}
+body.theme-metropolitans #metropolitans .media-card {
+    border-color: rgba(217, 145, 60, 0.22);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
 }
 
 /* ── Layout ── */
