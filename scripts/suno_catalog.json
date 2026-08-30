@@ -251,5 +251,38 @@
         "title": "Midnight Friction"
       }
     ]
+  },
+  "bito": {
+    "title": "Sonografica ",
+    "tracks": [
+      {
+        "id": "59417355-fbf5-44ed-a815-fb2e28234bb8",
+        "title": "Sonografica #1 : Telaio d'Aria"
+      },
+      {
+        "id": "fce72d26-83d0-4997-a4d8-989c09e3b3bf",
+        "title": "Sonografica #2 : Corda Nuda"
+      },
+      {
+        "id": "f48364e9-327e-49e1-a0e6-c7c7ac2f7788",
+        "title": "Sonografica #3 : Eco Infinito"
+      },
+      {
+        "id": "23b6822d-6670-4066-8465-4f5f6e87f213",
+        "title": "Sonografica #4 : Memoria Pura"
+      },
+      {
+        "id": "8e0fc618-e60c-4c89-9c00-9de2a0e7803b",
+        "title": "Sonografica #5 : Collage Resti"
+      },
+      {
+        "id": "237dcef6-0982-43d8-8d10-c780280ac712",
+        "title": "Sonografica #6 : Dedicato alla Fine"
+      },
+      {
+        "id": "d167ec99-baf5-44f2-89f8-0b307cdbbb7a",
+        "title": "Sonografica #7 : Estetica Animata"
+      }
+    ]
   }
 }
