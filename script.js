@@ -1402,20 +1402,31 @@ function renderSunoJukebox(artist, container) {
         }
     });
 
-    // Accordion Toggle Bar
+    // Accordion Toggle Bar with Downward Triple Chevrons
     const toggleBar = document.createElement('button');
     toggleBar.type = 'button';
     toggleBar.className = 'suno-accordion-toggle';
     toggleBar.setAttribute('aria-expanded', 'false');
+    toggleBar.setAttribute('title', 'Click to view all tracks');
     toggleBar.innerHTML = `
         <div class="suno-toggle-left">
-            <svg class="suno-list-svg" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            <span class="suno-toggle-label">Tracklist</span>
-            <span class="suno-toggle-badge">${tracks.length}</span>
+            <span class="suno-toggle-badge-btn">
+                <svg class="suno-list-svg" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                <span>TRACKLIST</span>
+                <span class="suno-toggle-count">${tracks.length}</span>
+            </span>
+            <div class="suno-down-chevrons-wrap">
+                <span class="suno-open-label">CLICK TO VIEW</span>
+                <span class="suno-triple-chevrons">
+                    <svg viewBox="0 0 24 24" class="chevron-ch"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg viewBox="0 0 24 24" class="chevron-ch"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg viewBox="0 0 24 24" class="chevron-ch"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+            </div>
         </div>
         <div class="suno-toggle-right">
             <span class="suno-current-track-title">${escapeHtml(tracks[0].title)}</span>
-            <svg class="suno-chevron-svg" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="suno-toggle-state-pill">OPEN ▾</span>
         </div>
     `;
 
@@ -1424,9 +1435,15 @@ function renderSunoJukebox(artist, container) {
 
     toggleBar.addEventListener('click', () => {
         const isExpanded = toggleBar.getAttribute('aria-expanded') === 'true';
-        toggleBar.setAttribute('aria-expanded', String(!isExpanded));
-        toggleBar.classList.toggle('is-open', !isExpanded);
-        listWrap.classList.toggle('is-open', !isExpanded);
+        const nextState = !isExpanded;
+        toggleBar.setAttribute('aria-expanded', String(nextState));
+        toggleBar.classList.toggle('is-open', nextState);
+        listWrap.classList.toggle('is-open', nextState);
+
+        const openLabel = toggleBar.querySelector('.suno-open-label');
+        const statePill = toggleBar.querySelector('.suno-toggle-state-pill');
+        if (openLabel) openLabel.textContent = nextState ? 'CLOSE' : 'CLICK TO VIEW';
+        if (statePill) statePill.textContent = nextState ? 'CLOSE ▴' : 'OPEN ▾';
     });
 
     function switchTrack(idx, autoPlay = false) {

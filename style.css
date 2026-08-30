@@ -1992,50 +1992,127 @@ body {
     display: none;
 }
 
-/* Accordion Toggle Bar */
+/* Accordion Toggle Bar — Distinct Interactive Button with Downward Chevrons */
 .suno-accordion-toggle {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: 38px;
-    padding: 0 14px;
-    background: #fafaf8;
+    height: 44px;
+    padding: 0 12px;
+    background: #f7f6f2;
     border: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
     cursor: pointer;
     font-family: var(--font-body);
-    font-size: 0.78rem;
-    color: var(--ink);
-    transition: background 0.2s var(--ease);
+    transition: background 0.2s var(--ease), border-color 0.2s;
     text-align: left;
+    user-select: none;
 }
 
 .suno-accordion-toggle:hover {
-    background: #f2f1ec;
+    background: #eceae2;
+}
+
+.suno-accordion-toggle.is-open {
+    background: #e9e7de;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .suno-toggle-left {
     display: flex;
     align-items: center;
-    gap: 7px;
-    font-weight: 600;
+    gap: 8px;
     flex-shrink: 0;
 }
 
-.suno-list-svg {
-    width: 14px;
-    height: 14px;
-    stroke: var(--ink-secondary);
+.suno-toggle-badge-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--ink);
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
 }
 
-.suno-toggle-badge {
-    font-family: var(--font-mono);
+.suno-list-svg {
+    width: 13px;
+    height: 13px;
+    stroke: var(--accent-gold);
+}
+
+.suno-toggle-count {
+    background: var(--accent-gold);
+    color: #0d0e12;
+    padding: 1px 5px;
+    border-radius: 3px;
     font-size: 0.68rem;
+    font-weight: 800;
+}
+
+.suno-down-chevrons-wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(179, 130, 34, 0.12);
     color: var(--accent-gold);
-    background: rgba(179, 130, 34, 0.1);
-    padding: 1px 6px;
-    border-radius: var(--radius-pill);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: background 0.2s, color 0.2s;
+}
+
+.suno-accordion-toggle:hover .suno-down-chevrons-wrap {
+    background: rgba(179, 130, 34, 0.22);
+}
+
+.suno-accordion-toggle.is-open .suno-down-chevrons-wrap {
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--ink-secondary);
+}
+
+.suno-triple-chevrons {
+    display: flex;
+    align-items: center;
+    margin-left: 2px;
+    transition: transform 0.3s var(--ease);
+}
+
+.suno-triple-chevrons .chevron-ch {
+    width: 12px;
+    height: 12px;
+    margin-right: -4px;
+    animation: sunoChevronBob 1.2s ease-in-out infinite;
+}
+
+.suno-triple-chevrons .chevron-ch:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.suno-triple-chevrons .chevron-ch:nth-child(3) {
+    margin-right: 0;
+    animation-delay: 0.3s;
+}
+
+@keyframes sunoChevronBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(2px); }
+}
+
+.suno-accordion-toggle.is-open .suno-triple-chevrons {
+    transform: rotate(180deg);
+}
+
+.suno-accordion-toggle.is-open .suno-triple-chevrons .chevron-ch {
+    animation: none;
 }
 
 .suno-toggle-right {
@@ -2056,16 +2133,29 @@ body {
     opacity: 0.85;
 }
 
-.suno-chevron-svg {
-    width: 14px;
-    height: 14px;
+.suno-toggle-state-pill {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--ink);
     flex-shrink: 0;
-    transition: transform 0.3s var(--ease);
-    stroke: var(--ink-secondary);
+    letter-spacing: 0.05em;
+    transition: background 0.2s, color 0.2s;
 }
 
-.suno-accordion-toggle.is-open .suno-chevron-svg {
-    transform: rotate(180deg);
+.suno-accordion-toggle:hover .suno-toggle-state-pill {
+    background: var(--ink);
+    color: #ffffff;
+}
+
+.suno-accordion-toggle.is-open .suno-toggle-state-pill {
+    background: var(--accent-gold);
+    color: #0d0e12;
 }
 
 /* Collapsible Tracklist Drawer */
