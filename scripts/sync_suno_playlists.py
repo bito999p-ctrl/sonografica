@@ -1,4 +1,4 @@
-﻿"""
+"""
 Sonografica — Automatic Suno Playlist Sync
 Fetches tracklists from public Suno playlist APIs and updates script.js and suno_catalog.json.
 """
@@ -43,8 +43,15 @@ def fetch_playlist_tracks(pid):
             clip = c.get("clip", {})
             sid = clip.get("id")
             title = clip.get("title", "").strip()
+            img = clip.get("image_large_url") or clip.get("image_url")
+            vid = clip.get("video_url")
             if sid and title:
-                tracks.append({"id": sid, "title": title})
+                tracks.append({
+                    "id": sid,
+                    "title": title,
+                    "image": img,
+                    "stream": vid or f"https://cdn1.suno.ai/{sid}.mp4"
+                })
         return name, tracks
 
 def main():

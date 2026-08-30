@@ -45,31 +45,45 @@ const artists = [
         "sunoTracks": [
             {
                 "id": "59417355-fbf5-44ed-a815-fb2e28234bb8",
-                "title": "Sonografica #1 : Telaio d'Aria"
+                "title": "Sonografica #1 : Telaio d'Aria",
+                "image": "https://cdn2.suno.ai/59417355-fbf5-44ed-a815-fb2e28234bb8_bf222b8c.jpeg",
+                "stream": "https://cdn1.suno.ai/59417355-fbf5-44ed-a815-fb2e28234bb8.mp4"
             },
             {
                 "id": "fce72d26-83d0-4997-a4d8-989c09e3b3bf",
-                "title": "Sonografica #2 : Corda Nuda"
+                "title": "Sonografica #2 : Corda Nuda",
+                "image": "https://cdn2.suno.ai/fce72d26-83d0-4997-a4d8-989c09e3b3bf_f946cd4e.jpeg",
+                "stream": "https://cdn1.suno.ai/fce72d26-83d0-4997-a4d8-989c09e3b3bf.mp4"
             },
             {
                 "id": "f48364e9-327e-49e1-a0e6-c7c7ac2f7788",
-                "title": "Sonografica #3 : Eco Infinito"
+                "title": "Sonografica #3 : Eco Infinito",
+                "image": "https://cdn2.suno.ai/f48364e9-327e-49e1-a0e6-c7c7ac2f7788_746b152e.jpeg",
+                "stream": "https://cdn1.suno.ai/f48364e9-327e-49e1-a0e6-c7c7ac2f7788.mp4"
             },
             {
                 "id": "23b6822d-6670-4066-8465-4f5f6e87f213",
-                "title": "Sonografica #4 : Memoria Pura"
+                "title": "Sonografica #4 : Memoria Pura",
+                "image": "https://cdn2.suno.ai/23b6822d-6670-4066-8465-4f5f6e87f213_20debf40.jpeg",
+                "stream": "https://cdn1.suno.ai/23b6822d-6670-4066-8465-4f5f6e87f213.mp4"
             },
             {
                 "id": "8e0fc618-e60c-4c89-9c00-9de2a0e7803b",
-                "title": "Sonografica #5 : Collage Resti"
+                "title": "Sonografica #5 : Collage Resti",
+                "image": "https://cdn2.suno.ai/8e0fc618-e60c-4c89-9c00-9de2a0e7803b_bc58d25f.jpeg",
+                "stream": "https://cdn1.suno.ai/8e0fc618-e60c-4c89-9c00-9de2a0e7803b.mp4"
             },
             {
                 "id": "237dcef6-0982-43d8-8d10-c780280ac712",
-                "title": "Sonografica #6 : Dedicato alla Fine"
+                "title": "Sonografica #6 : Dedicato alla Fine",
+                "image": "https://cdn2.suno.ai/237dcef6-0982-43d8-8d10-c780280ac712_173dee74.jpeg",
+                "stream": "https://cdn1.suno.ai/237dcef6-0982-43d8-8d10-c780280ac712.mp4"
             },
             {
                 "id": "d167ec99-baf5-44f2-89f8-0b307cdbbb7a",
-                "title": "Sonografica #7 : Estetica Animata"
+                "title": "Sonografica #7 : Estetica Animata",
+                "image": "https://cdn2.suno.ai/d167ec99-baf5-44f2-89f8-0b307cdbbb7a_93a47c9e.jpeg",
+                "stream": "https://cdn1.suno.ai/d167ec99-baf5-44f2-89f8-0b307cdbbb7a.mp4"
             }
         ]
     },
@@ -95,23 +109,33 @@ const artists = [
         "sunoTracks": [
             {
                 "id": "ada853d2-1625-43b6-ab1f-8f4205d8394b",
-                "title": "The Shape of the Void"
+                "title": "The Shape of the Void",
+                "image": "https://cdn2.suno.ai/ada853d2-1625-43b6-ab1f-8f4205d8394b_5286f963.jpeg",
+                "stream": "https://cdn1.suno.ai/ada853d2-1625-43b6-ab1f-8f4205d8394b.mp4"
             },
             {
                 "id": "55de54bb-2a83-46ef-86b5-c9bfdd89c84a",
-                "title": "Living is moving toward the end."
+                "title": "Living is moving toward the end.",
+                "image": "https://cdn2.suno.ai/55de54bb-2a83-46ef-86b5-c9bfdd89c84a_8cebe04b.jpeg",
+                "stream": "https://cdn1.suno.ai/55de54bb-2a83-46ef-86b5-c9bfdd89c84a.mp4"
             },
             {
                 "id": "5b40a82e-a49e-4ba2-9453-d37e69a6b6be",
-                "title": "Melody of Immersion"
+                "title": "Melody of Immersion",
+                "image": "https://cdn2.suno.ai/5b40a82e-a49e-4ba2-9453-d37e69a6b6be_0c2e4c11.jpeg",
+                "stream": "https://cdn1.suno.ai/5b40a82e-a49e-4ba2-9453-d37e69a6b6be.mp4"
             },
             {
                 "id": "f721a3c8-4d6d-4c72-8d7c-de249c2bcaae",
-                "title": "Returning to the Blue"
+                "title": "Returning to the Blue",
+                "image": "https://cdn2.suno.ai/f721a3c8-4d6d-4c72-8d7c-de249c2bcaae_86094e75.jpeg",
+                "stream": "https://cdn1.suno.ai/f721a3c8-4d6d-4c72-8d7c-de249c2bcaae.mp4"
             },
             {
                 "id": "2ae0837b-fabd-4321-8f6d-89076bc7d3b6",
-                "title": "Falling"
+                "title": "Falling",
+                "image": "https://cdn2.suno.ai/video_upload_988a2e99-c84c-4bb5-a358-ed4d5f8cfe46_video_upload_988a2e99-c84c-4bb5-a358-ed4d5f8cfe46_cover_snapshot_0s_1764265902_image.jpeg",
+                "stream": "https://cdn1.suno.ai/2ae0837b-fabd-4321-8f6d-89076bc7d3b6.mp4"
             }
         ]
     },
@@ -147,31 +171,45 @@ const artists = [
         "sunoTracks": [
             {
                 "id": "96957030-34a3-4e81-9348-e6ef6d414613",
-                "title": "嘘だよね -欠陥感情四象限-"
+                "title": "嘘だよね -欠陥感情四象限-",
+                "image": "https://cdn2.suno.ai/96957030-34a3-4e81-9348-e6ef6d414613_0286f37c.jpeg",
+                "stream": "https://cdn1.suno.ai/96957030-34a3-4e81-9348-e6ef6d414613.mp4"
             },
             {
                 "id": "76a84161-e866-47fb-a194-ccb797574984",
-                "title": "ちょうだい -欠陥感情四象限-"
+                "title": "ちょうだい -欠陥感情四象限-",
+                "image": "https://cdn2.suno.ai/76a84161-e866-47fb-a194-ccb797574984_52832744.jpeg",
+                "stream": "https://cdn1.suno.ai/76a84161-e866-47fb-a194-ccb797574984.mp4"
             },
             {
                 "id": "119f610f-0910-4070-8b05-3f0ba18ce724",
-                "title": "おんなじ -欠陥感情四象限-"
+                "title": "おんなじ -欠陥感情四象限-",
+                "image": "https://cdn2.suno.ai/119f610f-0910-4070-8b05-3f0ba18ce724_df0be583.jpeg",
+                "stream": "https://cdn1.suno.ai/119f610f-0910-4070-8b05-3f0ba18ce724.mp4"
             },
             {
                 "id": "cfce49e8-ed87-4ffc-a797-ece8f7ca15d1",
-                "title": "ありがとうございました -欠陥感情四象限-"
+                "title": "ありがとうございました -欠陥感情四象限-",
+                "image": "https://cdn2.suno.ai/video_upload_80149a81-3188-4147-8a4e-ac9fc80588a2_video_upload_80149a81-3188-4147-8a4e-ac9fc80588a2_cover_snapshot_0s_1767536933_image.jpeg",
+                "stream": "https://cdn1.suno.ai/cfce49e8-ed87-4ffc-a797-ece8f7ca15d1.mp4"
             },
             {
                 "id": "2a3256be-ace4-492a-a473-72744bdf7e46",
-                "title": "ラブソングが歌えない"
+                "title": "ラブソングが歌えない",
+                "image": "https://cdn2.suno.ai/2a3256be-ace4-492a-a473-72744bdf7e46_f043b080.jpeg",
+                "stream": "https://cdn1.suno.ai/2a3256be-ace4-492a-a473-72744bdf7e46.mp4"
             },
             {
                 "id": "c02b278a-528a-4ee8-8986-973e70e47043",
-                "title": "アンソロポス"
+                "title": "アンソロポス",
+                "image": "https://cdn2.suno.ai/c02b278a-528a-4ee8-8986-973e70e47043_07cbc614.jpeg",
+                "stream": "https://cdn1.suno.ai/c02b278a-528a-4ee8-8986-973e70e47043.mp4"
             },
             {
                 "id": "badfaa75-f7a8-4b15-a7a2-52062bf20768",
-                "title": "僕は"
+                "title": "僕は",
+                "image": "https://cdn2.suno.ai/badfaa75-f7a8-4b15-a7a2-52062bf20768_b7a2529d.jpeg",
+                "stream": "https://cdn1.suno.ai/badfaa75-f7a8-4b15-a7a2-52062bf20768.mp4"
             }
         ]
     },
@@ -207,39 +245,57 @@ const artists = [
         "sunoTracks": [
             {
                 "id": "1e64e248-9efe-409d-9c50-0acdc628ec1d",
-                "title": "心音ダイバーサバイバー"
+                "title": "心音ダイバーサバイバー",
+                "image": "https://cdn2.suno.ai/99db545c-0091-4aa5-9dcb-85fc29af8658.jpeg",
+                "stream": "https://cdn1.suno.ai/1e64e248-9efe-409d-9c50-0acdc628ec1d.mp4"
             },
             {
                 "id": "72476516-3fc6-43cd-89dc-8919ef531b72",
-                "title": "ふわり、くるり"
+                "title": "ふわり、くるり",
+                "image": "https://cdn2.suno.ai/fac98646-bf1c-4183-a072-0b604d6279fa.jpeg",
+                "stream": "https://cdn1.suno.ai/72476516-3fc6-43cd-89dc-8919ef531b72.mp4"
             },
             {
                 "id": "e1507fa2-07ef-4cd6-ab33-72cb1ff500c2",
-                "title": "愚者具舎ハッピーエンド"
+                "title": "愚者具舎ハッピーエンド",
+                "image": "https://cdn2.suno.ai/e1507fa2-07ef-4cd6-ab33-72cb1ff500c2_95c92ffe.jpeg",
+                "stream": "https://cdn1.suno.ai/e1507fa2-07ef-4cd6-ab33-72cb1ff500c2.mp4"
             },
             {
                 "id": "261f20ed-f1b7-4441-bcab-d22281fd495b",
-                "title": "答えあわせは死んだあと"
+                "title": "答えあわせは死んだあと",
+                "image": "https://cdn2.suno.ai/video_upload_0c34f64b-7262-4f12-8d4c-baa37fad1ab3_video_upload_0c34f64b-7262-4f12-8d4c-baa37fad1ab3_cover_snapshot_0s_1764741740_image.jpeg",
+                "stream": "https://cdn1.suno.ai/261f20ed-f1b7-4441-bcab-d22281fd495b.mp4"
             },
             {
                 "id": "13a931a9-b5d5-408f-a66f-4fb3069989c6",
-                "title": "白昼夢ミューート"
+                "title": "白昼夢ミューート",
+                "image": "https://cdn2.suno.ai/video_upload_a0f2eccd-bd3a-4cee-821b-1a1d221072b5_video_upload_a0f2eccd-bd3a-4cee-821b-1a1d221072b5_cover_snapshot_0s_1764398983_image.jpeg",
+                "stream": "https://cdn1.suno.ai/13a931a9-b5d5-408f-a66f-4fb3069989c6.mp4"
             },
             {
                 "id": "1cd7a986-56ff-481f-98f4-7a943f388aff",
-                "title": "AM 2:00 サイダー🫧"
+                "title": "AM 2:00 サイダー🫧",
+                "image": "https://cdn2.suno.ai/1cd7a986-56ff-481f-98f4-7a943f388aff_a8e2a6e4.jpeg",
+                "stream": "https://cdn1.suno.ai/1cd7a986-56ff-481f-98f4-7a943f388aff.mp4"
             },
             {
                 "id": "afd99557-32ae-473b-9bb3-5c02503edc97",
-                "title": "泣き虫エンドロール"
+                "title": "泣き虫エンドロール",
+                "image": "https://cdn2.suno.ai/video_upload_5c858783-80e8-4de2-8d3e-879997621f84_video_upload_5c858783-80e8-4de2-8d3e-879997621f84_cover_snapshot_0s_1764455309_image.jpeg",
+                "stream": "https://cdn1.suno.ai/afd99557-32ae-473b-9bb3-5c02503edc97.mp4"
             },
             {
                 "id": "790eeec3-3c31-45eb-b5d3-1233e442ba96",
-                "title": "夜いずびゅーてぃふる"
+                "title": "夜いずびゅーてぃふる",
+                "image": "https://cdn2.suno.ai/video_upload_cfaed139-eb62-491c-8baf-67d0258aa43a_video_upload_cfaed139-eb62-491c-8baf-67d0258aa43a_cover_snapshot_0s_1764418666_image.jpeg",
+                "stream": "https://cdn1.suno.ai/790eeec3-3c31-45eb-b5d3-1233e442ba96.mp4"
             },
             {
                 "id": "8f5205fc-2fc6-4a61-b4c9-f1ffd1132968",
-                "title": "白昼夢ミューート (Remastered)"
+                "title": "白昼夢ミューート (Remastered)",
+                "image": "https://cdn2.suno.ai/image_large_8f5205fc-2fc6-4a61-b4c9-f1ffd1132968.jpeg",
+                "stream": "https://cdn1.suno.ai/8f5205fc-2fc6-4a61-b4c9-f1ffd1132968.mp4"
             }
         ]
     },
@@ -270,39 +326,57 @@ const artists = [
         "sunoTracks": [
             {
                 "id": "a44e668f-29fa-4bed-864b-d303cc4c4a9f",
-                "title": "Distort It"
+                "title": "Distort It",
+                "image": "https://cdn2.suno.ai/a44e668f-29fa-4bed-864b-d303cc4c4a9f_c31665ad.jpeg",
+                "stream": "https://cdn1.suno.ai/a44e668f-29fa-4bed-864b-d303cc4c4a9f.mp4"
             },
             {
                 "id": "a7543712-f393-4908-9672-94625910c43a",
-                "title": "Deep Wire"
+                "title": "Deep Wire",
+                "image": "https://cdn2.suno.ai/a7543712-f393-4908-9672-94625910c43a_c14a6b50.jpeg",
+                "stream": "https://cdn1.suno.ai/a7543712-f393-4908-9672-94625910c43a.mp4"
             },
             {
                 "id": "69da865c-f023-46fe-b340-34fdcad081cc",
-                "title": "NEO RITUAL"
+                "title": "NEO RITUAL",
+                "image": "https://cdn2.suno.ai/69da865c-f023-46fe-b340-34fdcad081cc_83022114.jpeg",
+                "stream": "https://cdn1.suno.ai/69da865c-f023-46fe-b340-34fdcad081cc.mp4"
             },
             {
                 "id": "4014cb2e-80af-42d8-a312-34309d5b1bcd",
-                "title": "Funky Chunky Monkey"
+                "title": "Funky Chunky Monkey",
+                "image": "https://cdn2.suno.ai/image_large_4014cb2e-80af-42d8-a312-34309d5b1bcd.jpeg",
+                "stream": "https://cdn1.suno.ai/4014cb2e-80af-42d8-a312-34309d5b1bcd.mp4"
             },
             {
                 "id": "abb5c6e8-0330-4eb1-88ac-a6bcd38dbf4e",
-                "title": "Chicken Wing Facerock"
+                "title": "Chicken Wing Facerock",
+                "image": "https://cdn2.suno.ai/image_large_abb5c6e8-0330-4eb1-88ac-a6bcd38dbf4e.jpeg",
+                "stream": "https://cdn1.suno.ai/abb5c6e8-0330-4eb1-88ac-a6bcd38dbf4e.mp4"
             },
             {
                 "id": "4256e835-00da-42fd-9ba7-faa7ecdf64b5",
-                "title": "Who Enemy?"
+                "title": "Who Enemy?",
+                "image": "https://cdn2.suno.ai/image_large_4256e835-00da-42fd-9ba7-faa7ecdf64b5.jpeg",
+                "stream": "https://cdn1.suno.ai/4256e835-00da-42fd-9ba7-faa7ecdf64b5.mp4"
             },
             {
                 "id": "96b7fd01-9c1f-461d-871f-87d3e3b5d5f0",
-                "title": "No Sleep Till Stacks"
+                "title": "No Sleep Till Stacks",
+                "image": "https://cdn2.suno.ai/96b7fd01-9c1f-461d-871f-87d3e3b5d5f0_e0081111.jpeg",
+                "stream": "https://cdn1.suno.ai/96b7fd01-9c1f-461d-871f-87d3e3b5d5f0.mp4"
             },
             {
                 "id": "75fe2076-7393-4a9c-829f-a06179b11ed6",
-                "title": "Beat Slam"
+                "title": "Beat Slam",
+                "image": "https://cdn2.suno.ai/image_large_75fe2076-7393-4a9c-829f-a06179b11ed6.jpeg",
+                "stream": "https://cdn1.suno.ai/75fe2076-7393-4a9c-829f-a06179b11ed6.mp4"
             },
             {
                 "id": "aafb8bc1-78ec-419f-a249-e508b17e1450",
-                "title": "Stray Glitch Monkeys"
+                "title": "Stray Glitch Monkeys",
+                "image": "https://cdn2.suno.ai/image_large_aafb8bc1-78ec-419f-a249-e508b17e1450.jpeg",
+                "stream": "https://cdn1.suno.ai/aafb8bc1-78ec-419f-a249-e508b17e1450.mp4"
             }
         ]
     },
@@ -328,19 +402,27 @@ const artists = [
         "sunoTracks": [
             {
                 "id": "5202a310-a816-441f-b896-1dd5c28a4520",
-                "title": "Perpetual Snow, Your Footsteps"
+                "title": "Perpetual Snow, Your Footsteps",
+                "image": "https://cdn2.suno.ai/5202a310-a816-441f-b896-1dd5c28a4520_1e14eac1.jpeg",
+                "stream": "https://cdn1.suno.ai/5202a310-a816-441f-b896-1dd5c28a4520.mp4"
             },
             {
                 "id": "a86fc455-6f74-40a9-b6d4-6b31f6f2ddaa",
-                "title": "A yearning for life, beyond the end"
+                "title": "A yearning for life, beyond the end",
+                "image": "https://cdn2.suno.ai/a86fc455-6f74-40a9-b6d4-6b31f6f2ddaa_096ccd5f.jpeg",
+                "stream": "https://cdn1.suno.ai/a86fc455-6f74-40a9-b6d4-6b31f6f2ddaa.mp4"
             },
             {
                 "id": "ac24a748-79ea-44b2-9540-545e0ee6aa42",
-                "title": "Gray Surface, Unreached Light"
+                "title": "Gray Surface, Unreached Light",
+                "image": "https://cdn2.suno.ai/def4a9db-b1c9-4bb0-90f4-c76c4d7d236a.jpeg",
+                "stream": "https://cdn1.suno.ai/ac24a748-79ea-44b2-9540-545e0ee6aa42.mp4"
             },
             {
                 "id": "6d91a19d-d7d2-4b30-8222-a2046552f303",
-                "title": "A small shoe in the dust"
+                "title": "A small shoe in the dust",
+                "image": "https://cdn2.suno.ai/6d91a19d-d7d2-4b30-8222-a2046552f303_c06e343a.jpeg",
+                "stream": "https://cdn1.suno.ai/6d91a19d-d7d2-4b30-8222-a2046552f303.mp4"
             }
         ]
     },
@@ -366,23 +448,33 @@ const artists = [
         "sunoTracks": [
             {
                 "id": "ada853d2-1625-43b6-ab1f-8f4205d8394b",
-                "title": "The Shape of the Void"
+                "title": "The Shape of the Void",
+                "image": "https://cdn2.suno.ai/ada853d2-1625-43b6-ab1f-8f4205d8394b_5286f963.jpeg",
+                "stream": "https://cdn1.suno.ai/ada853d2-1625-43b6-ab1f-8f4205d8394b.mp4"
             },
             {
                 "id": "55de54bb-2a83-46ef-86b5-c9bfdd89c84a",
-                "title": "Living is moving toward the end."
+                "title": "Living is moving toward the end.",
+                "image": "https://cdn2.suno.ai/55de54bb-2a83-46ef-86b5-c9bfdd89c84a_8cebe04b.jpeg",
+                "stream": "https://cdn1.suno.ai/55de54bb-2a83-46ef-86b5-c9bfdd89c84a.mp4"
             },
             {
                 "id": "5b40a82e-a49e-4ba2-9453-d37e69a6b6be",
-                "title": "Melody of Immersion"
+                "title": "Melody of Immersion",
+                "image": "https://cdn2.suno.ai/5b40a82e-a49e-4ba2-9453-d37e69a6b6be_0c2e4c11.jpeg",
+                "stream": "https://cdn1.suno.ai/5b40a82e-a49e-4ba2-9453-d37e69a6b6be.mp4"
             },
             {
                 "id": "f721a3c8-4d6d-4c72-8d7c-de249c2bcaae",
-                "title": "Returning to the Blue"
+                "title": "Returning to the Blue",
+                "image": "https://cdn2.suno.ai/f721a3c8-4d6d-4c72-8d7c-de249c2bcaae_86094e75.jpeg",
+                "stream": "https://cdn1.suno.ai/f721a3c8-4d6d-4c72-8d7c-de249c2bcaae.mp4"
             },
             {
                 "id": "2ae0837b-fabd-4321-8f6d-89076bc7d3b6",
-                "title": "Falling"
+                "title": "Falling",
+                "image": "https://cdn2.suno.ai/video_upload_988a2e99-c84c-4bb5-a358-ed4d5f8cfe46_video_upload_988a2e99-c84c-4bb5-a358-ed4d5f8cfe46_cover_snapshot_0s_1764265902_image.jpeg",
+                "stream": "https://cdn1.suno.ai/2ae0837b-fabd-4321-8f6d-89076bc7d3b6.mp4"
             }
         ]
     },
@@ -413,15 +505,21 @@ const artists = [
         "sunoTracks": [
             {
                 "id": "a3f056ca-1e69-44b7-af87-f6b6e6eefa0a",
-                "title": "UNBROKEN"
+                "title": "UNBROKEN",
+                "image": "https://cdn2.suno.ai/a3f056ca-1e69-44b7-af87-f6b6e6eefa0a_16796497.jpeg",
+                "stream": "https://cdn1.suno.ai/a3f056ca-1e69-44b7-af87-f6b6e6eefa0a.mp4"
             },
             {
                 "id": "f2089d2c-dfeb-46c3-9b22-23f6e8f0bfa1",
-                "title": "UNSCRIPTED"
+                "title": "UNSCRIPTED",
+                "image": "https://cdn2.suno.ai/f2089d2c-dfeb-46c3-9b22-23f6e8f0bfa1_67f71a7b.jpeg",
+                "stream": "https://cdn1.suno.ai/f2089d2c-dfeb-46c3-9b22-23f6e8f0bfa1.mp4"
             },
             {
                 "id": "789fbe7a-02f2-4106-b3da-8b90c1d374e6",
-                "title": "UNANSWERED"
+                "title": "UNANSWERED",
+                "image": "https://cdn2.suno.ai/3db71f76-69e0-4ecd-9925-95e49b8bdacb.jpeg",
+                "stream": "https://cdn1.suno.ai/789fbe7a-02f2-4106-b3da-8b90c1d374e6.mp4"
             }
         ]
     },
@@ -447,31 +545,45 @@ const artists = [
         "sunoTracks": [
             {
                 "id": "59417355-fbf5-44ed-a815-fb2e28234bb8",
-                "title": "Sonografica #1 : Telaio d'Aria"
+                "title": "Sonografica #1 : Telaio d'Aria",
+                "image": "https://cdn2.suno.ai/59417355-fbf5-44ed-a815-fb2e28234bb8_bf222b8c.jpeg",
+                "stream": "https://cdn1.suno.ai/59417355-fbf5-44ed-a815-fb2e28234bb8.mp4"
             },
             {
                 "id": "fce72d26-83d0-4997-a4d8-989c09e3b3bf",
-                "title": "Sonografica #2 : Corda Nuda"
+                "title": "Sonografica #2 : Corda Nuda",
+                "image": "https://cdn2.suno.ai/fce72d26-83d0-4997-a4d8-989c09e3b3bf_f946cd4e.jpeg",
+                "stream": "https://cdn1.suno.ai/fce72d26-83d0-4997-a4d8-989c09e3b3bf.mp4"
             },
             {
                 "id": "f48364e9-327e-49e1-a0e6-c7c7ac2f7788",
-                "title": "Sonografica #3 : Eco Infinito"
+                "title": "Sonografica #3 : Eco Infinito",
+                "image": "https://cdn2.suno.ai/f48364e9-327e-49e1-a0e6-c7c7ac2f7788_746b152e.jpeg",
+                "stream": "https://cdn1.suno.ai/f48364e9-327e-49e1-a0e6-c7c7ac2f7788.mp4"
             },
             {
                 "id": "23b6822d-6670-4066-8465-4f5f6e87f213",
-                "title": "Sonografica #4 : Memoria Pura"
+                "title": "Sonografica #4 : Memoria Pura",
+                "image": "https://cdn2.suno.ai/23b6822d-6670-4066-8465-4f5f6e87f213_20debf40.jpeg",
+                "stream": "https://cdn1.suno.ai/23b6822d-6670-4066-8465-4f5f6e87f213.mp4"
             },
             {
                 "id": "8e0fc618-e60c-4c89-9c00-9de2a0e7803b",
-                "title": "Sonografica #5 : Collage Resti"
+                "title": "Sonografica #5 : Collage Resti",
+                "image": "https://cdn2.suno.ai/8e0fc618-e60c-4c89-9c00-9de2a0e7803b_bc58d25f.jpeg",
+                "stream": "https://cdn1.suno.ai/8e0fc618-e60c-4c89-9c00-9de2a0e7803b.mp4"
             },
             {
                 "id": "237dcef6-0982-43d8-8d10-c780280ac712",
-                "title": "Sonografica #6 : Dedicato alla Fine"
+                "title": "Sonografica #6 : Dedicato alla Fine",
+                "image": "https://cdn2.suno.ai/237dcef6-0982-43d8-8d10-c780280ac712_173dee74.jpeg",
+                "stream": "https://cdn1.suno.ai/237dcef6-0982-43d8-8d10-c780280ac712.mp4"
             },
             {
                 "id": "d167ec99-baf5-44f2-89f8-0b307cdbbb7a",
-                "title": "Sonografica #7 : Estetica Animata"
+                "title": "Sonografica #7 : Estetica Animata",
+                "image": "https://cdn2.suno.ai/d167ec99-baf5-44f2-89f8-0b307cdbbb7a_93a47c9e.jpeg",
+                "stream": "https://cdn1.suno.ai/d167ec99-baf5-44f2-89f8-0b307cdbbb7a.mp4"
             }
         ]
     },
@@ -507,15 +619,21 @@ const artists = [
         "sunoTracks": [
             {
                 "id": "1221ba37-1558-4e1a-bb05-da8d660862e3",
-                "title": "Bullet Line"
+                "title": "Bullet Line",
+                "image": "https://cdn2.suno.ai/1221ba37-1558-4e1a-bb05-da8d660862e3_e06c92a6.jpeg",
+                "stream": "https://cdn1.suno.ai/1221ba37-1558-4e1a-bb05-da8d660862e3.mp4"
             },
             {
                 "id": "b6551fa8-6689-4b35-ac4c-af43e5b509c2",
-                "title": "Noir  Battlefield"
+                "title": "Noir  Battlefield",
+                "image": "https://cdn2.suno.ai/b6551fa8-6689-4b35-ac4c-af43e5b509c2_acce5f1e.jpeg",
+                "stream": "https://cdn1.suno.ai/b6551fa8-6689-4b35-ac4c-af43e5b509c2.mp4"
             },
             {
                 "id": "6508607b-f5d6-4dba-b469-59ee6c4e5ada",
-                "title": "Midnight Friction"
+                "title": "Midnight Friction",
+                "image": "https://cdn2.suno.ai/6508607b-f5d6-4dba-b469-59ee6c4e5ada_2bf82367.jpeg",
+                "stream": "https://cdn1.suno.ai/6508607b-f5d6-4dba-b469-59ee6c4e5ada.mp4"
             }
         ]
     }
@@ -1133,15 +1251,19 @@ function renderSpotify(artist) {
     });
 }
 
+let currentActiveSunoAudio = null;
+
 function renderSunoJukebox(artist, container) {
     const tracks = artist.sunoTracks;
     if (!tracks || !tracks.length) return;
 
+    let currentIndex = 0;
     const sunoLink = artist.links?.find(l => l.type === 'suno')?.url || 'https://suno.com/@bito999';
 
     const wrap = document.createElement('div');
     wrap.className = 'media-card suno-jukebox';
 
+    // Header
     const header = document.createElement('div');
     header.className = 'media-card-header';
     header.innerHTML = `
@@ -1157,24 +1279,127 @@ function renderSunoJukebox(artist, container) {
         </div>
     `;
 
-    const playerBox = document.createElement('div');
-    playerBox.className = 'suno-player-box';
+    // Native Custom Player Screen (Height: 295px)
+    const playerScreen = document.createElement('div');
+    playerScreen.className = 'suno-native-player';
 
-    const iframes = [];
-    tracks.forEach((track, idx) => {
-        const frame = document.createElement('iframe');
-        frame.className = 'suno-embed-frame';
-        frame.width = '100%';
-        frame.height = '295';
-        frame.style.border = 'none';
-        frame.loading = 'lazy';
-        frame.title = `${artist.name} - ${track.title} (Suno)`;
-        frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        frame.allowFullscreen = true;
-        frame.dataset.src = `https://suno.com/embed/${track.id}`;
-        frame.style.display = idx === 0 ? 'block' : 'none';
-        playerBox.appendChild(frame);
-        iframes.push(frame);
+    // Video element plays official Suno MP4 streams reliably
+    const media = document.createElement('video');
+    media.className = 'suno-native-media';
+    media.preload = 'metadata';
+    media.playsInline = true;
+    media.src = tracks[0].stream;
+
+    playerScreen.innerHTML = `
+        <div class="suno-screen-bg" style="background-image: url('${tracks[0].image || ''}');"></div>
+        <div class="suno-screen-overlay"></div>
+        <div class="suno-screen-content">
+            <div class="suno-art-col">
+                <img src="${tracks[0].image || 'favicon.png'}" alt="${escapeHtml(tracks[0].title)}" class="suno-art-img" loading="lazy">
+            </div>
+            <div class="suno-meta-col">
+                <div class="suno-track-badge">TRACK 01 // ${tracks.length.toString().padStart(2, '0')}</div>
+                <h4 class="suno-track-title-text">${escapeHtml(tracks[0].title)}</h4>
+                <div class="suno-artist-name-text">${escapeHtml(artist.name)}</div>
+
+                <div class="suno-player-controls">
+                    <button type="button" class="suno-play-pause-btn" aria-label="Play / Pause">
+                        <svg class="suno-icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        <svg class="suno-icon-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    </button>
+                    <div class="suno-timeline-box">
+                        <div class="suno-time-display">
+                            <span class="suno-cur-time">0:00</span>
+                            <span class="suno-dur-time">--:--</span>
+                        </div>
+                        <div class="suno-progress-track">
+                            <div class="suno-progress-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="suno-screen-brand">
+                <a href="https://suno.com/song/${tracks[0].id}" target="_blank" rel="noopener noreferrer" class="suno-brand-badge" title="Open song on Suno">
+                    <span>SUNO</span>
+                    <svg viewBox="0 0 24 24" class="suno-tiny-ext"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+        </div>
+    `;
+    playerScreen.appendChild(media);
+
+    const playBtn = playerScreen.querySelector('.suno-play-pause-btn');
+    const iconPlay = playerScreen.querySelector('.suno-icon-play');
+    const iconPause = playerScreen.querySelector('.suno-icon-pause');
+    const curTimeEl = playerScreen.querySelector('.suno-cur-time');
+    const durTimeEl = playerScreen.querySelector('.suno-dur-time');
+    const progressTrack = playerScreen.querySelector('.suno-progress-track');
+    const progressFill = playerScreen.querySelector('.suno-progress-fill');
+    const artImg = playerScreen.querySelector('.suno-art-img');
+    const bgEl = playerScreen.querySelector('.suno-screen-bg');
+    const titleEl = playerScreen.querySelector('.suno-track-title-text');
+    const badgeEl = playerScreen.querySelector('.suno-track-badge');
+    const brandLink = playerScreen.querySelector('.suno-brand-badge');
+
+    function formatTime(s) {
+        if (!s || isNaN(s)) return '0:00';
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return `${m}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    function setPlayingState(playing) {
+        if (playing) {
+            iconPlay.style.display = 'none';
+            iconPause.style.display = 'block';
+            playerScreen.classList.add('is-playing');
+        } else {
+            iconPlay.style.display = 'block';
+            iconPause.style.display = 'none';
+            playerScreen.classList.remove('is-playing');
+        }
+    }
+
+    playBtn.addEventListener('click', () => {
+        if (media.paused) {
+            if (currentActiveSunoAudio && currentActiveSunoAudio !== media) {
+                currentActiveSunoAudio.pause();
+            }
+            currentActiveSunoAudio = media;
+            media.play().then(() => setPlayingState(true)).catch(e => console.log('Playback:', e));
+        } else {
+            media.pause();
+            setPlayingState(false);
+        }
+    });
+
+    media.addEventListener('timeupdate', () => {
+        if (media.duration) {
+            const pct = (media.currentTime / media.duration) * 100;
+            progressFill.style.width = `${pct}%`;
+            curTimeEl.textContent = formatTime(media.currentTime);
+            durTimeEl.textContent = formatTime(media.duration);
+        }
+    });
+
+    media.addEventListener('loadedmetadata', () => {
+        durTimeEl.textContent = formatTime(media.duration);
+    });
+
+    media.addEventListener('ended', () => {
+        const nextIdx = (currentIndex + 1) % tracks.length;
+        switchTrack(nextIdx, true);
+    });
+
+    media.addEventListener('pause', () => setPlayingState(false));
+    media.addEventListener('play', () => setPlayingState(true));
+
+    progressTrack.addEventListener('click', (e) => {
+        const rect = progressTrack.getBoundingClientRect();
+        const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        if (media.duration) {
+            media.currentTime = pos * media.duration;
+        }
     });
 
     // Accordion Toggle Bar
@@ -1197,6 +1422,44 @@ function renderSunoJukebox(artist, container) {
     const listWrap = document.createElement('div');
     listWrap.className = 'suno-tracklist';
 
+    toggleBar.addEventListener('click', () => {
+        const isExpanded = toggleBar.getAttribute('aria-expanded') === 'true';
+        toggleBar.setAttribute('aria-expanded', String(!isExpanded));
+        toggleBar.classList.toggle('is-open', !isExpanded);
+        listWrap.classList.toggle('is-open', !isExpanded);
+    });
+
+    function switchTrack(idx, autoPlay = false) {
+        currentIndex = idx;
+        const track = tracks[idx];
+        media.src = track.stream;
+        artImg.src = track.image || 'favicon.png';
+        bgEl.style.backgroundImage = `url('${track.image || ''}')`;
+        titleEl.textContent = track.title;
+        badgeEl.textContent = `TRACK ${(idx + 1).toString().padStart(2, '0')} // ${tracks.length.toString().padStart(2, '0')}`;
+        brandLink.href = `https://suno.com/song/${track.id}`;
+
+        const currentTitleEl = toggleBar.querySelector('.suno-current-track-title');
+        if (currentTitleEl) currentTitleEl.textContent = track.title;
+
+        listWrap.querySelectorAll('.suno-track-item').forEach((row, rIdx) => {
+            row.classList.toggle('is-active', rIdx === idx);
+        });
+
+        if (autoPlay) {
+            if (currentActiveSunoAudio && currentActiveSunoAudio !== media) {
+                currentActiveSunoAudio.pause();
+            }
+            currentActiveSunoAudio = media;
+            media.play().then(() => setPlayingState(true)).catch(e => console.log('Playback:', e));
+        } else {
+            media.pause();
+            setPlayingState(false);
+            curTimeEl.textContent = '0:00';
+            progressFill.style.width = '0%';
+        }
+    }
+
     tracks.forEach((track, idx) => {
         const item = document.createElement('div');
         item.className = `suno-track-item ${idx === 0 ? 'is-active' : ''}`;
@@ -1218,21 +1481,12 @@ function renderSunoJukebox(artist, container) {
         `;
 
         selectBtn.addEventListener('click', () => {
-            if (item.classList.contains('is-active')) return;
-            listWrap.querySelectorAll('.suno-track-item').forEach(b => b.classList.remove('is-active'));
-            item.classList.add('is-active');
-
-            const currentTitleEl = toggleBar.querySelector('.suno-current-track-title');
-            if (currentTitleEl) currentTitleEl.textContent = track.title;
-
-            iframes.forEach((f, fIdx) => {
-                if (fIdx === idx) {
-                    if (!f.src) requestSunoActivation(f, true);
-                    f.style.display = 'block';
-                } else {
-                    f.style.display = 'none';
-                }
-            });
+            if (currentIndex === idx && !media.paused) {
+                media.pause();
+                setPlayingState(false);
+            } else {
+                switchTrack(idx, true);
+            }
         });
 
         const extBtn = document.createElement('a');
@@ -1249,18 +1503,8 @@ function renderSunoJukebox(artist, container) {
         listWrap.appendChild(item);
     });
 
-    toggleBar.addEventListener('click', () => {
-        const isExpanded = toggleBar.getAttribute('aria-expanded') === 'true';
-        toggleBar.setAttribute('aria-expanded', String(!isExpanded));
-        toggleBar.classList.toggle('is-open', !isExpanded);
-        listWrap.classList.toggle('is-open', !isExpanded);
-        if (!iframes[0].src) {
-            requestSunoActivation(iframes[0], true);
-        }
-    });
-
     wrap.appendChild(header);
-    wrap.appendChild(playerBox);
+    wrap.appendChild(playerScreen);
     wrap.appendChild(toggleBar);
     wrap.appendChild(listWrap);
 
