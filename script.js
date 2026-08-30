@@ -1649,7 +1649,7 @@ function renderSunoJukebox(artist, container) {
     toggleBar.setAttribute('aria-expanded', 'false');
     toggleBar.setAttribute('title', 'Click to view all tracks');
     toggleBar.innerHTML = `
-        <div class="suno-toggle-left">
+        <div class="suno-toggle-main">
             <span class="suno-toggle-badge-btn">
                 <svg class="suno-list-svg" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
                 <span>TRACKLIST</span>
@@ -1663,9 +1663,6 @@ function renderSunoJukebox(artist, container) {
                     <svg viewBox="0 0 24 24" class="chevron-ch"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </span>
             </div>
-        </div>
-        <div class="suno-toggle-right">
-            <span class="suno-current-track-title">${escapeHtml(tracks[0].title)}</span>
         </div>
     `;
 
@@ -1692,9 +1689,6 @@ function renderSunoJukebox(artist, container) {
         titleEl.textContent = track.title;
         badgeEl.textContent = `TRACK ${(idx + 1).toString().padStart(2, '0')} // ${tracks.length.toString().padStart(2, '0')}`;
         brandLink.href = `https://suno.com/song/${track.id}`;
-
-        const currentTitleEl = toggleBar.querySelector('.suno-current-track-title');
-        if (currentTitleEl) currentTitleEl.textContent = track.title;
 
         listWrap.querySelectorAll('.suno-track-item').forEach((row, rIdx) => {
             row.classList.toggle('is-active', rIdx === idx);
