@@ -1643,7 +1643,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 380px;
     gap: 28px;
-    align-items: stretch;
+    align-items: start;
 }
 
 @media (max-width: 960px) {
@@ -1657,13 +1657,11 @@ body {
 .media-column {
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
 .media-card {
     display: flex;
     flex-direction: column;
-    height: 100%;
     background: var(--surface);
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-sm);
@@ -1797,12 +1795,17 @@ body {
     transform: scale(1.1);
 }
 
+.youtube-card {
+    height: auto;
+    align-self: start;
+}
+
 /* Native Custom Suno Player Screen */
 .suno-native-player {
     position: relative;
     width: 100%;
-    flex: 1;
     min-height: 280px;
+    height: 320px;
     background: #0d0e12;
     overflow: hidden;
     display: flex;

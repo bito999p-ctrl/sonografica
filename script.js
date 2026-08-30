@@ -890,7 +890,33 @@ document.addEventListener('DOMContentLoaded', () => {
     setupReveal();
     setupCanvas();
     setupAudioDeck();
+
+    // Synchronize closed Suno card height with YouTube card
+    setTimeout(syncPlayerHeights, 100);
+    window.addEventListener('resize', syncPlayerHeights, { passive: true });
 });
+
+function syncPlayerHeights() {
+    if (window.innerWidth <= 960) {
+        document.querySelectorAll('.suno-native-player').forEach(p => p.style.height = '');
+        return;
+    }
+    document.querySelectorAll('.media-grid').forEach(grid => {
+        const ytCard = grid.querySelector('.youtube-card');
+        const sunoPlayer = grid.querySelector('.suno-native-player');
+        const sunoToggle = grid.querySelector('.suno-accordion-toggle');
+        const sunoHeader = grid.querySelector('.suno-jukebox .media-card-header');
+        if (ytCard && sunoPlayer && sunoToggle && sunoHeader) {
+            const ytHeight = ytCard.getBoundingClientRect().height;
+            const toggleHeight = sunoToggle.offsetHeight || 44;
+            const headerHeight = sunoHeader.offsetHeight || 38;
+            const targetHeight = ytHeight - toggleHeight - headerHeight;
+            if (targetHeight > 180) {
+                sunoPlayer.style.height = `${Math.round(targetHeight)}px`;
+            }
+        }
+    });
+}
 
 /* ── Virtual Analog Hardware Audio Player Deck Engine ── */
 function setupAudioDeck() {
