@@ -73,7 +73,14 @@ const artists = [
             { type: "suno", url: "https://suno.com/playlist/c95d6dd3-c6ee-41a8-9a9c-8213e6b07dcb", label: "Suno" }
         ],
         spotifyUrls: [],
-        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3GlPvzX5hzWu4YxyPXrnriyM&si=OeHh87ijcXOVcxWi"]
+        youtubeUrls: ["https://youtube.com/playlist?list=PLxpRgysXp3GlPvzX5hzWu4YxyPXrnriyM&si=OeHh87ijcXOVcxWi"],
+        sunoTracks: [
+            { id: "ada853d2-1625-43b6-ab1f-8f4205d8394b", title: "The Shape of the Void" },
+            { id: "55de54bb-2a83-46ef-86b5-c9bfdd89c84a", title: "Living is moving toward the end." },
+            { id: "5b40a82e-a49e-4ba2-9453-d37e69a6b6be", title: "Melody of Immersion" },
+            { id: "f721a3c8-4d6d-4c72-8d7c-de249c2bcaae", title: "Returning to the Blue" },
+            { id: "2ae0837b-fabd-4321-8f6d-89076bc7d3b6", title: "Falling" }
+        ]
     },
     {
         id: "rupture", name: "RUPTURE",
@@ -602,6 +609,10 @@ function renderSpotify(artist) {
     const el = document.getElementById(`spotify-${artist.id}`);
     if (!el) return;
     if (!artist.spotifyUrls?.length) {
+        if (artist.sunoTracks && artist.sunoTracks.length > 0) {
+            renderSunoJukebox(artist, el);
+            return;
+        }
         el.innerHTML = '<div class="empty-frame">No Streaming Releases</div>';
         return;
     }
@@ -617,6 +628,74 @@ function renderSpotify(artist) {
             el.appendChild(iframe);
         } catch (e) { console.error('Spotify URL error:', u); }
     });
+}
+
+function renderSunoJukebox(artist, container) {
+    const tracks = artist.sunoTracks;
+    if (!tracks || !tracks.length) return;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'suno-jukebox';
+
+    const header = document.createElement('div');
+    header.className = 'suno-jukebox-header';
+    header.innerHTML = `
+        <div class="suno-jukebox-title">
+            <img src="suno.jpeg" alt="Suno" class="suno-jukebox-logo">
+            <span>Suno Playlist Player</span>
+        </div>
+        <span class="suno-jukebox-count">${tracks.length} Tracks</span>
+    `;
+
+    const playerBox = document.createElement('div');
+    playerBox.className = 'suno-player-box';
+    const iframe = document.createElement('iframe');
+    iframe.className = 'suno-embed-frame';
+    iframe.src = `https://suno.com/embed/${tracks[0].id}`;
+    iframe.width = '100%';
+    iframe.height = '180';
+    iframe.style.border = 'none';
+    iframe.loading = 'lazy';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    playerBox.appendChild(iframe);
+
+    const listWrap = document.createElement('div');
+    listWrap.className = 'suno-tracklist';
+
+    tracks.forEach((track, idx) => {
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = `suno-track-item ${idx === 0 ? 'is-active' : ''}`;
+        item.setAttribute('aria-label', `Play ${track.title}`);
+
+        const numStr = (idx + 1).toString().padStart(2, '0');
+        item.innerHTML = `
+            <span class="suno-track-left">
+                <span class="suno-track-num">${numStr}</span>
+                <span class="suno-track-title">${escapeHtml(track.title)}</span>
+            </span>
+            <span class="suno-track-action">
+                <svg class="suno-play-svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+        `;
+
+        item.addEventListener('click', () => {
+            if (item.classList.contains('is-active')) return;
+            listWrap.querySelectorAll('.suno-track-item').forEach(b => b.classList.remove('is-active'));
+            item.classList.add('is-active');
+            iframe.src = `https://suno.com/embed/${track.id}`;
+        });
+
+        listWrap.appendChild(item);
+    });
+
+    wrap.appendChild(header);
+    wrap.appendChild(playerBox);
+    wrap.appendChild(listWrap);
+
+    container.innerHTML = '';
+    container.appendChild(wrap);
 }
 
 function renderYouTube(artist) {
