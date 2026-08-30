@@ -1041,6 +1041,8 @@ function renderSunoJukebox(artist, container) {
     const tracks = artist.sunoTracks;
     if (!tracks || !tracks.length) return;
 
+    const sunoLink = artist.links?.find(l => l.type === 'suno')?.url || 'https://suno.com/@bito999';
+
     const wrap = document.createElement('div');
     wrap.className = 'media-card suno-jukebox';
 
@@ -1051,7 +1053,12 @@ function renderSunoJukebox(artist, container) {
             <img src="suno.jpeg" alt="Suno" class="media-card-logo">
             <span>Suno Playlist</span>
         </div>
-        <span class="media-card-badge suno-badge">${tracks.length} Tracks</span>
+        <div class="suno-header-right">
+            <span class="media-card-badge suno-badge">${tracks.length} Tracks</span>
+            <a href="${sunoLink}" target="_blank" rel="noopener noreferrer" class="suno-header-ext-link" title="Open playlist on Suno (new tab)">
+                <svg viewBox="0 0 24 24" class="suno-ext-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+        </div>
     `;
 
     const playerBox = document.createElement('div');
@@ -1062,7 +1069,7 @@ function renderSunoJukebox(artist, container) {
         const frame = document.createElement('iframe');
         frame.className = 'suno-embed-frame';
         frame.width = '100%';
-        frame.height = '250';
+        frame.height = '295';
         frame.style.border = 'none';
         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
         frame.allowFullscreen = true;
@@ -1072,17 +1079,44 @@ function renderSunoJukebox(artist, container) {
         iframes.push(frame);
     });
 
+    // Accordion Toggle Bar
+    const toggleBar = document.createElement('button');
+    toggleBar.type = 'button';
+    toggleBar.className = 'suno-accordion-toggle';
+    toggleBar.setAttribute('aria-expanded', 'false');
+    toggleBar.innerHTML = `
+        <div class="suno-toggle-left">
+            <svg class="suno-list-svg" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span class="suno-toggle-label">Tracklist</span>
+            <span class="suno-toggle-badge">${tracks.length}</span>
+        </div>
+        <div class="suno-toggle-right">
+            <span class="suno-current-track-title">${escapeHtml(tracks[0].title)}</span>
+            <svg class="suno-chevron-svg" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+    `;
+
     const listWrap = document.createElement('div');
     listWrap.className = 'suno-tracklist';
 
+    toggleBar.addEventListener('click', () => {
+        const isExpanded = toggleBar.getAttribute('aria-expanded') === 'true';
+        toggleBar.setAttribute('aria-expanded', String(!isExpanded));
+        toggleBar.classList.toggle('is-open', !isExpanded);
+        listWrap.classList.toggle('is-open', !isExpanded);
+    });
+
     tracks.forEach((track, idx) => {
-        const item = document.createElement('button');
-        item.type = 'button';
+        const item = document.createElement('div');
         item.className = `suno-track-item ${idx === 0 ? 'is-active' : ''}`;
-        item.setAttribute('aria-label', `Play ${track.title}`);
+
+        const selectBtn = document.createElement('button');
+        selectBtn.type = 'button';
+        selectBtn.className = 'suno-track-select-btn';
+        selectBtn.setAttribute('aria-label', `Play ${track.title}`);
 
         const numStr = (idx + 1).toString().padStart(2, '0');
-        item.innerHTML = `
+        selectBtn.innerHTML = `
             <span class="suno-track-left">
                 <span class="suno-track-num">${numStr}</span>
                 <span class="suno-track-title">${escapeHtml(track.title)}</span>
@@ -1092,10 +1126,13 @@ function renderSunoJukebox(artist, container) {
             </span>
         `;
 
-        item.addEventListener('click', () => {
+        selectBtn.addEventListener('click', () => {
             if (item.classList.contains('is-active')) return;
             listWrap.querySelectorAll('.suno-track-item').forEach(b => b.classList.remove('is-active'));
             item.classList.add('is-active');
+
+            const currentTitleEl = toggleBar.querySelector('.suno-current-track-title');
+            if (currentTitleEl) currentTitleEl.textContent = track.title;
 
             iframes.forEach((f, fIdx) => {
                 if (fIdx === idx) {
@@ -1107,11 +1144,23 @@ function renderSunoJukebox(artist, container) {
             });
         });
 
+        const extBtn = document.createElement('a');
+        extBtn.href = `https://suno.com/song/${track.id}`;
+        extBtn.target = '_blank';
+        extBtn.rel = 'noopener noreferrer';
+        extBtn.className = 'suno-track-ext-btn';
+        extBtn.setAttribute('aria-label', `Open ${track.title} on Suno in new tab`);
+        extBtn.title = 'Open song on Suno (new tab)';
+        extBtn.innerHTML = `<svg viewBox="0 0 24 24" class="suno-ext-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+        item.appendChild(selectBtn);
+        item.appendChild(extBtn);
         listWrap.appendChild(item);
     });
 
     wrap.appendChild(header);
     wrap.appendChild(playerBox);
+    wrap.appendChild(toggleBar);
     wrap.appendChild(listWrap);
 
     container.innerHTML = '';
