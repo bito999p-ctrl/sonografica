@@ -585,19 +585,19 @@ const artists = [
             {
                 "id": "4014cb2e-80af-42d8-a312-34309d5b1bcd",
                 "title": "Funky Chunky Monkey",
-                "image": "https://cdn2.suno.ai/image_large_4014cb2e-80af-42d8-a312-34309d5b1bcd.jpeg",
+                "image": "https://cdn2.suno.ai/9caf7509-3223-446e-be27-0c4b14fd9cb8.jpeg",
                 "stream": "https://cdn1.suno.ai/4014cb2e-80af-42d8-a312-34309d5b1bcd.mp4"
             },
             {
                 "id": "abb5c6e8-0330-4eb1-88ac-a6bcd38dbf4e",
                 "title": "Chicken Wing Facerock",
-                "image": "https://cdn2.suno.ai/image_large_abb5c6e8-0330-4eb1-88ac-a6bcd38dbf4e.jpeg",
+                "image": "https://cdn2.suno.ai/4b7cd931-af8f-4293-9c31-17b5be62da3e.jpeg",
                 "stream": "https://cdn1.suno.ai/abb5c6e8-0330-4eb1-88ac-a6bcd38dbf4e.mp4"
             },
             {
                 "id": "4256e835-00da-42fd-9ba7-faa7ecdf64b5",
                 "title": "Who Enemy?",
-                "image": "https://cdn2.suno.ai/image_large_4256e835-00da-42fd-9ba7-faa7ecdf64b5.jpeg",
+                "image": "https://cdn2.suno.ai/f1d1c268-b366-4d61-bd3e-15a48a3f5bed.jpeg",
                 "stream": "https://cdn1.suno.ai/4256e835-00da-42fd-9ba7-faa7ecdf64b5.mp4"
             },
             {
@@ -609,13 +609,13 @@ const artists = [
             {
                 "id": "75fe2076-7393-4a9c-829f-a06179b11ed6",
                 "title": "Beat Slam",
-                "image": "https://cdn2.suno.ai/image_large_75fe2076-7393-4a9c-829f-a06179b11ed6.jpeg",
+                "image": "https://cdn2.suno.ai/a9e0ee5e-87c0-4daf-9572-825c85a7532e.jpeg",
                 "stream": "https://cdn1.suno.ai/75fe2076-7393-4a9c-829f-a06179b11ed6.mp4"
             },
             {
                 "id": "aafb8bc1-78ec-419f-a249-e508b17e1450",
                 "title": "Stray Glitch Monkeys",
-                "image": "https://cdn2.suno.ai/image_large_aafb8bc1-78ec-419f-a249-e508b17e1450.jpeg",
+                "image": "https://cdn2.suno.ai/d2123cf2-5b7e-463f-b973-e97a3b842b2e.jpeg",
                 "stream": "https://cdn1.suno.ai/aafb8bc1-78ec-419f-a249-e508b17e1450.mp4"
             }
         ]
