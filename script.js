@@ -530,12 +530,6 @@ const artists = [
                 "title": "夜いずびゅーてぃふる",
                 "image": "https://cdn2.suno.ai/video_upload_cfaed139-eb62-491c-8baf-67d0258aa43a_video_upload_cfaed139-eb62-491c-8baf-67d0258aa43a_cover_snapshot_0s_1764418666_image.jpeg",
                 "stream": "https://cdn1.suno.ai/790eeec3-3c31-45eb-b5d3-1233e442ba96.mp4"
-            },
-            {
-                "id": "8f5205fc-2fc6-4a61-b4c9-f1ffd1132968",
-                "title": "白昼夢ミューート (Remastered)",
-                "image": "https://cdn2.suno.ai/image_large_8f5205fc-2fc6-4a61-b4c9-f1ffd1132968.jpeg",
-                "stream": "https://cdn1.suno.ai/8f5205fc-2fc6-4a61-b4c9-f1ffd1132968.mp4"
             }
         ]
     },
