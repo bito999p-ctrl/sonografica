@@ -1003,14 +1003,80 @@ function syncPlayerHeights() {
     });
 }
 
+/* ── Dynamic Recommended Selection Generator (Zero Local MP3s, Auto-Updating from Suno Tracks) ── */
+function generateRecommendedPlaylist(count = 20) {
+    const artistBuckets = [];
+    const allTracksPool = [];
+
+    artists.forEach(a => {
+        if (Array.isArray(a.sunoTracks) && a.sunoTracks.length > 0) {
+            const valid = a.sunoTracks
+                .filter(t => t.stream)
+                .map(t => ({
+                    id: t.id,
+                    title: t.title,
+                    artist: a.name,
+                    src: t.stream,
+                    cover: t.image || 'sonografica_art.jpg'
+                }));
+            if (valid.length > 0) {
+                artistBuckets.push([...valid]);
+                allTracksPool.push(...valid);
+            }
+        }
+    });
+
+    if (!allTracksPool.length) {
+        return (typeof SONOGRAFICA_PLAYLIST !== 'undefined' && Array.isArray(SONOGRAFICA_PLAYLIST))
+            ? SONOGRAFICA_PLAYLIST
+            : [];
+    }
+
+    const selectedTracks = [];
+    const selectedIds = new Set();
+
+    // 1. Pick 1 random track from each artist first (guarantees cross-label diversity)
+    artistBuckets.forEach(bucket => {
+        if (bucket.length > 0) {
+            const randIdx = Math.floor(Math.random() * bucket.length);
+            const picked = bucket[randIdx];
+            if (!selectedIds.has(picked.id)) {
+                selectedTracks.push(picked);
+                selectedIds.add(picked.id);
+            }
+        }
+    });
+
+    // 2. Fill the rest up to `count` (default 20) from the remaining pool
+    const remainingPool = allTracksPool.filter(t => !selectedIds.has(t.id));
+    for (let i = remainingPool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [remainingPool[i], remainingPool[j]] = [remainingPool[j], remainingPool[i]];
+    }
+
+    while (selectedTracks.length < count && remainingPool.length > 0) {
+        selectedTracks.push(remainingPool.pop());
+    }
+
+    // 3. Shuffle the final 20-track recommendation mix
+    for (let i = selectedTracks.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [selectedTracks[i], selectedTracks[j]] = [selectedTracks[j], selectedTracks[i]];
+    }
+
+    // 4. Format with track sequence numbers
+    return selectedTracks.map((t, idx) => ({
+        ...t,
+        num: String(idx + 1).padStart(2, '0')
+    }));
+}
+
 /* ── Virtual Analog Hardware Audio Player Deck Engine ── */
 function setupAudioDeck() {
     const deck = document.getElementById('sonografica-deck');
     if (!deck) return;
 
-    const playlist = (typeof SONOGRAFICA_PLAYLIST !== 'undefined' && Array.isArray(SONOGRAFICA_PLAYLIST)) 
-        ? SONOGRAFICA_PLAYLIST 
-        : [];
+    const playlist = generateRecommendedPlaylist(20);
     if (!playlist.length) return;
 
     const audio = new Audio();
@@ -1039,6 +1105,16 @@ function setupAudioDeck() {
     const drawerClose = document.getElementById('deck-tracklist-close');
     const drawer = document.getElementById('deck-tracklist-drawer');
     const tracklistItems = document.getElementById('deck-tracklist-items');
+
+    // Update dynamic track count badges in drawer & buttons
+    if (drawerToggle) {
+        const btnText = drawerToggle.querySelector('.drawer-btn-text');
+        if (btnText) btnText.textContent = `TRACKLIST (${playlist.length})`;
+    }
+    if (drawer) {
+        const titleEl = drawer.querySelector('.tracklist-title');
+        if (titleEl) titleEl.innerHTML = `&#10022; SONOGRAFICA RECOMMENDED ARCHIVE (${playlist.length} TRACKS)`;
+    }
 
     let currentIndex = 0;
     let isPlaying = false;
@@ -1147,6 +1223,10 @@ function setupAudioDeck() {
     }
 
     function playAudio() {
+        if (typeof currentActiveSunoAudio !== 'undefined' && currentActiveSunoAudio && currentActiveSunoAudio !== audio) {
+            currentActiveSunoAudio.pause();
+        }
+        currentActiveSunoAudio = audio;
         audio.play().then(() => {
             setDeckState('playing');
         }).catch(err => {
@@ -1239,6 +1319,12 @@ function setupAudioDeck() {
 
     audio.addEventListener('ended', () => {
         nextTrack();
+    });
+
+    audio.addEventListener('pause', () => {
+        if (isPlaying && audio.paused) {
+            setDeckState('paused');
+        }
     });
 
     // Seeking
