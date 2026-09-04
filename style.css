@@ -3093,16 +3093,26 @@ body.theme-metropolitans #metropolitans .media-card {
         align-items: center;
         gap: 28px;
         opacity: 0;
+        visibility: hidden;
         pointer-events: none;
         transform: translateY(-8px);
-        transition: opacity 0.35s var(--ease), transform 0.35s var(--ease), background 0.3s var(--ease);
+        transition: opacity 0.35s var(--ease), transform 0.35s var(--ease), background 0.3s var(--ease), visibility 0.35s;
         z-index: 1500;
+    }
+
+    .nav-container:not(.active) * {
+        pointer-events: none !important;
     }
 
     .nav-container.active {
         opacity: 1;
+        visibility: visible;
         pointer-events: all;
         transform: translateY(0);
+    }
+
+    .nav-container.active * {
+        pointer-events: auto;
     }
 
     .nav-container .nav-link {
@@ -3138,7 +3148,7 @@ body.theme-metropolitans #metropolitans .media-card {
         overflow-y: auto;
         opacity: 1;
         visibility: visible;
-        pointer-events: auto;
+        pointer-events: none;
         margin-top: 10px;
         background: rgba(0, 0, 0, 0.04);
         box-shadow: none;
@@ -3146,6 +3156,10 @@ body.theme-metropolitans #metropolitans .media-card {
         border-radius: 14px;
         padding: 8px 6px;
         scrollbar-width: thin;
+    }
+
+    .nav-container.active .nav-dropdown-menu {
+        pointer-events: auto;
     }
 
     .dropdown-item {
