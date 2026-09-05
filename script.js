@@ -324,6 +324,12 @@ const artists = [
                 "title": "Ghosts In The Water - Bito Cover",
                 "image": "https://cdn2.suno.ai/06ef1180-497a-4aa8-9e12-fa2030d16302_272277ab.jpeg",
                 "stream": "https://cdn1.suno.ai/06ef1180-497a-4aa8-9e12-fa2030d16302.mp4"
+            },
+            {
+                "id": "035a7f4f-2c20-41c5-90f1-d7fd3178e08d",
+                "title": "OUTDATED",
+                "image": "https://cdn2.suno.ai/6a85f372-5711-4740-9532-5b75d867381f.jpeg",
+                "stream": "https://cdn1.suno.ai/035a7f4f-2c20-41c5-90f1-d7fd3178e08d.mp4"
             }
         ]
     },
@@ -503,7 +509,7 @@ const artists = [
             },
             {
                 "id": "e1507fa2-07ef-4cd6-ab33-72cb1ff500c2",
-                "title": "愚者具舎ハッピーエンド",
+                "title": "愚者愚者ハッピーエンド",
                 "image": "https://cdn2.suno.ai/e1507fa2-07ef-4cd6-ab33-72cb1ff500c2_95c92ffe.jpeg",
                 "stream": "https://cdn1.suno.ai/e1507fa2-07ef-4cd6-ab33-72cb1ff500c2.mp4"
             },
