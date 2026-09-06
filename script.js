@@ -44,6 +44,18 @@ const artists = [
         ],
         "sunoTracks": [
             {
+                "id": "84bd802f-99f4-46f0-87e4-adaafe3c61ec",
+                "title": "make it stay -素晴らしき人生篇- / ガジガ・ジ・エンドfeat.ペロドリ",
+                "image": "https://cdn2.suno.ai/84bd802f-99f4-46f0-87e4-adaafe3c61ec_c894bd43.jpeg",
+                "stream": "https://cdn1.suno.ai/84bd802f-99f4-46f0-87e4-adaafe3c61ec.mp4"
+            },
+            {
+                "id": "035a7f4f-2c20-41c5-90f1-d7fd3178e08d",
+                "title": "OUTDATED",
+                "image": "https://cdn2.suno.ai/6a85f372-5711-4740-9532-5b75d867381f.jpeg",
+                "stream": "https://cdn1.suno.ai/035a7f4f-2c20-41c5-90f1-d7fd3178e08d.mp4"
+            },
+            {
                 "id": "1d3ed630-70c4-4d5b-a464-8af812023fe3",
                 "title": "Sugar Baby #DESUCO",
                 "image": "https://cdn2.suno.ai/video_upload_a66e4acb-cb68-4f23-86d0-1952b73b036b_video_upload_a66e4acb-cb68-4f23-86d0-1952b73b036b_cover_snapshot_0s_1787822366_image.jpeg",
@@ -324,12 +336,6 @@ const artists = [
                 "title": "Ghosts In The Water - Bito Cover",
                 "image": "https://cdn2.suno.ai/06ef1180-497a-4aa8-9e12-fa2030d16302_272277ab.jpeg",
                 "stream": "https://cdn1.suno.ai/06ef1180-497a-4aa8-9e12-fa2030d16302.mp4"
-            },
-            {
-                "id": "035a7f4f-2c20-41c5-90f1-d7fd3178e08d",
-                "title": "OUTDATED",
-                "image": "https://cdn2.suno.ai/6a85f372-5711-4740-9532-5b75d867381f.jpeg",
-                "stream": "https://cdn1.suno.ai/035a7f4f-2c20-41c5-90f1-d7fd3178e08d.mp4"
             }
         ]
     },
@@ -421,6 +427,12 @@ const artists = [
             "https://youtube.com/playlist?list=PLxpRgysXp3Gm6OgQmHL3bSaAfFxF-DK7d&si=H9atE_w5lqlmEo6c"
         ],
         "sunoTracks": [
+            {
+                "id": "29afbf13-204a-41bd-bb77-d820d10d1298",
+                "title": "Such a Life / ( feat. make it stay ) - 歪み歪み",
+                "image": "https://cdn2.suno.ai/c980779c-c978-4ddb-8f04-cc2fcceffadf.jpeg",
+                "stream": "https://cdn1.suno.ai/29afbf13-204a-41bd-bb77-d820d10d1298.mp4"
+            },
             {
                 "id": "c02b278a-528a-4ee8-8986-973e70e47043",
                 "title": "アンソロポス",
