@@ -2959,59 +2959,49 @@ body.theme-metropolitans #metropolitans .media-card {
     color: var(--ink);
 }
 
-/* ── Mutual Links (相互リンク) ── */
-.mutual-links-container {
-    max-width: 680px;
-    margin: 0 auto 36px;
+/* ── Mutual Links & Partners Grid (2-Column Grid) ── */
+.mutual-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    max-width: 1040px;
+    margin: 0 auto;
 }
 
 .mutual-link-card {
     display: flex;
     align-items: center;
-    gap: 26px;
+    gap: 20px;
     background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--radius);
-    padding: 24px 28px;
+    padding: 22px;
     text-decoration: none;
     color: var(--ink);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s;
     position: relative;
     overflow: hidden;
 }
 
-.mutual-link-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(to bottom, #d495a6, #c94263);
-    opacity: 0;
-    transition: opacity 0.3s var(--ease);
-}
-
 .mutual-link-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.09);
-    border-color: rgba(201, 66, 99, 0.25);
-}
-
-.mutual-link-card:hover::before {
-    opacity: 1;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.18);
 }
 
 .mutual-card-media {
     flex-shrink: 0;
-    width: 136px;
-    height: 136px;
+    width: 110px;
+    height: 110px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(0, 0, 0, 0.06);
-    background: #ffffff;
+    background: #fafaf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .mutual-banner-img {
@@ -3023,7 +3013,7 @@ body.theme-metropolitans #metropolitans .media-card {
 }
 
 .mutual-link-card:hover .mutual-banner-img {
-    transform: scale(1.04);
+    transform: scale(1.05);
 }
 
 .mutual-card-content {
@@ -3031,7 +3021,7 @@ body.theme-metropolitans #metropolitans .media-card {
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
 }
 
 .mutual-card-badge {
@@ -3039,42 +3029,60 @@ body.theme-metropolitans #metropolitans .media-card {
     align-items: center;
     gap: 6px;
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     letter-spacing: 0.08em;
-    color: var(--accent-rose);
     font-weight: 600;
+    color: var(--ink-secondary);
 }
 
-.mutual-card-badge .badge-dot {
+.badge-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
+}
+.badge-dot.dot-rose {
     background: var(--accent-rose);
     box-shadow: 0 0 8px rgba(201, 66, 99, 0.6);
+}
+.badge-dot.dot-cyan {
+    background: var(--accent-cyan);
+    box-shadow: 0 0 8px rgba(30, 140, 126, 0.6);
+}
+.badge-dot.dot-gold {
+    background: var(--accent-gold);
+    box-shadow: 0 0 8px rgba(179, 130, 34, 0.6);
+}
+.badge-dot.dot-violet {
+    background: #8b5cf6;
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.6);
 }
 
 .mutual-card-title {
     font-family: var(--font-display);
-    font-size: 1.35rem;
+    font-size: 1.22rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     color: var(--ink);
     margin: 0;
-    line-height: 1.2;
+    line-height: 1.25;
 }
 
 .mutual-card-subtitle {
-    font-size: 0.86rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--ink-secondary);
     margin: 0;
 }
 
 .mutual-card-desc {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--ink-faint);
-    line-height: 1.6;
+    line-height: 1.55;
     margin: 2px 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .mutual-card-footer {
@@ -3082,28 +3090,39 @@ body.theme-metropolitans #metropolitans .media-card {
     align-items: center;
     justify-content: space-between;
     margin-top: 6px;
-    padding-top: 8px;
+    padding-top: 6px;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .mutual-card-url {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--ink-faint);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
 }
 
 .mutual-card-arrow {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--ink-faint);
     transition: transform 0.3s var(--ease), color 0.3s;
 }
 
 .mutual-link-card:hover .mutual-card-arrow {
     transform: translateX(4px);
-    color: var(--accent-rose);
+    color: var(--ink);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
+    .mutual-grid {
+        grid-template-columns: 1fr;
+        max-width: 580px;
+    }
+}
+
+@media (max-width: 540px) {
     .mutual-link-card {
         flex-direction: column;
         align-items: center;
@@ -3112,8 +3131,8 @@ body.theme-metropolitans #metropolitans .media-card {
         padding: 20px 18px;
     }
     .mutual-card-media {
-        width: 140px;
-        height: 140px;
+        width: 120px;
+        height: 120px;
     }
     .mutual-card-content {
         align-items: center;
