@@ -1,679 +1,813 @@
-<!DOCTYPE html>
-<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sonografica | Private Audio Label</title>
+<meta name="description" content="Sonografica（ソノグラフィカ）— 音を描き、配置し、試行錯誤する。音と感情の断片をキャンバスに配置し続けるプライベート・オーディオ・レーベル。">
+<meta property="og:title" content="Sonografica | Private Audio Label">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bito999p-ctrl.github.io/sonografica/">
+<meta property="og:image" content="https://bito999p-ctrl.github.io/sonografica/img/logo.webp">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="favicon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C8CLCFDVX2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-C8CLCFDVX2');
+</script>
+<script src="playlist_manifest.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Single, deliberate look: pigment on cold-press paper. Colors are painted explicitly. */
+  :root {
+    color-scheme: light;
+    --paper: #f6f6f2;
+    --paper-deep: #ecebe5;
+    --ink: #19171c;
+    --ink-2: #4a4650;
+    --ink-3: #8a8590;
+    --rule: #d9d7d1;
+    --display: "Instrument Serif", "Shippori Mincho", "Times New Roman", serif;
+    --jp-display: "Shippori Mincho", "Instrument Serif", serif;
+    --body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+    --ease: cubic-bezier(.22, 1, .36, 1);
+    --g: clamp(16px, 4vw, 56px);
+    --pig: #1f5fa8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.75;
+    padding-inline: var(--g);
+    padding-block: 0 120px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: .5;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .43 0 0 0 0 .40 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonografica | Private Audio Label</title>
-    <meta name="description" content="Sonografica（ソノグラフィカ）— 音を描き、配置し、試行錯誤する。音と感情の断片をキャンバスに配置し続けるプライベート・オーディオ・レーベル。">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="favicon.png">
+  /* ---------- Header ---------- */
+  .top {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: calc(16px + env(safe-area-inset-top, 0px)) var(--g) 16px;
+    background: color-mix(in srgb, var(--paper) 70%, transparent);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  }
+  .brand { font-family: var(--display); font-size: 26px; letter-spacing: .01em; text-decoration: none; line-height: 1; }
+  .nav { display: flex; gap: clamp(14px, 2.4vw, 32px); font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; }
+  .nav a { text-decoration: none; color: var(--ink-2); }
+  .nav a:hover { color: var(--ink); }
+  @media (max-width: 620px) { .nav a:not(.nav-artists) { display: none; } }
+  .scrollbar { position: fixed; left: 0; top: 0; height: 2px; width: 100%; z-index: 41; transform-origin: 0 50%; transform: scaleX(0); background: var(--pig); transition: background .8s; }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+JP:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  /* ---------- Pinned scenes ---------- */
+  .scene { position: relative; margin-inline: calc(-1 * var(--g)); }
+  .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+  .eyebrow { font-family: var(--mono); font-size: 11.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-2); }
 
-    <link rel="stylesheet" href="style.css">
+  /* Hero */
+  .scene-hero { height: 100vh; height: 100svh; }
+  .scene-hero .stage { position: relative; }
+  #bloom { position: absolute; inset: 0; transform-origin: 70% 40%; will-change: transform; }
+  #bloom canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .scene-hero .stage { cursor: crosshair; }
+  .hero-copy {
+    position: absolute; left: var(--g); right: var(--g); bottom: clamp(110px, 16vh, 170px);
+    will-change: transform, opacity;
+  }
+  .hero-copy h1 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(64px, 14.5vw, 232px);
+    line-height: .86; letter-spacing: -.035em;
+    margin: 14px 0 0; transform-origin: 0 100%;
+  }
+  .hero-copy h1 em { font-style: italic; letter-spacing: -.02em; }
+  .ch { display: inline-block; animation: ink-in 1.4s var(--ease) both; animation-delay: calc(var(--i) * 70ms + 150ms); }
+  @keyframes ink-in { from { opacity: .08; filter: blur(14px); transform: translateY(.12em) scale(1.04); } to { opacity: 1; filter: blur(0); transform: none; } }
+  .hero-foot { display: flex; justify-content: space-between; align-items: end; gap: 20px 48px; flex-wrap: wrap; margin-top: clamp(20px, 3vw, 36px); }
+  .hero-lede { font-family: var(--jp-display); font-size: clamp(16px, 1.8vw, 21px); line-height: 1.7; margin: 0; }
+  .hero-lede span { display: block; font-family: var(--display); font-style: italic; font-size: 1.15em; color: var(--ink-2); }
+  .scroll-cue { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-2); display: flex; align-items: center; gap: 12px; }
+  .scroll-cue i { width: 1px; height: 44px; background: linear-gradient(var(--ink) 50%, transparent 50%); background-size: 1px 200%; animation: cue 1.8s var(--ease) infinite; }
+  @keyframes cue { from { background-position: 0 100%; } to { background-position: 0 -100%; } }
+  .hint { position: absolute; right: var(--g); top: 92px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); display: flex; align-items: center; gap: 8px; pointer-events: none; }
+  .hint i { width: 8px; height: 8px; border-radius: 50%; background: var(--hint, #1f5fa8); transition: background .4s; animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 50% { transform: scale(1.6); opacity: .5; } }
+  /* marquee */
+  .marquee { overflow: hidden; margin-inline: calc(-1 * var(--g)); padding-block: clamp(18px, 3vw, 34px); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); position: relative; z-index: 1; background: var(--paper); }
+  .marquee-row { display: flex; width: max-content; }
+  .marquee-row span { display: inline-flex; align-items: center; gap: .45em; padding-right: .7em; font-family: var(--display); font-style: italic; font-size: clamp(40px, 7vw, 104px); line-height: 1; letter-spacing: -.02em; white-space: nowrap; }
+  .marquee-row span.jp { font-family: var(--jp-display); font-style: normal; font-weight: 600; font-size: clamp(34px, 6vw, 88px); }
+  .marquee-row span::after { content: ""; width: .32em; height: .32em; border-radius: 50%; background: var(--pig); filter: url(#bleed-sm); }
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C8CLCFDVX2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-C8CLCFDVX2');
-    </script>
-</head>
+  /* paint box */
+  .paintbox { max-width: 1320px; margin-inline: auto; padding-block: 28px; display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 10px; }
+  .pan { display: grid; gap: 8px; text-decoration: none; min-width: 0; cursor: pointer; }
+  .pan-cake { position: relative; aspect-ratio: 4 / 3; border-radius: 6px; background: #fff; box-shadow: inset 0 0 0 1px var(--rule), inset 0 2px 6px rgba(0,0,0,.06); overflow: hidden; }
+  .pan-cake::after { content: ""; position: absolute; inset: 14%; background: radial-gradient(circle at 45% 50%, var(--pig) 0 38%, color-mix(in srgb, var(--pig) 55%, transparent) 60%, transparent 72%); filter: url(#bleed-sm); mix-blend-mode: multiply; transition: transform .6s var(--ease); }
+  .pan:hover .pan-cake::after { transform: scale(1.25); }
+  .pan-name { font-size: 12px; line-height: 1.3; font-weight: 500; overflow-wrap: anywhere; }
+  .pan-code { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); letter-spacing: .06em; }
+  @media (max-width: 900px) { .paintbox { grid-template-columns: repeat(6, minmax(0, 1fr)); row-gap: 18px; } }
 
-<body>
-    <canvas id="sono-canvas"></canvas>
-    <div class="canvas-texture-overlay"></div>
-    <div id="ambient-backdrop" class="ambient-backdrop" aria-hidden="true">
-        <div class="ambient-bg-color"></div>
-        <div class="ambient-artist-bg bg-bito"></div>
-        <div class="ambient-artist-bg bg-valotoa"></div>
-        <div class="ambient-artist-bg bg-hizumi"></div>
-        <div class="ambient-artist-bg bg-pophoper"></div>
-        <div class="ambient-artist-bg bg-stray"></div>
-        <div class="ambient-artist-bg bg-dayendnight"></div>
-        <div class="ambient-artist-bg bg-asymptote"></div>
-        <div class="ambient-artist-bg bg-rupture"></div>
-        <div class="ambient-artist-bg bg-sonografica"></div>
-        <div class="ambient-artist-bg bg-metropolitans"></div>
-        <div class="ambient-vignette"></div>
+  /* Artists: normal scroll; the whole backdrop turns into the artist you're looking at */
+  .scene-artists {
+    position: relative; margin-inline: calc(var(--g) * -1);
+    --ink: #f4f2ec; --ink-2: rgba(244,242,236,.78); --ink-3: rgba(244,242,236,.52); --rule: rgba(244,242,236,.2); --paper: #141216;
+    color: var(--ink); background: #141216; overflow: clip;
+  }
+  .ambient { position: sticky; top: 0; height: 100vh; height: 100svh; margin-bottom: -100vh; margin-bottom: -100svh; overflow: hidden; pointer-events: none; }
+  .ambient .amb-img { position: absolute; inset: -4%; background: center 30% / cover no-repeat; opacity: 0; transform: scale(1.1); filter: saturate(1.1) brightness(.62) contrast(1.1); transition: opacity 1s var(--ease), transform 1.8s var(--ease); }
+  .ambient .amb-img.on { opacity: .62; transform: scale(1); }
+  .amb-wash { position: absolute; inset: -20%; background: radial-gradient(38% 42% at 78% 30%, var(--pig), transparent 70%), radial-gradient(30% 36% at 18% 80%, var(--pig), transparent 72%); filter: url(#bleed); mix-blend-mode: color; opacity: .75; transition: background 1s var(--ease); }
+  .amb-vig { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14,12,16,.82) 0%, rgba(14,12,16,.35) 55%, rgba(14,12,16,.55) 100%), linear-gradient(0deg, rgba(14,12,16,.7), transparent 40%); }
+  .amb-meta { position: absolute; left: var(--g); right: var(--g); bottom: 108px; display: flex; align-items: center; gap: 16px; }
+  .counter { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .counter b { color: var(--ink); font-weight: 500; }
+  .rail { flex: 1; height: 2px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+  .rail i { display: block; height: 100%; width: 100%; background: var(--pig); transform-origin: 0 50%; transform: scaleX(0); transition: background .8s; }
+  .artists-head { position: relative; padding: 120px var(--g) 0; max-width: 1432px; margin-inline: auto; }
+  .artists-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(40px, 6vw, 88px); margin: 0; line-height: 1; }
+  .artists-head p { margin: 10px 0 0; color: var(--ink-3); font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; }
+  .track { position: relative; max-width: 1432px; margin-inline: auto; padding: 0 var(--g) 160px; }
+  .panel {
+    min-height: 92vh; min-height: 92svh; padding-block: 8vh;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(24px, 5vw, 88px); align-items: center;
+  }
+  .panel:nth-child(even) .p-art { order: -1; }
+  .p-art { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 4 / 5; max-height: 76vh; justify-self: center; width: min(100%, 60vh); box-shadow: 0 30px 80px rgba(0,0,0,.45); opacity: 0; transform: translateY(60px) scale(.96); transition: opacity 1s var(--ease), transform 1.2s var(--ease); }
+  .panel.in .p-art { opacity: 1; transform: none; }
+  .p-art img { position: absolute; inset: -8% 0; width: 100%; height: 116%; object-fit: cover; object-position: 50% 30%; will-change: transform; }
+  .wash {
+    position: absolute; inset: -18%;
+    background: radial-gradient(40% 36% at var(--wx, 22%) var(--wy, 78%), var(--pig) 0, color-mix(in srgb, var(--pig) 60%, transparent) 45%, transparent 75%);
+    filter: url(#bleed); mix-blend-mode: soft-light; pointer-events: none; opacity: .8;
+  }
+  .p-text { display: grid; gap: 16px; align-content: center; min-width: 0; }
+  .p-text > * { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform 1s var(--ease); }
+  .panel.in .p-text > * { opacity: 1; transform: none; }
+  .panel.in .p-text > :nth-child(2) { transition-delay: .08s; } .panel.in .p-text > :nth-child(3) { transition-delay: .16s; }
+  .panel.in .p-text > :nth-child(4) { transition-delay: .24s; } .panel.in .p-text > :nth-child(5) { transition-delay: .32s; }
+  .p-num { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; color: var(--ink-3); }
+  .p-name { font-family: var(--display); font-weight: 400; margin: 0; font-size: clamp(52px, 8vw, 136px); line-height: .9; letter-spacing: -.03em; overflow-wrap: anywhere; text-wrap: balance; text-shadow: 0 4px 40px rgba(0,0,0,.35); }
+  .p-name.jp { font-family: var(--jp-display); font-weight: 600; letter-spacing: 0; }
+  .swatch { display: flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); letter-spacing: .04em; }
+  .swatch b { font-weight: 500; color: var(--ink); }
+  .stroke { width: 64px; height: 13px; background: var(--pig); border-radius: 40%; filter: url(#bleed-sm); flex: none; }
+  .p-track { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .p-track span { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-right: 8px; }
+  .p-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 6px; }
+  .play { display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; font: 500 11.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; padding: 12px 18px 12px 12px; border-radius: 999px; background: var(--ink); color: var(--paper); transition: transform .4s var(--ease); }
+  .play:hover { transform: translateY(-2px); }
+  .play i { width: 22px; height: 22px; border-radius: 50%; background: var(--pig); display: grid; place-items: center; }
+  .play i::before { content: ""; border-left: 7px solid #fff; border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent; margin-left: 2px; }
+  .p-links { display: flex; gap: 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+  .p-links a { text-decoration: none; color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+  .p-links a.sp { color: #1ed760; border-color: rgba(30,215,96,.4); }
+  .p-links a:hover { color: var(--ink); border-color: var(--ink); }
+  @media (max-width: 760px) {
+    .panel { grid-template-columns: 1fr; min-height: auto; padding-block: 10vh; gap: 22px; }
+    .panel:nth-child(even) .p-art { order: 0; }
+    .p-art { width: 78%; justify-self: start; }
+    .p-name { font-size: clamp(44px, 13vw, 72px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .p-art, .p-text > * { opacity: 1; transform: none; transition: none; } }
+
+  /* Scene 3: statement, characters light up with scroll */
+  .scene-words { height: 150vh; }
+  .scene-words .stage { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 80px); align-items: center; padding: 90px var(--g) 110px; max-width: 1432px; margin-inline: auto; }
+  .logo-wrap { position: relative; display: grid; place-items: center; }
+  .logo-wrap img { width: 100%; max-width: 520px; mix-blend-mode: multiply; }
+  .word { font-family: var(--display); font-size: clamp(36px, 4.6vw, 68px); line-height: 1; letter-spacing: -.02em; margin: 0 0 28px; }
+  .word small { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; color: var(--ink-3); margin-top: 12px; }
+  .reveal { font-family: var(--jp-display); font-weight: 500; font-size: clamp(20px, 2.4vw, 34px); line-height: 1.8; margin: 0; max-width: 22em; }
+  .reveal span { opacity: .16; transition: opacity .35s linear, color .35s; }
+  .reveal span.on { opacity: 1; }
+  @media (max-width: 800px) {
+    .scene-words .stage { grid-template-columns: 1fr; grid-template-rows: auto 1fr; align-content: center; }
+    .logo-wrap img { max-width: 180px; }
+    .word { margin-bottom: 16px; }
+  }
+
+  /* covers, tools, footer */
+  .sec { max-width: 1320px; margin-inline: auto; padding-block: clamp(64px, 9vw, 120px) 0; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: clamp(24px, 4vw, 40px); }
+  .sec-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(44px, 7vw, 96px); line-height: .95; letter-spacing: -.03em; margin: 0; }
+  .sec-head p { margin: 0; color: var(--ink-2); }
+  .covers-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(8px, 1.4vw, 18px); }
+  @media (max-width: 760px) { .covers-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .covers figure { margin: 0; perspective: 800px; }
+  .covers img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 3px; transition: transform .6s var(--ease), box-shadow .6s var(--ease); }
+  .covers figure:hover img { transform: rotateY(var(--ry, 0deg)) rotateX(var(--rx, 0deg)) scale(1.06); box-shadow: 0 30px 50px -20px rgba(25,23,28,.45); }
+  .tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .tool { border-top: 1px solid var(--ink); padding-block: 22px 8px; display: grid; gap: 8px; }
+  .tool h3 { font-family: var(--display); font-weight: 400; font-size: clamp(32px, 3.4vw, 48px); line-height: 1; margin: 0; }
+  .tool p { margin: 0; color: var(--ink-2); }
+  .tool a { font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; }
+  @media (max-width: 640px) { .tools { grid-template-columns: 1fr; } }
+  .links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 2vw, 24px); }
+  @media (max-width: 960px) { .links { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) { .links { grid-template-columns: 1fr; } }
+  .link { display: grid; grid-template-rows: auto 1fr; text-decoration: none; color: inherit; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: color-mix(in srgb, #fff 55%, transparent); transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s; }
+  .link:hover { transform: translateY(-4px); border-color: var(--lc); box-shadow: 0 24px 40px -24px color-mix(in srgb, var(--lc) 60%, transparent); }
+  .link-media { aspect-ratio: 16 / 7; background: #111; overflow: hidden; }
+  .link-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+  .link:hover .link-media img { transform: scale(1.05); }
+  .link-body { padding: 18px 20px 20px; display: grid; gap: 6px; align-content: start; }
+  .link-badge { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; color: var(--ink-3); }
+  .link-badge i { width: 10px; height: 10px; border-radius: 50%; background: var(--lc); filter: url(#bleed-sm); }
+  .link h3 { font-family: var(--display); font-weight: 400; font-size: 32px; line-height: 1.05; margin: 4px 0 0; }
+  .link-sub { margin: 0; font-size: 13px; color: var(--ink-2); }
+  .link-desc { margin: 4px 0 0; font-size: 13px; line-height: 1.7; color: var(--ink-3); }
+  .link-url { margin-top: 8px; font-family: var(--mono); font-size: 11px; color: var(--ink-2); }
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+  footer { max-width: 1320px; margin-inline: auto; margin-top: 96px; padding-top: 22px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--ink-3); }
+
+  /* now playing */
+  .player {
+    position: fixed; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 45;
+    transform: translateX(-50%);
+    width: min(760px, calc(100% - 24px));
+    display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: center;
+    padding: 10px 12px 10px 10px; border-radius: 16px;
+    background: color-mix(in srgb, #fff 72%, transparent);
+    backdrop-filter: blur(18px) saturate(1.3); -webkit-backdrop-filter: blur(18px) saturate(1.3);
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 12px 40px -12px rgba(25,23,28,.28), 0 0 0 1px rgba(25,23,28,.07);
+    overflow: hidden; isolation: isolate;
+  }
+  .player-bloom { position: absolute; inset: -40% -10% -40% -30%; z-index: -1; pointer-events: none; background: radial-gradient(30% 60% at 12% 50%, var(--pig), transparent 70%); filter: url(#bleed); opacity: .35; }
+  .player img { width: 52px; height: 52px; border-radius: 8px; object-fit: cover; display: block; }
+  .p-meta { min-width: 0; display: grid; gap: 4px; }
+  .p-row { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .p-title { font-weight: 500; font-size: 14px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .p-artist { font-size: 12px; color: var(--ink-2); line-height: 1.2; }
+  .p-bar { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: center; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .p-rail { cursor: pointer; height: 3px; border-radius: 3px; background: var(--rule); overflow: hidden; }
+  .p-fill { height: 100%; width: 0%; background: var(--pig); transition: background .8s, width .25s linear; }
+  .p-btn { width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--ink); color: var(--paper); cursor: pointer; display: grid; place-items: center; }
+  .p-btn svg { width: 16px; height: 16px; fill: currentColor; }
+  .eq { display: flex; align-items: flex-end; gap: 2px; height: 16px; flex: none; }
+  .eq b { width: 3px; height: 100%; background: var(--pig); border-radius: 1px; transform-origin: bottom; animation: eq .9s ease-in-out infinite alternate; }
+  .eq b:nth-child(2) { animation-duration: .7s; animation-delay: -.3s; }
+  .eq b:nth-child(3) { animation-duration: 1.1s; animation-delay: -.5s; }
+  .eq b:nth-child(4) { animation-duration: .8s; animation-delay: -.1s; }
+  .player.paused .eq b { animation-play-state: paused; }
+  @keyframes eq { from { transform: scaleY(.2); } to { transform: scaleY(1); } }
+  .player.swap img { animation: pop .6s var(--ease); }
+  @keyframes pop { from { transform: scale(.7) rotate(-6deg); opacity: .3; } }
+  @media (max-width: 480px) { .p-bar span { display: none; } .p-bar { grid-template-columns: 1fr; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; }
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="bleed" x="-30%" y="-30%" width="160%" height="160%">
+    <feTurbulence type="fractalNoise" baseFrequency=".014" numOctaves="4" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="70" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="bleed-sm" x="-30%" y="-60%" width="160%" height="220%">
+    <feTurbulence type="fractalNoise" baseFrequency=".06" numOctaves="3" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<div class="scrollbar" id="scrollbar"></div>
+<header class="top">
+  <a class="brand" href="#top">Sonografica</a>
+  <nav class="nav" aria-label="Main">
+    <a class="nav-artists" href="#artists">Artists</a>
+    <a href="#statement">Statement</a>
+    <a href="#covers">Releases</a>
+    <a href="#tools">Tools</a>
+    <a href="#links">Links</a>
+  </nav>
+</header>
+
+<!-- Hero: the paper paints itself; pointer adds drops -->
+<section class="scene scene-hero" id="top" data-scene="hero">
+  <div class="stage">
+    <div id="bloom" aria-hidden="true"><canvas id="paint"></canvas><canvas id="drops"></canvas></div>
+    <div class="hint" id="hint"><i></i>Move to paint</div>
+    <div class="hero-copy" id="hero-copy">
+      <div class="eyebrow">Private Audio Label — est. by Bito</div>
+      <h1 id="title" aria-label="Sonografica">Sono<em>grafica</em></h1>
+      <div class="hero-foot">
+        <p class="hero-lede">音と感情の断片を、キャンバスに置いていく。<span>Drawing &amp; Placing Sound</span></p>
+        <div class="scroll-cue"><i></i>Scroll</div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- Nav -->
-    <nav class="main-nav">
-        <a href="#" class="brand-logo">Sonografica</a>
+<div class="marquee" aria-hidden="true"><div class="marquee-row" id="marquee"></div></div>
+<nav class="paintbox" id="paintbox" aria-label="Artist palette"></nav>
 
-        <button type="button" class="nav-toggle" aria-label="Toggle Navigation">
-            <span></span>
-            <span></span>
-        </button>
+<!-- Artists: the backdrop becomes whichever artist you're on -->
+<section class="scene-artists" id="artists">
+  <div class="ambient" id="ambient" aria-hidden="true">
+    <div id="amb-imgs"></div>
+    <div class="amb-wash"></div>
+    <div class="amb-vig"></div>
+    <div class="amb-meta"><div class="counter" id="counter"><b>01</b> / 11 · PB15:3 Phthalo Blue</div><div class="rail"><i id="rail"></i></div></div>
+  </div>
+  <header class="artists-head"><h2>Artists</h2><p>11 artists · 11 pigments</p></header>
+  <div class="track" id="track"></div>
+</section>
 
-        <div class="nav-container">
-            <a href="#about" class="nav-link">Statement</a>
-            <div class="nav-dropdown">
-                <a href="#artists-root" class="nav-link nav-artists-link">Artists <span class="dropdown-chevron">▾</span></a>
-                <div class="nav-dropdown-menu">
-                    <a href="#bito" class="dropdown-item"><span class="dropdown-num">01</span><span class="dropdown-name">Bito</span></a>
-                    <a href="#valotoa" class="dropdown-item"><span class="dropdown-num">02</span><span class="dropdown-name">valotoa</span></a>
-                    <a href="#hizumi" class="dropdown-item"><span class="dropdown-num">03</span><span class="dropdown-name">歪み歪み</span></a>
-                    <a href="#pophoper" class="dropdown-item"><span class="dropdown-num">04</span><span class="dropdown-name">pophoper</span></a>
-                    <a href="#stray" class="dropdown-item"><span class="dropdown-num">05</span><span class="dropdown-name">Stray Glitch Monkeys</span></a>
-                    <a href="#dayendnight" class="dropdown-item"><span class="dropdown-num">06</span><span class="dropdown-name">DAY END NIGHT</span></a>
-                    <a href="#asymptote" class="dropdown-item"><span class="dropdown-num">07</span><span class="dropdown-name">Asymptote</span></a>
-                    <a href="#rupture" class="dropdown-item"><span class="dropdown-num">08</span><span class="dropdown-name">RUPTURE</span></a>
-                    <a href="#sonografica-artist" class="dropdown-item"><span class="dropdown-num">09</span><span class="dropdown-name">Sonografica</span></a>
-                    <a href="#metropolitans" class="dropdown-item"><span class="dropdown-num">10</span><span class="dropdown-name">THE METROPOLITANS</span></a>
-                </div>
-            </div>
-            <a href="#tools" class="nav-link">Tools</a>
-            <a href="#thanks" class="nav-link">Thanks</a>
-        </div>
-    </nav>
+<!-- Scene 3: the statement lights up as you read -->
+<section class="scene scene-words" id="statement" data-scene="words">
+  <div class="stage">
+    <div class="logo-wrap"><img id="logo" src="img/logo.webp" alt="Sonografica watercolor mark"></div>
+    <div>
+      <p class="word">Sono + Grafica<small>音 ／ 描く・配置する</small></p>
+      <p class="reveal" id="reveal">音を描き、配置し、試行錯誤する。完璧に整えられた美しさよりも、衝動や好奇心のままに音を置く実験を優先すること。誰かのための完成品ではなく、自らのライフワークとして、気まぐれに、けれど淡々と。</p>
+    </div>
+  </div>
+</section>
 
-    <!-- Hero -->
-    <header class="hero">
-        <div class="hero-visual">
-            <div class="hero-img-overlay"></div>
-        </div>
+<section class="sec" id="covers">
+  <div class="sec-head">
+    <h2>Releases</h2>
+    <p><a href="https://bito999p-ctrl.github.io/sonografica/#artists-root">Suno / YouTube の全カタログへ →</a></p>
+  </div>
+  <div class="covers"><div class="covers-row" id="covers-row"></div></div>
+</section>
 
-        <div class="hero-inner">
-            <div class="hero-logo-box">
-                <img src="sonografica_logo.png" alt="Sonografica" class="hero-logo-img" />
-            </div>
+<section class="sec" id="tools">
+  <div class="sec-head"><h2>Aether Tools</h2></div>
+  <div class="tools">
+    <article class="tool">
+      <h3>AetherMaster</h3>
+      <p>ブラウザで動くマスタリングエンジン。</p>
+      <a href="https://bito999p-ctrl.github.io/sonografica/audio-mastering-tool/">Open →</a>
+    </article>
+    <article class="tool">
+      <h3>AetherPlayer</h3>
+      <p>レーベルの全曲を流し続けるプレイヤー。</p>
+      <a href="https://bito999p-ctrl.github.io/sonografica/AETHER_PLAYER/">Open →</a>
+    </article>
+  </div>
+</section>
 
-            <p class="hero-eyebrow">Private Audio Label</p>
-            <p class="hero-sub">音と感情の断片をキャンバスに — Drawing & Placing Sound</p>
+<section class="sec" id="links">
+  <div class="sec-head"><h2>Thanks &amp; Links</h2><p>活動を支えてくださる皆様や、関連するプロジェクト・相互リンクです。</p></div>
+  <div class="links">
+    <a class="link" href="https://luarietakamiya-dotcom.github.io/luarie-takamiya/" target="_blank" rel="noopener noreferrer" style="--lc:#c8457e">
+      <div class="link-media"><img src="img/luarie_petal_code.webp" alt="PETAL CODE" loading="lazy"></div>
+      <div class="link-body"><div class="link-badge"><i></i>MUTUAL LINK / 相互リンク</div><h3>PETAL CODE</h3><p class="link-sub">高宮ルアリエ (Luarie) Official Portal</p><p class="link-desc">音楽・物語・映像・キャラクターをひとつに束ねる個人ポータルサイト。「ひとつの肩書きに、収まらないための場所。」</p><span class="link-url">luarietakamiya-dotcom.github.io →</span></div>
+    </a>
+    <a class="link" href="https://trillion-music4899.jp/" target="_blank" rel="noopener noreferrer" style="--lc:#3a9cc4">
+      <div class="link-media"><img src="img/makoto_logo.webp" alt="MakotoAI" loading="lazy"></div>
+      <div class="link-body"><div class="link-badge"><i></i>MUTUAL LINK / 相互リンク</div><h3>MakotoAI</h3><p class="link-sub">Sound of the Future Intelligence</p><p class="link-desc">生成AIと創る新しい音楽の世界。未来のサウンドと感動を届けるMakotoAIオフィシャルサイト。</p><span class="link-url">trillion-music4899.jp →</span></div>
+    </a>
+    <a class="link" href="https://momuandteasteam.com/" target="_blank" rel="noopener noreferrer" style="--lc:#c49a36">
+      <div class="link-media"><img src="img/momu_logo.webp" alt="MoMu &amp; TeaSteam" loading="lazy"></div>
+      <div class="link-body"><div class="link-badge"><i></i>MUTUAL LINK / 相互リンク</div><h3>MoMu &amp; TeaSteam</h3><p class="link-sub">AI Creation Becomes the World</p><p class="link-desc">AIとともにつくる音楽をMVやライブで届けるMoMuの公式サイト。楽曲・映像やツールの世界を公開。</p><span class="link-url">momuandteasteam.com →</span></div>
+    </a>
+    <a class="link" href="https://rezonate.ai/" target="_blank" rel="noopener noreferrer" style="--lc:#5d2f8a">
+      <div class="link-media"><img src="img/rezonate_logo.webp" alt="Rezonate" loading="lazy"></div>
+      <div class="link-body"><div class="link-badge"><i></i>PARTNER / プラットフォーム</div><h3>Rezonate</h3><p class="link-sub">新しい音楽を、一緒に見つけよう。</p><p class="link-desc">AI時代の音楽ディスカバリー・キュレーションプラットフォーム。次世代のリスニング体験を提供。</p><span class="link-url">rezonate.ai →</span></div>
+    </a>
+    <a class="link" href="https://aisa.radioalps.com/" target="_blank" rel="noopener noreferrer" style="--lc:#127a64">
+      <div class="link-media"><img src="img/aisa_logo.webp" alt="AISA Radio ALPS" loading="lazy"></div>
+      <div class="link-body"><div class="link-badge"><i></i>BROADCAST / ラジオ局</div><h3>AISA Radio ALPS</h3><p class="link-sub">AI &amp; Indie Sound Archive</p><p class="link-desc">世界中のインディー＆AIアーティストの楽曲をノンストップで配信するインターネットラジオ局。</p><span class="link-url">aisa.radioalps.com →</span></div>
+    </a>
+    <a class="link" href="https://comedia-office.com/" target="_blank" rel="noopener noreferrer" style="--lc:#c7262e">
+      <div class="link-media"><img src="img/comedia_logo.webp" alt="COMEDIA" loading="lazy"></div>
+      <div class="link-body"><div class="link-badge"><i></i>PLANNING / 企画団体</div><h3>COMEDIA</h3><p class="link-sub">AIエンターテイメント企画団体</p><p class="link-desc">面白い企画から、新しい文化を生み出す。デジタル町おこしやYouTube・X連動イベント等を創出する企画団体。</p><span class="link-url">comedia-office.com →</span></div>
+    </a>
+  </div>
+</section>
 
-            <blockquote class="hero-quote">
-                <p>"ogni suono che ho lasciato andare<br>ha trovato un altro modo per esistere."</p>
-                <cite>放たれたすべての音は、別の存在のかたちを見つけだす。</cite>
-            </blockquote>
+<footer>
+  <span>© Sonografica</span>
+  <a href="https://x.com/BitoCraftedTune" target="_blank" rel="noopener">X @BitoCraftedTune</a>
+  <a href="mailto:bito.999.p@gmail.com">bito.999.p@gmail.com</a>
+</footer>
 
-            <!-- Virtual Retro CRT Audio Master Console (Positioned below statement quote) -->
-            <div class="audio-deck-chassis crt-console-theme" id="sonografica-deck">
-                <!-- Walnut Wood Side Cheeks -->
-                <div class="chassis-wood-cheek left-cheek"></div>
-                <div class="chassis-wood-cheek right-cheek"></div>
+<div class="player" id="player" aria-label="Now playing">
+  <div class="player-bloom"></div>
+  <img id="p-img" src="img/cover_01.webp" alt="">
+  <div class="p-meta">
+    <div class="p-row"><span class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></span><div class="p-title" id="p-title">Desire Under Moonlight</div></div>
+    <div class="p-artist" id="p-artist">Bito</div>
+    <div class="p-bar"><span id="p-now">0:00</span><div class="p-rail"><div class="p-fill" id="p-fill"></div></div><span id="p-dur">0:00</span></div>
+  </div>
+  <button class="p-btn" id="p-btn" type="button" aria-label="Pause">
+    <svg viewBox="0 0 16 16" id="p-icon"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>
+  </button>
+</div>
 
-                <!-- Chassis Corner Screws -->
-                <div class="deck-screw top-left">&#10010;</div>
-                <div class="deck-screw top-right">&#10010;</div>
-                <div class="deck-screw bottom-left">&#10010;</div>
-                <div class="deck-screw bottom-right">&#10010;</div>
+<script>
+const LIVE = "https://bito999p-ctrl.github.io/sonografica/";
+const ARTISTS = [
+  { id: "bito", name: "Bito", img: "bito_bg", pig: "#1f5fa8", code: "PB15:3", pname: "Phthalo Blue", track: "Desire Under Moonlight", yt: "https://youtube.com/playlist?list=PLxpRgysXp3GlUaHN7GwWZheqxz5XCbdzL&si=YVcTUFljO9vOOcwF", suno: "https://suno.com/playlist/fc5d3e91-f654-470b-9522-95743e595374", spotify: "https://open.spotify.com/intl-ja/artist/5PDksV2zctE689I1uOLO2o" },
+  { id: "valotoa", name: "valotoa", img: "valotoa_bg", pig: "#c8457e", code: "PV19", pname: "Quinacridone Rose", track: "意思の過程に在る、瞬く回路の火花", yt: "https://youtube.com/playlist?list=PLOb7KvIzm6NE&si=2InPpcagbd-i9dKD", suno: "https://suno.com/playlist/33ac32e8-9114-4a06-9da9-d5ec5d6de21b" },
+  { id: "hizumi", name: "歪み歪み", jp: true, img: "hizumi_bg", pig: "#c7262e", code: "PR254", pname: "Pyrrole Red", yt: "https://youtube.com/playlist?list=PLxpRgysXp3Gm6OgQmHL3bSaAfFxF-DK7d&si=H9atE_w5lqlmEo6c", suno: "https://suno.com/playlist/20aa266e-cde7-4115-9795-30e75c164d01", spotify: "https://open.spotify.com/intl-ja/artist/3tj9sPIAEwZbTk4SyAtT10" },
+  { id: "pophoper", name: "pophoper", img: "pophoper_bg", pig: "#e27a22", code: "PO73", pname: "Pyrrole Orange", yt: "https://youtube.com/playlist?list=PLxpRgysXp3GnP710vJ5DwL8BC9KyG0AlN&si=B3S3Y9AdjN69LqUV", suno: "https://suno.com/playlist/0635e884-f792-47ac-91c4-c334b605ba0a", spotify: "https://open.spotify.com/intl-ja/artist/5fejGOb2AqHlneXYKJVwF7" },
+  { id: "stray", name: "Stray Glitch Monkeys", img: "stray_bg", pig: "#127a64", code: "PG7", pname: "Phthalo Green", yt: "https://youtube.com/playlist?list=PLxpRgysXp3GlaHKI8Wz0WWATs5SZFC6o4&si=3ffy2M9F2ouSJg32", suno: "https://suno.com/playlist/99f6ddfd-d458-40cc-92e5-65141503e6df", spotify: "https://open.spotify.com/intl-ja/artist/280n7G2T6dmFkCRs8JFMeX" },
+  { id: "dayendnight", name: "day end night", img: "dayendnight_bg", pig: "#2e356b", code: "PB60", pname: "Indanthrone Blue", yt: "https://youtube.com/playlist?list=PLxpRgysXp3GmFmY4eSMSeAcFM3qjNN4gE&si=3TtpYPlWD63gZ2B3i", suno: "https://suno.com/playlist/c685d560-7182-4a81-b430-b4bf33bcfd4f" },
+  { id: "asymptote", name: "Asymptote", img: "asymptote_bg", pig: "#3a9cc4", code: "PB36", pname: "Cerulean Blue", yt: "https://youtube.com/playlist?list=PLxpRgysXp3GlPvzX5hzWu4YxyPXrnriyM&si=OeHh87ijcXOVcxWi", suno: "https://suno.com/playlist/c95d6dd3-c6ee-41a8-9a9c-8213e6b07dcb" },
+  { id: "rupture", name: "RUPTURE", img: "rupture_bg", pig: "#9b3d1e", code: "PBr7", pname: "Burnt Sienna", yt: "https://youtube.com/playlist?list=PLxpRgysXp3Gmw6VX82wfxnStZ8lGeuNp9&si=mujfGGlFHVWnC_kV", suno: "https://suno.com/playlist/bf788bfc-318f-4e1b-849f-aae04e0055c6" },
+  { id: "sonografica", name: "Sonografica", img: "sonografica_bg", pig: "#5d2f8a", code: "PV23", pname: "Dioxazine Violet", yt: "https://youtube.com/playlist?list=PLLOIHKwdVqbE&si=k-m1OGcNYQMMIxkj", suno: "https://suno.com/playlist/6e89b45f-0ade-423e-9acd-cec8b0303665" },
+  { id: "metropolitans", name: "THE METROPOLITANS", img: "metropolitans_bg", pig: "#c49a36", code: "PY42", pname: "Yellow Ochre", yt: "https://youtube.com/playlist?list=PLxpRgysXp3GnkxK3lm_cwHLD_alvdc_3t&si=d-KLo6zSzbX7Y4VP", suno: "https://suno.com/playlist/f59d229a-79fc-4b48-b36a-1efbac94175f", spotify: "https://open.spotify.com/intl-ja/artist/5lSsV9mEnzTwpDzOSWqPiQ" },
+  { id: "yonetsu", name: "余熱", jp: true, img: "yonetsu_bg", pig: "#e0645a", code: "PR209", pname: "Quinacridone Coral", yt: "https://youtube.com/playlist?list=PLDGDvy7W-6bo&si=dlp5vPfH0KxLMXqW", suno: "https://suno.com/playlist/5ccb1ed6-b05e-4d17-a51f-650d4216da23" },
+];
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const pad = n => String(n).padStart(2, "0");
 
-                <!-- Top Bezel Label -->
-                <div class="deck-top-bar">
-                    <div class="deck-brand-tag">
-                        <span class="deck-brand-name">AUDIO MASTER CONSOLE UNIT</span>
-                        <span class="deck-model">MODEL AMC-80 // SONOGRAFICA</span>
-                    </div>
-                    <div class="deck-curation-badge">
-                        <span class="curation-dot"></span>
-                        <span class="curation-text">RECOMMENDED SELECTION / 推薦楽曲</span>
-                    </div>
-                    <div class="deck-status-led" id="deck-status-led">
-                        <span class="led-dot"></span>
-                        <span class="led-label" id="deck-status-label">STOPPED</span>
-                    </div>
-                </div>
+/* ---------- build DOM ---------- */
+const title = document.getElementById("title");
+let ci = 0;
+const split = text => [...text].map(c => `<span class="ch" aria-hidden="true" style="--i:${ci++}">${c}</span>`).join("");
+title.innerHTML = split("Sono") + "<em>" + split("grafica") + "</em>";
 
-                <!-- Main Console Panel: Dual VU Gauges + CRT Monitor -->
-                <div class="deck-main-panel">
-                    <!-- Left: Dual Vintage Analog VU Meters & Toggle Panel -->
-                    <div class="console-left-subpanel">
-                        <div class="analog-vu-container">
-                            <div class="vu-needle-meter">
-                                <div class="vu-scale">
-                                    <span>-20</span><span>-10</span><span>-5</span><span>0</span><span class="vu-red">+3</span>
-                                </div>
-                                <div class="vu-needle-track">
-                                    <div class="vu-needle" id="vu-needle-l"></div>
-                                </div>
-                                <span class="vu-ch-label">LEFT</span>
-                            </div>
-                            <div class="vu-needle-meter">
-                                <div class="vu-scale">
-                                    <span>-20</span><span>-10</span><span>-5</span><span>0</span><span class="vu-red">+3</span>
-                                </div>
-                                <div class="vu-needle-track">
-                                    <div class="vu-needle" id="vu-needle-r"></div>
-                                </div>
-                                <span class="vu-ch-label">RIGHT</span>
-                            </div>
-                        </div>
+const mq = document.getElementById("marquee");
+const names = ARTISTS.map(a => `<span class="${a.jp ? "jp" : ""}" style="--pig:${a.pig}">${esc(a.name)}</span>`).join("");
+mq.innerHTML = names + names;
 
-                        <!-- Retro Chunky Square Hardware Keys with Chrome Bezel & Vector SVG Icons -->
-                        <div class="console-action-keys">
-                            <button class="deck-btn btn-prev" id="deck-btn-prev" title="Previous Track" aria-label="Previous Track">
-                                <div class="btn-chrome-rim">
-                                    <div class="btn-cap">
-                                        <svg class="btn-svg" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-                                    </div>
-                                </div>
-                            </button>
+document.getElementById("paintbox").innerHTML = ARTISTS.map((a, i) => `
+  <a class="pan" href="#artists" data-i="${i}" style="--pig:${a.pig}">
+    <span class="pan-cake"></span>
+    <span class="pan-name">${esc(a.name)}</span>
+    <span class="pan-code">${a.code}</span>
+  </a>`).join("");
 
-                            <button class="deck-btn btn-play" id="deck-btn-play" title="Play / Pause" aria-label="Play / Pause">
-                                <div class="btn-chrome-rim rim-play">
-                                    <div class="btn-cap play-cap">
-                                        <svg class="btn-svg icon-play" id="deck-play-label" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="btn-svg icon-pause" style="display:none;" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </div>
-                                </div>
-                            </button>
+const track = document.getElementById("track");
+track.innerHTML = ARTISTS.map((a, i) => `
+  <article class="panel" style="--pig:${a.pig}" aria-label="${esc(a.name)}">
+    <div class="p-art">
+      <img src="img/${a.img}.webp" alt="${esc(a.name)}" ${i > 1 ? 'loading="lazy"' : ""}>
+      <div class="wash"></div>
+    </div>
+    <div class="p-text">
+      <div class="p-num">${pad(i + 1)} — ${a.code}</div>
+      <h3 class="p-name${a.jp ? " jp" : ""}">${esc(a.name)}</h3>
+      <div class="swatch"><span class="stroke"></span><b>${a.code}</b>${a.pname}</div>
+      ${a.track ? `<p class="p-track"><span>Latest</span>${esc(a.track)}</p>` : ""}
+      <div class="p-actions">
+        ${SONOGRAFICA_PLAYLIST.some(t => t.artist === a.name) ? `<button class="play" type="button" data-id="${a.id}"><i></i>Listen</button>` : ""}
+        <div class="p-links">${a.spotify ? `<a class="sp" href="${a.spotify}" target="_blank" rel="noopener">Spotify</a>` : ""}<a href="${a.yt}" target="_blank" rel="noopener">YouTube</a><a href="${a.suno}" target="_blank" rel="noopener">Suno</a></div>
+      </div>
+    </div>
+  </article>`).join("");
+const panels = [...track.children];
+const ambImgs = document.getElementById("amb-imgs");
+ambImgs.innerHTML = ARTISTS.map(a => `<div class="amb-img" style="background-image:url(img/${a.img}.webp)"></div>`).join("");
+const ambient = document.getElementById("ambient");
 
-                            <button class="deck-btn btn-stop" id="deck-btn-stop" title="Stop" aria-label="Stop">
-                                <div class="btn-chrome-rim rim-stop">
-                                    <div class="btn-cap stop-cap">
-                                        <svg class="btn-svg" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
-                                    </div>
-                                </div>
-                            </button>
+const reveal = document.getElementById("reveal");
+reveal.innerHTML = [...reveal.textContent].map(c => `<span>${c}</span>`).join("");
+const chars = [...reveal.children];
 
-                            <button class="deck-btn btn-next" id="deck-btn-next" title="Next Track" aria-label="Next Track">
-                                <div class="btn-chrome-rim">
-                                    <div class="btn-cap">
-                                        <svg class="btn-svg" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-                                    </div>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
+const covers = ["01", "02", "03", "04", "05", "06", "07", "09", "10", "11", "12", "14", "15", "16", "18", "21", "22", "23", "25", "28"].reverse().map(n => `<figure><img src="img/cover_${n}.webp" alt="Cover artwork" loading="lazy"></figure>`).join("");
+document.getElementById("covers-row").innerHTML = covers;
+document.getElementById("covers-row").addEventListener("pointermove", e => {
+  const f = e.target.closest("figure"); if (!f) return;
+  const r = f.getBoundingClientRect();
+  f.style.setProperty("--ry", ((e.clientX - r.left) / r.width - .5) * 18 + "deg");
+  f.style.setProperty("--rx", -((e.clientY - r.top) / r.height - .5) * 18 + "deg");
+});
 
-                    <!-- Right / Main: Curved Glass Phosphor CRT Monitor -->
-                    <div class="crt-monitor-bezel">
-                        <div class="crt-bezel-screw crt-s-tl">&#8226;</div>
-                        <div class="crt-bezel-screw crt-s-tr">&#8226;</div>
-                        <div class="crt-bezel-screw crt-s-bl">&#8226;</div>
-                        <div class="crt-bezel-screw crt-s-br">&#8226;</div>
-                        <div class="crt-bezel-tag">OSCILLOSCOPE / MONITOR</div>
+/* ---------- scroll engine: each pinned scene gets a 0..1 progress ---------- */
+const root = document.documentElement;
+const heroScene = document.querySelector(".scene-hero");
+const artistsScene = document.querySelector(".scene-artists");
+const wordsScene = document.querySelector(".scene-words");
+const heroCopy = document.getElementById("hero-copy");
+const bloom = document.getElementById("bloom");
+const hint = document.getElementById("hint");
+const rail = document.getElementById("rail");
+const counter = document.getElementById("counter");
+const bar = document.getElementById("scrollbar");
 
-                        <!-- CRT Screen Interior -->
-                        <div class="crt-screen-interior">
-                            <!-- CRT Glass Reflection & Scanlines -->
-                            <div class="crt-scanlines"></div>
-                            <div class="crt-glass-curvature"></div>
+const progress = el => { const r = el.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight)); };
+const band = (p, a, b, c, d) => p < a ? 0 : p < b ? (p - a) / (b - a) : p <= c ? 1 : p < d ? 1 - (p - c) / (d - c) : 0;
+const ease = t => 1 - Math.pow(1 - t, 3);
 
-                            <div class="crt-screen-content">
-                                <!-- Album Cover with CRT Scanlines -->
-                                <div class="crt-cover-box">
-                                    <img src="assets/covers/cover_01.jpg" alt="Album Art" id="deck-cover-img" class="deck-cover-img" />
-                                    <div class="crt-cover-scanlines"></div>
-                                </div>
+let maxX = 0, active = -1, lit = 0;
+function layout() {}
 
-                                <!-- CRT Phosphor Metadata & Waveform -->
-                                <div class="crt-meta-column">
-                                    <div class="crt-top-info">
-                                        <span class="crt-badge" id="deck-track-num">TRK 01 / 28</span>
-                                        <span class="crt-shuffle-badge" id="deck-shuffle-badge">&#8646; SHUFFLE</span>
-                                        <span class="crt-khz">500Hz • 5V/DIV</span>
-                                    </div>
+// no pin: the hero just drifts away as the page scrolls past it
+function heroScroll() {
+  const out = clamp(scrollY / innerHeight);
+  if (out >= 1) return;
+  heroCopy.style.opacity = 1 - out * 1.2;
+  heroCopy.style.transform = `translateY(${-out * 18}vh)`;
+  hint.style.opacity = 1 - out * 2;
+  bloom.style.transform = `translateY(${out * 25}vh) scale(${1 + out * .15})`;
+}
 
-                                    <div class="crt-titles">
-                                        <h3 class="crt-track-title" id="deck-track-title">意思の過程に在る、瞬く回路の火花</h3>
-                                        <p class="crt-artist-name" id="deck-artist-name">valotoa</p>
-                                    </div>
+// the panel crossing the middle of the screen owns the backdrop
+function artistsScroll() {
+  const r = artistsScene.getBoundingClientRect();
+  rail.style.transform = `scaleX(${clamp(-r.top / (r.height - innerHeight))})`;
+  if (r.bottom < 0 || r.top > innerHeight) return;
+  const mid = innerHeight / 2;
+  let best = 0;
+  panels.forEach((el, i) => {
+    const b = el.getBoundingClientRect();
+    if (b.top < innerHeight * .8) el.classList.add("in");
+    if (b.top <= mid) best = i;
+    if (b.bottom > 0 && b.top < innerHeight) el.querySelector(".p-art img").style.transform = `translate3d(0,${(b.top + b.height / 2 - mid) / innerHeight * -8}%,0)`;
+  });
+  if (best !== active) {
+    active = best;
+    const a = ARTISTS[best];
+    [...ambImgs.children].forEach((x, j) => x.classList.toggle("on", j === best));
+    ambient.style.setProperty("--pig", a.pig);
+    artistsScene.style.setProperty("--pig", a.pig);
+    root.style.setProperty("--pig", a.pig);
+    counter.innerHTML = `<b>${pad(best + 1)}</b> / ${ARTISTS.length} · ${a.code} ${a.pname}`;
+  }
+}
 
-                                    <!-- Glowing Phosphor Oscilloscope Wave -->
-                                    <div class="crt-oscilloscope-grid">
-                                        <div class="osc-grid-lines"></div>
-                                        <svg class="osc-wave-svg" viewBox="0 0 300 40" preserveAspectRatio="none">
-                                            <path id="crt-wave-path" d="M0,20 Q37.5,0 75,20 T150,20 T225,20 T300,20" fill="none" stroke="#38ef7d" stroke-width="2" />
-                                        </svg>
-                                    </div>
+function wordsScroll(p) {
+  const n = Math.round(clamp((p - .12) / .72) * chars.length);
+  if (n > lit) for (let i = lit; i < n; i++) chars[i].classList.add("on");
+  else for (let i = n; i < lit; i++) chars[i].classList.remove("on");
+  lit = n;
+}
 
-                                    <!-- CRT Phosphor Timecode & Scrubber -->
-                                    <div class="crt-timecode-row">
-                                        <span class="crt-time" id="deck-current-time">00:00</span>
-                                        <div class="deck-progress-bar-wrap crt-scrubber" id="deck-progress-wrap" role="slider" aria-label="Audio progress">
-                                            <div class="deck-progress-fill crt-fill" id="deck-progress-fill"></div>
-                                        </div>
-                                        <span class="crt-time" id="deck-duration">00:00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+let ticking = false;
+function onScroll() {
+  ticking = false;
+  heroScroll();
+  artistsScroll();
+  wordsScroll(progress(wordsScene));
+  bar.style.transform = `scaleX(${clamp(scrollY / (root.scrollHeight - innerHeight))})`;
+}
+const req = () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } };
+addEventListener("scroll", req, { passive: true });
+addEventListener("resize", () => { layout(); req(); });
+layout(); onScroll();
 
-                <!-- Hardware Control Bottom Panel: Shuffle, Knobs & Drawer Toggle -->
-                <div class="deck-controls-panel">
-                    <div class="deck-toggle-row">
-                        <button class="deck-mode-btn is-active" id="deck-shuffle-toggle" title="Toggle Shuffle Mode">
-                            <span class="mode-icon">&#8646;</span>
-                            <span class="mode-text">SHUFFLE</span>
-                        </button>
-                        <span class="toggle-hint">RECOMMENDED AUDIO TRACKS (RANDOM)</span>
-                    </div>
+// paint box jumps to that artist
+document.getElementById("paintbox").addEventListener("click", e => {
+  const pan = e.target.closest(".pan"); if (!pan) return;
+  e.preventDefault();
+  panels[+pan.dataset.i].scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+});
 
-                    <div class="deck-aux-controls">
-                        <div class="deck-volume-control">
-                            <span class="vol-icon">VOLUME</span>
-                            <input type="range" id="deck-volume-slider" min="0" max="1" step="0.01" value="0.85" class="deck-vol-slider" aria-label="Volume" />
-                        </div>
+// the wash in each photo follows the pointer
+track.addEventListener("pointermove", e => {
+  const art = e.target.closest(".p-art"); if (!art) return;
+  const r = art.getBoundingClientRect();
+  art.parentElement.style.setProperty("--wx", (18 + (e.clientX - r.left) / r.width * 64) + "%");
+  art.parentElement.style.setProperty("--wy", (18 + (e.clientY - r.top) / r.height * 64) + "%");
+});
 
-                        <button class="deck-drawer-btn" id="deck-playlist-toggle" title="Recommended Track List">
-                            <span class="drawer-btn-icon">☰</span>
-                            <span class="drawer-btn-text">TRACKLIST (28)</span>
-                        </button>
-                    </div>
-                </div>
+/* marquee: drifts on its own, speeds up and flips with scroll */
+(() => {
+  if (reduceMotion) return;
+  let x = 0, v = 0, last = scrollY, dir = -1;
+  addEventListener("scroll", () => { const d = scrollY - last; last = scrollY; v += d * .12; if (Math.abs(d) > 2) dir = d > 0 ? -1 : 1; }, { passive: true });
+  const loop = () => {
+    v *= .92;
+    x += dir * (.6 + Math.abs(v));
+    const half = mq.scrollWidth / 2;
+    if (x <= -half) x += half;
+    if (x > 0) x -= half;
+    mq.style.transform = `translateX(${x}px) skewX(${clamp(v * .4 * dir, -8, 8)}deg)`;
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+})();
 
-                <!-- Expandable Tracklist Drawer -->
-                <div class="deck-tracklist-drawer" id="deck-tracklist-drawer">
-                    <div class="tracklist-drawer-header">
-                        <span class="tracklist-title">&#10022; SONOGRAFICA RECOMMENDED ARCHIVE (28 TRACKS)</span>
-                        <button class="tracklist-close-btn" id="deck-tracklist-close">&times;</button>
-                    </div>
-                    <div class="tracklist-scroll-area" id="deck-tracklist-items"></div>
-                </div>
-            </div>
-        </div>
+/* ---------- player: plays the label's tracks from audio/ ---------- */
+const player = document.getElementById("player");
+const audio = new Audio();
+audio.preload = "none";
+const LIST = SONOGRAFICA_PLAYLIST;
+let cur = Math.max(0, LIST.findIndex(t => t.title === "Desire Under Moonlight"));
+const fmt = t => isFinite(t) ? `${Math.floor(t / 60)}:${pad(Math.floor(t % 60))}` : "0:00";
+const pigOf = name => (ARTISTS.find(x => x.name === name) || ARTISTS[0]).pig;
+const setIcon = () => {
+  const playing = !audio.paused;
+  document.getElementById("p-icon").innerHTML = playing
+    ? '<rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/>'
+    : '<path d="M4 2.2v11.6c0 .6.7 1 1.2.6l8.6-5.8c.4-.3.4-.9 0-1.2L5.2 1.6C4.7 1.2 4 1.6 4 2.2z"/>';
+  document.getElementById("p-btn").setAttribute("aria-label", playing ? "Pause" : "Play");
+  player.classList.toggle("paused", !playing);
+};
+const load = (i, animate) => {
+  cur = (i + LIST.length) % LIST.length;
+  const t = LIST[cur];
+  audio.src = t.src;
+  player.style.setProperty("--pig", pigOf(t.artist));
+  document.getElementById("p-title").textContent = t.title;
+  document.getElementById("p-artist").textContent = t.artist;
+  document.getElementById("p-img").src = t.cover;
+  document.getElementById("p-fill").style.width = "0%";
+  document.getElementById("p-now").textContent = "0:00";
+  document.getElementById("p-dur").textContent = "0:00";
+  if (animate) { player.classList.remove("swap"); void player.offsetWidth; player.classList.add("swap"); }
+};
+const play = () => audio.play().catch(() => {}).finally(setIcon);
+audio.addEventListener("timeupdate", () => {
+  document.getElementById("p-fill").style.width = (audio.currentTime / audio.duration * 100 || 0) + "%";
+  document.getElementById("p-now").textContent = fmt(audio.currentTime);
+});
+audio.addEventListener("loadedmetadata", () => { document.getElementById("p-dur").textContent = fmt(audio.duration); });
+audio.addEventListener("play", setIcon);
+audio.addEventListener("pause", setIcon);
+audio.addEventListener("ended", () => { load(cur + 1, true); play(); });
+document.querySelector(".p-rail").addEventListener("click", e => {
+  if (!audio.duration) return;
+  const r = e.currentTarget.getBoundingClientRect();
+  audio.currentTime = clamp((e.clientX - r.left) / r.width) * audio.duration;
+});
+document.getElementById("p-btn").addEventListener("click", () => audio.paused ? play() : audio.pause());
+track.addEventListener("click", e => {
+  const b = e.target.closest(".play"); if (!b) return;
+  const a = ARTISTS.find(x => x.id === b.dataset.id);
+  let i = LIST.findIndex(t => t.artist === a.name && t.title === a.track);
+  if (i < 0) i = LIST.findIndex(t => t.artist === a.name);
+  load(i, true); play();
+  window.dispatchEvent(new CustomEvent("pigment", { detail: a.pig }));
+});
+load(cur, false); setIcon();
+/* ---------- hero: a watercolor painted in front of you; the pointer adds drops ---------- */
+(() => {
+  const stage = heroScene.querySelector(".stage");
+  const cv = document.getElementById("paint"), ctx = cv.getContext("2d");
+  const dv = document.getElementById("drops"), dtx = dv.getContext("2d");
+  let seed = 11;
+  const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  const gauss = () => { let u = 0, v = 0; while (!u) u = rnd(); while (!v) v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+  // midpoint displacement with per-vertex variance: gives the ragged, uneven edge of wet pigment
+  const deform = (poly, depth, amt) => {
+    for (let k = 0; k < depth; k++) {
+      const out = [];
+      for (let i = 0; i < poly.length; i++) {
+        const a = poly[i], b = poly[(i + 1) % poly.length];
+        const d = Math.hypot(b.x - a.x, b.y - a.y), v = (a.v + b.v) / 2 * (.7 + rnd() * .6);
+        out.push(a, { x: (a.x + b.x) / 2 + gauss() * d * amt * v, y: (a.y + b.y) / 2 + gauss() * d * amt * v, v });
+      }
+      poly = out;
+    }
+    return poly;
+  };
+  const shape = (cx, cy, r, n, sq, rot) => {
+    const p = [], c = Math.cos(rot), s = Math.sin(rot);
+    for (let k = 0; k < n; k++) {
+      const t = k / n * Math.PI * 2, x = Math.cos(t) * r, y = Math.sin(t) * r * sq;
+      p.push({ x: cx + x * c - y * s, y: cy + x * s + y * c, v: .4 + rnd() * 1.4 });
+    }
+    return p;
+  };
+  const scale = (p, cx, cy, k) => p.map(q => ({ x: cx + (q.x - cx) * k, y: cy + (q.y - cy) * k, v: q.v }));
+  const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const darker = (c, k) => c.map(x => Math.round(x * k));
+  const path = (g, p) => { g.beginPath(); g.moveTo(p[0].x, p[0].y); for (let i = 1; i < p.length; i++) g.lineTo(p[i].x, p[i].y); g.closePath(); };
+  // one glaze: thin transparent fill + a darker rim where pigment piles up as the water dries
+  const glaze = (g, p, rgb, a, edge = 1) => {
+    path(g, p);
+    g.fillStyle = `rgba(${rgb},${a})`; g.fill();
+    if (edge) { const e = darker(rgb, .62); g.strokeStyle = `rgba(${e},${a * 1.5 * edge})`; g.lineWidth = 1.1; g.stroke(); }
+  };
 
-        <div class="scroll-cue">
-            <div class="scroll-line"></div>
-        </div>
-    </header>
+  // granulation: pigment grains that settle in the paper tooth
+  const grain = document.createElement("canvas"); grain.width = grain.height = 256;
+  {
+    const g = grain.getContext("2d"), img = g.createImageData(256, 256);
+    for (let i = 0; i < img.data.length; i += 4) { const n = Math.random(); img.data[i + 3] = n > .72 ? (n - .72) * 700 : 0; }
+    g.putImageData(img, 0, 0);
+  }
 
-    <!-- Concept & Statement -->
-    <section id="about" class="section concept-section">
-        <div class="container">
-            <div class="concept-layout">
-                <div class="concept-visual reveal-on-scroll">
-                    <div class="concept-img-wrap">
-                        <img src="sonografica_art.jpg" alt="Sonografica Collage Art" loading="lazy" />
-                    </div>
-                </div>
+  // composition: blooms to the right/top, a few long brush strokes crossing; wordmark area (bottom-left) stays paper
+  const SPOTS = [[.70,.30,.19],[.86,.56,.15],[.55,.17,.12],[.93,.16,.11],[.64,.66,.13],[.80,.84,.11],[.45,.42,.09],[.36,.13,.08],[.97,.76,.10],[.26,.30,.06],[.50,.62,.08]];
+  const STROKES = [[.60,.46,.30,.10,-.35,0],[.82,.36,.22,.07,.5,2],[.84,.94,.18,.05,-.12,4],[.40,.24,.18,.05,.25,6]];
+  let W = 0, H = 0, ops = [], opi = 0, visible = true, raf = 0, drops = [];
 
-                <div class="concept-body">
-                    <span class="section-tag reveal-on-scroll">Statement</span>
-                    <h2 class="section-heading reveal-on-scroll reveal-stagger-1">
-                        Sono <span class="jp">(音)</span> +<br>
-                        Grafica <span class="jp">(描く・配置する)</span>
-                    </h2>
-                    <div class="statement-content">
-                        <p class="statement-lead reveal-on-scroll reveal-stagger-2">
-                            音を描き、配置し、試行錯誤する。<br>
-                            完璧に整えられた美しさよりも、衝動や好奇心のままに音を置く実験を優先すること。
-                        </p>
-                        <p class="reveal-on-scroll reveal-stagger-3">
-                            誰かのための完成品を作るのではなく、<br>
-                            自らのライフワークとして、気まぐれに、けれど淡々と。
-                        </p>
-                        <p class="statement-conclusion reveal-on-scroll reveal-stagger-4">
-                            <strong>Sonografica（ソノグラフィカ）</strong>は、Bito による、音と感情の断片をキャンバスに配置し続けるプライベート・オーディオ・レーベル／プロジェクトです。
-                        </p>
-                        <div class="statement-producer-meta reveal-on-scroll reveal-stagger-4">
-                            <a href="https://x.com/BitoCraftedTune" target="_blank" rel="noopener noreferrer" class="producer-meta-link" aria-label="Bito on X">
-                                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                                <span>X (@BitoCraftedTune)</span>
-                            </a>
-                            <a href="https://www.youtube.com/@Sonografica_bito" target="_blank" rel="noopener noreferrer" class="producer-meta-link" aria-label="Sonografica on YouTube">
-                                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                                <span>YouTube (@Sonografica_bito)</span>
-                            </a>
-                            <a href="https://suno.com/@bito999" target="_blank" rel="noopener noreferrer" class="producer-meta-link" aria-label="Bito on Suno">
-                                <img src="suno.jpeg" alt="Suno" loading="lazy" class="suno-icon-img" />
-                                <span>Suno (@bito999)</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  function plan() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = cv.offsetWidth; H = cv.offsetHeight;
+    for (const c of [cv, dv]) { c.width = W * dpr; c.height = H * dpr; c.getContext("2d").setTransform(dpr, 0, 0, dpr, 0, 0); }
+    ctx.clearRect(0, 0, W, H);
+    seed = 11;
+    const S = Math.max(W, H * 1.4), narrow = W < 700;
+    const L = 14;                     // glazes per shape
+    const layers = Array.from({ length: L }, () => []);
+    const add = (cx, cy, r, sq, rot, rgb, a, n = 10) => {
+      const base = deform(shape(cx, cy, r, n, sq, rot), 2, .22);
+      for (let l = 0; l < L; l++) {
+        const k = .5 + .5 * Math.pow(l / (L - 1), .7);           // wet spread: each glaze reaches further
+        layers[l].push(g => glaze(g, deform(scale(base, cx, cy, k), 4, .19), rgb, a));
+      }
+      return base;
+    };
+    ARTISTS.forEach((art, i) => {
+      const [fx, fy, fr] = SPOTS[i], rgb = hex(art.pig);
+      const cx = narrow ? W * (.25 + fx * .7) : W * fx, cy = H * (narrow ? fy * .75 : fy), r = S * fr * (narrow ? .8 : 1);
+      add(cx, cy, r, .82, rnd() * 6.28, rgb, .038);
+      // a denser core, slightly offset: pigment pooled where the brush first touched
+      add(cx + gauss() * r * .18, cy + gauss() * r * .18, r * .55, .9, rnd() * 6.28, rgb, .042);
+      // backrun: water dropped into a drying wash pushes pigment out into a cauliflower ring
+      if (i % 3 === 0) {
+        const bx = cx + gauss() * r * .3, by = cy + gauss() * r * .3, br = r * .32;
+        const ring = deform(shape(bx, by, br, 14, 1, 0), 3, .2);
+        layers[L - 1].push(g => {
+          g.save(); g.globalCompositeOperation = "destination-out"; g.fillStyle = "rgba(0,0,0,.14)"; for (let k = 0; k < 3; k++) { path(g, deform(scale(ring, bx, by, 1 - k * .18), 1, .1)); g.fill(); } g.restore();
+          for (let k = 0; k < 3; k++) glaze(g, deform(ring, 1, .12), rgb, .02, 3);
+        });
+      }
+    });
+    // brush strokes: long, thin, dragged (dry-brush tail breaks up)
+    STROKES.forEach(([fx, fy, fl, fw, rot, ai]) => {
+      const rgb = hex(ARTISTS[ai].pig);
+      add(W * fx, H * fy * (narrow ? .8 : 1), S * fl, fw / fl, rot, rgb, .055, 16);
+    });
+    ops = layers.flat();
+    opi = 0;
+    if (reduceMotion) { while (opi < ops.length) step(); finish(); }
+  }
+  function step() {
+    ctx.globalCompositeOperation = "multiply";
+    ops[opi++](ctx);
+  }
+  function finish() {
+    // settle the grains into the painted areas only
+    ctx.save();
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.globalAlpha = .35;
+    ctx.fillStyle = ctx.createPattern(grain, "repeat");
+    ctx.fillRect(0, 0, W, H);
+    ctx.restore();
+  }
 
-    <!-- Artists -->
-    <section id="artists-root" class="section artists-section">
-        <div class="container">
-            <span class="section-tag center reveal-on-scroll">Artists</span>
-            <h2 class="section-heading center reveal-on-scroll">Catalog</h2>
+  let pi = 0, cur, lastX = -1e3, lastY = -1e3, moved = 0;
+  const setPig = h => { cur = hex(h); hint.style.setProperty("--hint", h); };
+  setPig(ARTISTS[0].pig);
+  window.addEventListener("pigment", e => setPig(e.detail));
+  const at = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height]; };
+  const drop = (x, y, r, big) => {
+    const base = deform(shape(x, y, r, 9, 1, 0), 2, .3);
+    drops.push({ x, y, rgb: cur, age: 0, base, big });
+  };
+  stage.addEventListener("pointermove", e => {
+    const [x, y] = at(e);
+    const d = Math.hypot(x - lastX, y - lastY);
+    if (d < 30) return;
+    moved += Math.min(d, 200);
+    if (moved > 900) { moved = 0; pi = (pi + 1) % ARTISTS.length; setPig(ARTISTS[pi].pig); }
+    drop(x, y, 10 + Math.min(d, 90) * .3, false);
+    if (drops.length > 60) drops.shift();
+    lastX = x; lastY = y; start();
+  });
+  stage.addEventListener("pointerdown", e => { const [x, y] = at(e); drop(x, y, 46, true); start(); });
 
-            <!-- Artist Shortcut Bar -->
-            <div class="artist-shortcuts reveal-on-scroll">
-                <a href="#bito" class="artist-shortcut-chip"><span class="chip-num">01</span>Bito</a>
-                <a href="#valotoa" class="artist-shortcut-chip"><span class="chip-num">02</span>valotoa</a>
-                <a href="#hizumi" class="artist-shortcut-chip"><span class="chip-num">03</span>歪み歪み</a>
-                <a href="#pophoper" class="artist-shortcut-chip"><span class="chip-num">04</span>pophoper</a>
-                <a href="#stray" class="artist-shortcut-chip"><span class="chip-num">05</span>Stray Glitch Monkeys</a>
-                <a href="#dayendnight" class="artist-shortcut-chip"><span class="chip-num">06</span>day end night</a>
-                <a href="#asymptote" class="artist-shortcut-chip"><span class="chip-num">07</span>Asymptote</a>
-                <a href="#rupture" class="artist-shortcut-chip"><span class="chip-num">08</span>RUPTURE</a>
-                <a href="#sonografica-artist" class="artist-shortcut-chip"><span class="chip-num">09</span>Sonografica</a>
-                <a href="#metropolitans" class="artist-shortcut-chip"><span class="chip-num">10</span>THE METROPOLITANS</a>
-            </div>
-
-            <!-- 01 Bito -->
-            <div id="bito" class="artist-block reveal-on-scroll">
-                <div class="artist-top">
-                    <div class="artist-meta">
-                        <span class="artist-num">01</span>
-                        <h3 class="artist-name">Bito</h3>
-                    </div>
-                    <div class="artist-links" id="links-bito"></div>
-                </div>
-                <div class="media-grid">
-                    <div class="media-column youtube-col" id="youtube-bito"></div>
-                    <div class="media-column spotify-col" id="spotify-bito"></div>
-                </div>
-            </div>
-
-            <!-- 02 valotoa -->
-            <div id="valotoa" class="artist-block reveal-on-scroll">
-                <div class="artist-top">
-                    <div class="artist-meta">
-                        <span class="artist-num">02</span>
-                        <h3 class="artist-name">valotoa</h3>
-                    </div>
-                    <div class="artist-links" id="links-valotoa"></div>
-                </div>
-                <div class="media-grid">
-                    <div class="media-column youtube-col" id="youtube-valotoa"></div>
-                    <div class="media-column spotify-col" id="spotify-valotoa"></div>
-                </div>
-            </div>
-
-            <!-- 03 歪み歪み -->
-            <div id="hizumi" class="artist-block reveal-on-scroll">
-                <div class="artist-top">
-                    <div class="artist-meta">
-                        <span class="artist-num">03</span>
-                        <h3 class="artist-name">歪み歪み<span class="name-sub">-hizumi yugami-</span></h3>
-                    </div>
-                    <div class="artist-links" id="links-hizumi"></div>
-                </div>
-                <div class="media-grid">
-                    <div class="media-column youtube-col" id="youtube-hizumi"></div>
-                    <div class="media-column spotify-col" id="spotify-hizumi"></div>
-                </div>
-            </div>
-
-            <!-- 04 pophoper -->
-            <div id="pophoper" class="artist-block reveal-on-scroll">
-                <div class="artist-top">
-                    <div class="artist-meta">
-                        <span class="artist-num">04</span>
-                        <h3 class="artist-name">pophoper</h3>
-                    </div>
-                    <div class="artist-links" id="links-pophoper"></div>
-                </div>
-                <div class="media-grid">
-                    <div class="media-column youtube-col" id="youtube-pophoper"></div>
-                    <div class="media-column spotify-col" id="spotify-pophoper"></div>
-                </div>
-            </div>
-
-            <!-- 05 Stray Glitch Monkeys -->
-            <div id="stray" class="artist-block reveal-on-scroll">
-                <div class="artist-top">
-                    <div class="artist-meta">
-                        <span class="artist-num">05</span>
-                        <h3 class="artist-name">Stray Glitch Monkeys</h3>
-                    </div>
-                    <div class="artist-links" id="links-stray"></div>
-                </div>
-                <div class="media-grid">
-                    <div class="media-column youtube-col" id="youtube-stray"></div>
-                    <div class="media-column spotify-col" id="spotify-stray"></div>
-                </div>
-            </div>
-
-            <!-- 06 day end night -->
-            <div id="dayendnight" class="artist-block reveal-on-scroll">
-                <div class="artist-top">
-                    <div class="artist-meta">
-                        <span class="artist-num">06</span>
-                        <h3 class="artist-name">day end night</h3>
-                    </div>
-                    <div class="artist-links" id="links-dayendnight"></div>
-                </div>
-                <div class="media-grid">
-                    <div class="media-column youtube-col" id="youtube-dayendnight"></div>
-                    <div class="media-column spotify-col" id="spotify-dayendnight"></div>
-                </div>
-            </div>
-
-            <!-- 07 Asymptote -->
-            <div id="asymptote" class="artist-block reveal-on-scroll">
-                <div class="artist-top">
-                    <div class="artist-meta">
-                        <span class="artist-num">07</span>
-                        <h3 class="artist-name">Asymptote</h3>
-                    </div>
-                    <div class="artist-links" id="links-asymptote"></div>
-                </div>
-                <div class="media-grid">
-                    <div class="media-column youtube-col" id="youtube-asymptote"></div>
-                    <div class="media-column spotify-col" id="spotify-asymptote"></div>
-                </div>
-            </div>
-
-            <!-- 08 RUPTURE -->
-            <div id="rupture" class="artist-block reveal-on-scroll">
-                <div class="artist-top">
-                    <div class="artist-meta">
-                        <span class="artist-num">08</span>
-                        <h3 class="artist-name">RUPTURE</h3>
-                    </div>
-                    <div class="artist-links" id="links-rupture"></div>
-                </div>
-                <div class="media-grid">
-                    <div class="media-column youtube-col" id="youtube-rupture"></div>
-                    <div class="media-column spotify-col" id="spotify-rupture"></div>
-                </div>
-            </div>
-
-            <!-- 09 Sonografica -->
-            <div id="sonografica-artist" class="artist-block reveal-on-scroll">
-                <div class="artist-top">
-                    <div class="artist-meta">
-                        <span class="artist-num">09</span>
-                        <h3 class="artist-name">Sonografica</h3>
-                    </div>
-                    <div class="artist-links" id="links-sonografica-artist"></div>
-                </div>
-                <div class="media-grid">
-                    <div class="media-column youtube-col" id="youtube-sonografica-artist"></div>
-                    <div class="media-column spotify-col" id="spotify-sonografica-artist"></div>
-                </div>
-            </div>
-
-            <!-- 10 THE METROPOLITANS -->
-            <div id="metropolitans" class="artist-block reveal-on-scroll">
-                <div class="artist-top">
-                    <div class="artist-meta">
-                        <span class="artist-num">10</span>
-                        <h3 class="artist-name">THE METROPOLITANS</h3>
-                    </div>
-                    <div class="artist-links" id="links-metropolitans"></div>
-                </div>
-                <div class="media-grid">
-                    <div class="media-column youtube-col" id="youtube-metropolitans"></div>
-                    <div class="media-column spotify-col" id="spotify-metropolitans"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools -->
-    <section id="tools" class="section tools-section">
-        <div class="container reveal-on-scroll">
-            <span class="section-tag center">Tools</span>
-            <h2 class="section-heading center">Aether Tools</h2>
-            <p class="section-sub center">ブラウザ上で動作するマスタリングツールとSuno音楽プレイヤー</p>
-
-            <div class="tools-grid">
-                <a href="https://bito999p-ctrl.github.io/aether_master/" target="_blank" class="tool-card reveal-on-scroll reveal-stagger-1">
-                    <div class="tool-icon cyan">∿</div>
-                    <div class="tool-body">
-                        <h3>AetherMaster</h3>
-                        <p>ブラウザ上で手軽に音圧や音質を整えることができるマスタリングツール。</p>
-                    </div>
-                    <span class="tool-arrow">&rarr;</span>
-                </a>
-
-                <a href="https://aether-player-blush.vercel.app/" target="_blank" class="tool-card reveal-on-scroll reveal-stagger-2">
-                    <div class="tool-icon rose">▶</div>
-                    <div class="tool-body">
-                        <h3>AetherPlayer</h3>
-                        <p>Aetherマスタリングエンジンを搭載した、Suno楽曲専用のシンプルなWeb音楽プレイヤー。</p>
-                    </div>
-                    <span class="tool-arrow">&rarr;</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Thanks -->
-    <section id="thanks" class="section thanks-section">
-        <div class="container">
-            <span class="section-tag center reveal-on-scroll">Thanks & Links</span>
-            <h2 class="section-heading center reveal-on-scroll reveal-stagger-1">Special Thanks & Links</h2>
-            <p class="section-sub center reveal-on-scroll reveal-stagger-2">活動を支えてくださる皆様や、関連するプロジェクト・相互リンクです。</p>
-
-            <div class="mutual-grid reveal-on-scroll reveal-stagger-2">
-                <!-- 01 PETAL CODE -->
-                <a href="https://luarietakamiya-dotcom.github.io/luarie-takamiya/" target="_blank" rel="noopener noreferrer" class="mutual-link-card">
-                    <div class="mutual-card-media">
-                        <img src="assets/luarie_petal_code.jpg" alt="PETAL CODE | Luarie Official Website" class="mutual-banner-img" loading="lazy">
-                    </div>
-                    <div class="mutual-card-content">
-                        <div class="mutual-card-badge">
-                            <span class="badge-dot dot-rose"></span>
-                            <span>MUTUAL LINK / 相互リンク</span>
-                        </div>
-                        <h3 class="mutual-card-title">PETAL CODE</h3>
-                        <p class="mutual-card-subtitle">高宮ルアリエ (Luarie) Official Portal</p>
-                        <p class="mutual-card-desc">音楽・物語・映像・キャラクターをひとつに束ねる個人ポータルサイト。「ひとつの肩書きに、収まらないための場所。」</p>
-                        <div class="mutual-card-footer">
-                            <span class="mutual-card-url">luarietakamiya-dotcom.github.io</span>
-                            <span class="mutual-card-arrow">&rarr;</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 02 MakotoAI -->
-                <a href="https://trillion-music4899.jp/" target="_blank" rel="noopener noreferrer" class="mutual-link-card">
-                    <div class="mutual-card-media">
-                        <img src="assets/makoto_logo.png" alt="MakotoAI Official Website" class="mutual-banner-img" loading="lazy">
-                    </div>
-                    <div class="mutual-card-content">
-                        <div class="mutual-card-badge">
-                            <span class="badge-dot dot-cyan"></span>
-                            <span>FRIEND / 提携・協力</span>
-                        </div>
-                        <h3 class="mutual-card-title">MakotoAI</h3>
-                        <p class="mutual-card-subtitle">Sound of the Future Intelligence</p>
-                        <p class="mutual-card-desc">生成AIと創る新しい音楽の世界。未来のサウンドと感動を届けるMakotoAIオフィシャルサイト。</p>
-                        <div class="mutual-card-footer">
-                            <span class="mutual-card-url">trillion-music4899.jp</span>
-                            <span class="mutual-card-arrow">&rarr;</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 03 MoMu & TeaSteam -->
-                <a href="https://momuandteasteam.com/" target="_blank" rel="noopener noreferrer" class="mutual-link-card">
-                    <div class="mutual-card-media">
-                        <img src="assets/momu_logo.png" alt="MoMu & TeaSteam" class="mutual-banner-img" loading="lazy">
-                    </div>
-                    <div class="mutual-card-content">
-                        <div class="mutual-card-badge">
-                            <span class="badge-dot dot-gold"></span>
-                            <span>FRIEND / 提携・協力</span>
-                        </div>
-                        <h3 class="mutual-card-title">MoMu & TeaSteam</h3>
-                        <p class="mutual-card-subtitle">AI Creation Becomes the World</p>
-                        <p class="mutual-card-desc">AIとともにつくる音楽をMVやライブで届けるMoMuの公式サイト。楽曲・映像やツールの世界を公開。</p>
-                        <div class="mutual-card-footer">
-                            <span class="mutual-card-url">momuandteasteam.com</span>
-                            <span class="mutual-card-arrow">&rarr;</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 04 Rezonate -->
-                <a href="https://rezonate.ai/" target="_blank" rel="noopener noreferrer" class="mutual-link-card">
-                    <div class="mutual-card-media">
-                        <img src="assets/rezonate_logo.png" alt="Rezonate" class="mutual-banner-img" loading="lazy">
-                    </div>
-                    <div class="mutual-card-content">
-                        <div class="mutual-card-badge">
-                            <span class="badge-dot dot-violet"></span>
-                            <span>PARTNER / プラットフォーム</span>
-                        </div>
-                        <h3 class="mutual-card-title">Rezonate</h3>
-                        <p class="mutual-card-subtitle">新しい音楽を、一緒に見つけよう。</p>
-                        <p class="mutual-card-desc">AI時代の音楽ディスカバリー・キュレーションプラットフォーム。次世代のリスニング体験を提供。</p>
-                        <div class="mutual-card-footer">
-                            <span class="mutual-card-url">rezonate.ai</span>
-                            <span class="mutual-card-arrow">&rarr;</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 05 AISA Radio ALPS -->
-                <a href="https://aisa.radioalps.com/" target="_blank" rel="noopener noreferrer" class="mutual-link-card">
-                    <div class="mutual-card-media">
-                        <img src="assets/aisa_logo.png" alt="AISA Radio ALPS" class="mutual-banner-img" loading="lazy">
-                    </div>
-                    <div class="mutual-card-content">
-                        <div class="mutual-card-badge">
-                            <span class="badge-dot dot-cyan"></span>
-                            <span>BROADCAST / ラジオ局</span>
-                        </div>
-                        <h3 class="mutual-card-title">AISA Radio ALPS</h3>
-                        <p class="mutual-card-subtitle">AI & Indie Sound Archive</p>
-                        <p class="mutual-card-desc">世界中のインディー＆AIアーティストの楽曲をノンストップで配信するインターネットラジオ局。</p>
-                        <div class="mutual-card-footer">
-                            <span class="mutual-card-url">aisa.radioalps.com</span>
-                            <span class="mutual-card-arrow">&rarr;</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 06 COMEDIA -->
-                <a href="https://comedia-office.com/" target="_blank" rel="noopener noreferrer" class="mutual-link-card">
-                    <div class="mutual-card-media">
-                        <img src="assets/comedia_logo.png" alt="AIエンターテイメント企画団体COMEDIA" class="mutual-banner-img" loading="lazy">
-                    </div>
-                    <div class="mutual-card-content">
-                        <div class="mutual-card-badge">
-                            <span class="badge-dot dot-rose"></span>
-                            <span>PLANNING / 企画団体</span>
-                        </div>
-                        <h3 class="mutual-card-title">COMEDIA</h3>
-                        <p class="mutual-card-subtitle">AIエンターテイメント企画団体</p>
-                        <p class="mutual-card-desc">面白い企画から、新しい文化を生み出す。デジタル町おこしやYouTube・X連動イベント等を創出する企画団体。</p>
-                        <div class="mutual-card-footer">
-                            <span class="mutual-card-url">comedia-office.com</span>
-                            <span class="mutual-card-arrow">&rarr;</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container footer-inner">
-            <div class="footer-left">
-                <span class="footer-logo">Sonografica</span>
-                <span class="footer-tagline">Sono + Grafica</span>
-            </div>
-            <div class="footer-center">
-                <p>&copy; 2026 Sonografica</p>
-            </div>
-            <div class="footer-right">
-                <a href="mailto:bito.999.p@gmail.com">bito.999.p@gmail.com</a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-
-</html>
+  function frame() {
+    raf = 0;
+    if (!visible || document.hidden) return;
+    let busy = false;
+    if (opi < ops.length) {
+      for (let k = 0; k < 4 && opi < ops.length; k++) step();
+      if (opi >= ops.length) finish();
+      busy = true;
+    }
+    // drops spread for a moment, then dry and slowly fade back into the paper
+    dtx.globalCompositeOperation = "destination-out";
+    dtx.fillStyle = "rgba(0,0,0,.012)"; dtx.fillRect(0, 0, W, H);
+    dtx.globalCompositeOperation = "multiply";
+    for (const d of drops) {
+      d.age++;
+      const k = 1 + Math.sqrt(d.age) * (d.big ? .28 : .2);
+      glaze(dtx, deform(scale(d.base, d.x, d.y, k), 2, .16), d.rgb, d.age < 18 ? .05 : 0, d.age < 18 ? 1 : 0);
+    }
+    drops = drops.filter(d => d.age < 18);
+    raf = requestAnimationFrame(frame);
+  }
+  function start() { if (!raf && !reduceMotion) raf = requestAnimationFrame(frame); }
+  new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) start(); }).observe(stage);
+  document.addEventListener("visibilitychange", start);
+  let rt, lastW = 0;
+  addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { if (Math.abs(cv.offsetWidth - lastW) > 40) { lastW = cv.offsetWidth; plan(); start(); } }, 200); });
+  const go = () => { plan(); lastW = W; start(); layout(); req(); };
+  if (reduceMotion) hint.hidden = true;
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go();
+})();
+</script>
