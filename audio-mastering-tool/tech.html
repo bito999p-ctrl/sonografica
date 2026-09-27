@@ -3,370 +3,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AETHERMASTER // 技術仕様・DSPシグナルパス詳細</title>
+  <title>AetherMaster 5 に移転しました</title>
+  <!-- SEO & Redirect -->
+  <meta http-equiv="refresh" content="3; url=https://bito999p-ctrl.github.io/aether_master/">
+  <link rel="canonical" href="https://bito999p-ctrl.github.io/aether_master/">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" href="https://bito999p-ctrl.github.io/sonografica/favicon.png" type="image/png">
+  
+  <!-- Fonts & Styling -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css?v=6.0.0">
-  <link rel="icon" href="https://bito999p-ctrl.github.io/sonografica/favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
   <style>
-    .doc-container {
-      max-width: 950px;
-      width: 100%;
-      margin: 40px auto;
-      padding: 35px;
-      background: var(--panel-bg);
-      border: 1px solid var(--panel-border);
-      border-radius: 16px;
-      box-shadow: var(--panel-shadow);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    :root {
+      --bg-dark: #08090c;
+      --panel-bg: rgba(15, 18, 25, 0.7);
+      --accent-blue: #00f2fe;
+      --accent-purple: #4facfe;
+      --text-main: #f0f3f8;
+      --text-muted: #8b9bb4;
     }
-    .btn-back {
-      display: inline-flex;
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(79, 172, 254, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(0, 242, 254, 0.1) 0px, transparent 50%);
+      color: var(--text-main);
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--text-primary);
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: all var(--transition-speed);
-      margin-bottom: 30px;
-      cursor: pointer;
+      justify-content: center;
+      overflow: hidden;
     }
-    .btn-back:hover {
-      background: rgba(0, 242, 254, 0.1);
-      border-color: var(--accent-cyan);
-      color: var(--accent-cyan);
-      box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+    
+    .card {
+      background: var(--panel-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: fadeIn 0.8s ease-out;
     }
-    .doc-header {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 20px;
-      margin-bottom: 30px;
-    }
-    .doc-title {
-      font-size: 2.2rem;
+    
+    .logo {
       font-weight: 800;
-      background: linear-gradient(135deg, #fff 30%, var(--accent-cyan) 100%);
+      font-size: 1.8rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 25px;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
+      text-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
     }
-    .doc-subtitle {
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      line-height: 1.6;
+    
+    .spinner-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 30px 0;
     }
-    .section-title {
+    
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(0, 242, 254, 0.1);
+      border-top: 3px solid var(--accent-blue);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    h1 {
       font-size: 1.4rem;
-      font-weight: 700;
-      color: #fff;
-      margin-top: 45px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-left: 4px solid var(--accent-purple);
-      padding-left: 12px;
-    }
-    .section-title i {
-      color: var(--accent-purple);
-    }
-    p {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 18px;
-      font-size: 0.95rem;
-    }
-    ol, ul {
-      margin-left: 20px;
-      margin-bottom: 24px;
-    }
-    li {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 10px;
-      font-size: 0.95rem;
-    }
-    li strong {
-      color: #fff;
-    }
-    .highlight-card {
-      background: rgba(255, 255, 255, 0.015);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      padding: 22px;
-      margin: 24px 0;
-      line-height: 1.7;
-    }
-    .highlight-card h4 {
-      color: var(--accent-cyan);
-      margin-bottom: 10px;
-      font-size: 1.05rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .code-block {
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 16px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      color: #00f2fe;
-      margin: 16px 0;
-      overflow-x: auto;
-      line-height: 1.6;
-    }
-    .tech-spec-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 24px 0;
-      font-size: 0.88rem;
-    }
-    .tech-spec-table th {
-      background: rgba(255, 255, 255, 0.04);
-      color: #fff;
-      font-weight: 700;
-      text-align: left;
-      padding: 12px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-family: var(--font-tech);
-    }
-    .tech-spec-table td {
-      padding: 12px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      color: var(--text-secondary);
-      vertical-align: top;
-      line-height: 1.6;
-    }
-    .tech-spec-table tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
-    }
-    .tag-cyan {
-      display: inline-block;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: rgba(0, 242, 254, 0.1);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      color: #00f2fe;
-      font-size: 0.75rem;
-      font-family: var(--font-tech);
       font-weight: 600;
+      margin-bottom: 15px;
     }
-    @media (max-width: 768px) {
-      .doc-container {
-        padding: 20px;
-        margin: 15px auto;
-      }
-      .doc-title {
-        font-size: 1.8rem;
-      }
+    
+    p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+    
+    a {
+      display: inline-block;
+      color: var(--text-main);
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.4);
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <div class="doc-container">
-    <a href="index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> AetherMaster に戻る</a>
-    
-    <header class="doc-header">
-      <h1 class="doc-title">AetherMaster 技術仕様 & DSP分析 (v6.0.0)</h1>
-      <div class="doc-subtitle">Web Audio API 信号フロー、プレ・クリッパー、アカデミックEQ設計、非線形倍音伝達関数の音響物理仕様</div>
-    </header>
 
-    <section>
-      <p>AetherMaster は、最新のブラウザ標準である <strong>Web Audio API</strong> を用いて、クライアントサイド（ブラウザ内）だけで極めて低遅延・高音質なマスタリングを実行する仮想ハードウェア/DSPスイートです。</p>
-      <p>サーバーに音声を一切送信せず、ローカルのCPUとブラウザの専用オーディオスレッドを使用してリアルタイムにDSP処理を実行します。以下に、本ツールが採用している最新の音声信号パス（Signal Chain）と音響工学的スペックの詳細を解説します。</p>
-    </section>
-
-    <section>
-      <h2 class="section-title"><i class="fa-solid fa-route"></i> DSP シグナルパス (信号フロー全12ステージ)</h2>
-      <p>音声信号は、デコードされた <code>AudioBuffer</code> から再生（またはオフラインレンダリング）される際、以下の順序で直列・並列に接続された各DSPノードを通過します。</p>
-      
-      <table class="tech-spec-table">
-        <thead>
-          <tr>
-            <th style="width: 22%">ステージ</th>
-            <th style="width: 28%">使用ノード</th>
-            <th>処理概要と音響工学的目的</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>1. Input Gain & True Peak走査</strong></td>
-            <td><span class="tag-cyan">GainNode</span></td>
-            <td>L/R独立ピーク走査によりステレオ音源の真の最大振幅を検知。マスタリング回路への過入力を防ぎ、正確なヘッドルーム（-6.0 dBFS）を前段で確保します。</td>
-          </tr>
-          <tr>
-            <td><strong>2. Noise Cleaner (Rumble & Hiss)</strong></td>
-            <td><span class="tag-cyan">BiquadFilterNode</span> &times; 3, <span class="tag-cyan">WaveShaperNode</span>, <span class="tag-cyan">GainNode</span> &times; 2</td>
-            <td>
-              <strong>Rumble Cut (HPF)</strong>: 80Hz以下の空調振動や電源ハムを物理遮断。<br>
-              <strong>Hiss Reducer (2-Band Double-Shelf)</strong>: 9kHz以上のヒスを減衰させるハイシェルフと、16kHz以上のAir帯域を逆相復元するハイシェルフを直列接続。サイドチェーンエンベロープで動的にフラット（0dB）に戻し、無音時のサー音だけをカット。
-            </td>
-          </tr>
-          <tr>
-            <td><strong>3. Parallel Audiophile Saturator</strong></td>
-            <td><span class="tag-cyan">WaveShaperNode</span> (並列), <span class="tag-cyan">BiquadFilterNode</span> &times; 2, <span class="tag-cyan">GainNode</span> (Dry/Wet)</td>
-            <td>
-              真空管（TUBE）、磁気テープ（TAPE）、BJTソリッドステート（DRIVE）の3系統モデリング。<br>
-              <strong>サブベース保護回路 (220Hz HPF)</strong>: 歪み経路の手前で220Hz以下をカットし、キックやベースの巨大振幅による混変調歪み（IMD/モワつき）を100%防止。原音の芯とタイトさを保ったまま、中高域に上質な倍音だけを並列合算します。
-            </td>
-          </tr>
-          <tr>
-            <td><strong>4. 5-Band Academic EQ</strong></td>
-            <td><span class="tag-cyan">BiquadFilterNode</span> &times; 7</td>
-            <td>
-              ISO 226 等ラウドネス曲線（人間の耳の感度特性）に基づき、聴覚疲労を起こしやすいプレゼンス帯の過剰ブーストを廃止したプロ仕様設計。
-              <ul>
-                <li><code>eqLow</code>: 80Hz Low Shelf</li>
-                <li><code>eqLowMid</code>: 200Hz Peaking（温かみ・こもり制御）</li>
-                <li><code>kickPeaking</code>: 55Hz Narrow Peaking (Q=2.0, キック胴鳴り専用)</li>
-                <li><code>eqMid</code>: 1000Hz Peaking（ボーカルのボディ感）</li>
-                <li><code>eqMidHigh</code>: 4500Hz Peaking（声の子音・明瞭度）</li>
-                <li><code>eqHigh</code>: 9000Hz High Shelf</li>
-                <li><code>airShelf</code>: 15000Hz Ultra-High Shelf（空気感専用）</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td><strong>5. AI Sibilance Notch (De-esser)</strong></td>
-            <td><span class="tag-cyan">BiquadFilterNode</span> (Peaking, dynamic cut)</td>
-            <td>ボーカルのサ行（シビランス）を動的に除去。設定された周波数範囲から幾何平均中心周波数とQ値をリアルタイム自動算出し、ボーカルの艶を削ることなく痛いトゲだけを急峻に抑制します。</td>
-          </tr>
-          <tr>
-            <td><strong>6. Glue Compressor</strong></td>
-            <td><span class="tag-cyan">DynamicsCompressorNode</span></td>
-            <td>アナログスタイルのソフトニー（18dB）により、楽曲全体を1枚のマスターテープに接着（Glue）したような一体感を形成。キックの打頭を逃がすため、KICK PUNCH時はアタックが自動で+30ms遅延されます。</td>
-          </tr>
-          <tr>
-            <td><strong>7. M/S Stereo Imager</strong></td>
-            <td><span class="tag-cyan">ChannelSplitterNode</span>, <span class="tag-cyan">GainNode</span> &times; 4, <span class="tag-cyan">BiquadFilterNode</span> (Side HPF)</td>
-            <td>音源を Mid（センター）と Side（広がり）にマトリックス変換。ボーカル・キックのセンター定位（Mid=1.0）を維持しつつ、Sideの可変ハイパス（110Hz〜140Hz）で低音の位相打ち消しを完全に防止します。</td>
-          </tr>
-          <tr>
-            <td><strong>8. Maximizer Pre-Gain Boost</strong></td>
-            <td><span class="tag-cyan">GainNode</span></td>
-            <td>マキシマイザーの押し上げ量をデシベル単位で増幅する純粋なリニアゲインステージです。</td>
-          </tr>
-          <tr>
-            <td><strong>9. Pre-Limiter Soft Clipper</strong></td>
-            <td><span class="tag-cyan">WaveShaperNode</span> (65,536 samples)</td>
-            <td><strong>本ツールの核心技術</strong>。リミッターに入る直前で、ミリ秒未満の鋭い過渡ピーク（ドラムのアタックなど）を多項式ハイブリッド・ソフトニー曲線で自然に丸め込みます。リミッターの息継ぎ歪み（ポンピング）を根絶し、音圧とダイナミクスを両立します。</td>
-          </tr>
-          <tr>
-            <td><strong>10. Brickwall Limiter</strong></td>
-            <td><span class="tag-cyan">DynamicsCompressorNode</span></td>
-            <td>高速アタック（1.0ms）と適応型リリース（80ms）で動作するブリックウォールリミッター。3dBのクッション（Look-aheadエミュレーション）により、超過エネルギーを滑らかに制御します。</td>
-          </tr>
-          <tr>
-            <td><strong>11. Safety Soft-Clipper</strong></td>
-            <td><span class="tag-cyan">WaveShaperNode</span></td>
-            <td>最終段で発生しうるデジタルクリッピング（ビビリ音）を完全に防止する安全装置。振幅 0.96 (-0.35dB) までは完全透明、それを超える突発ピークのみを滑らかにサチュレーションさせます。</td>
-          </tr>
-          <tr>
-            <td><strong>12. Ceiling Gain</strong></td>
-            <td><span class="tag-cyan">GainNode</span></td>
-            <td>ストリーミング配信サイト（Spotify, Apple Music, YouTube等）で不可逆圧縮（AAC/MP3）された際のクリッピング（True Peak歪み）を防ぐため、最終天井を -1.0dBFS にマージン制御して完結します。</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <h2 class="section-title"><i class="fa-solid fa-code"></i> アナログモデリングの数学的伝達関数</h2>
-      <p>サチュレーターおよびプレ・クリッパーで使用されている <code>WaveShaper</code> 用の伝達関数（カスタムカーブ計算）は、音響工学の物理特性に基づき以下の代数式を用いてリアルタイムに生成されています。</p>
-      
-      <div class="code-block">
-// 1. Pre-Limiter Soft Clipper (65,536 samples / 連続微分可能C-infinityソフトニー・ドライブ)
-f(x) = x                                                   [Drive = 0dB (完全ビット透明バイパス)]
-f(x) = sgn(x) * ((1 - α) * |x| + α * (tanh(k * |x|) / tanh(k)))  [Drive > 0dB (k = 10^(Drive/20), α = Drive/6.0)]
-
-// 2. TUBE (三極真空管モデリング: 第2次偶数倍音主体 & DCオフセット完全相殺)
-f(x) = tanh(k * (x + 0.06)) - tanh(0.06 * k)   [k = 1.0 + (Drive / 100) * 4.0]
-
-// 3. TAPE (オープンリール磁気テープ: 第3次奇数倍音対称ヒステリシス)
-f(x) = tanh(k * x) / tanh(k)   [k = 0.5 + (Drive / 100) * 5.5]
-
-// 4. DRIVE (BJTディスクリート・コンソール: 直角クランプ全廃・マスタリング級ドライブ)
-f(x) = tanh(k * x) / tanh(k)   [k = 0.8 + (Drive / 100) * 4.5]
-      </div>
-    </section>
-
-    <section>
-      <h2 class="section-title"><i class="fa-solid fa-pepper-hot"></i> AUDIO SPICES 内部パラメーター連動仕様</h2>
-      <p>全8種の AUDIO SPICES が内部で操作する Web Audio API パラメーターの一覧です。すべての処理は加算・減算オフセットとして安全にクランプされ、原曲の音質を損なうことなく音楽的な変化をもたらします。</p>
-
-      <table class="tech-spec-table">
-        <thead>
-          <tr>
-            <th style="width: 25%">スパイス名</th>
-            <th style="width: 35%">連動パラメーター</th>
-            <th>音響工学的動作</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>AIR TREBLE</strong></td>
-            <td><code>airShelfGain: +1.8 dB</code></td>
-            <td>15,000Hz High Shelf (Q=0.707) で超高域のみを持ち上げ、シビランス（8k〜10kHz）を刺激せずに空気感を付加。</td>
-          </tr>
-          <tr>
-            <td><strong>KICK PUNCH</strong></td>
-            <td><code>kickPeakingGain: +3.0 dB</code><br><code>compAttack: +0.030 s</code></td>
-            <td>55Hz Peaking (Q=2.0) でキックの胴鳴りをブーストし、コンプのアタックを遅らせて打頭のトランジェントを逃がす。</td>
-          </tr>
-          <tr>
-            <td><strong>PULTEC BASS</strong></td>
-            <td><code>eqLowGain: +1.2 dB</code><br><code>eqLowMidGain: -1.0 dB</code></td>
-            <td>80Hz Low Shelf でサブベースを補強しつつ、200Hz Peaking で濁り（泥水感）をカットする伝説のPultecトリック。</td>
-          </tr>
-          <tr>
-            <td><strong>VOCAL PRESENCE</strong></td>
-            <td><code>eqMidHighGain: +1.0 dB</code></td>
-            <td>4,500Hz Peaking (Q=1.0) で子音と声の明瞭度を引き出し、ボーカルをセンター手前に浮立たせる。</td>
-          </tr>
-          <tr>
-            <td><strong>SILKY SMOOTH</strong></td>
-            <td><code>eqMidHighGain: -1.0 dB</code></td>
-            <td>3,800Hz〜4,500Hz のハーシュネス帯をスクープし、デジタル特有のトゲを丸めて聴覚疲労を低減。</td>
-          </tr>
-          <tr>
-            <td><strong>STEREO WIDER</strong></td>
-            <td><code>stereoWidth: +0.18</code><br><code>sideHighPassFreq: +30 Hz (140Hz)</code></td>
-            <td>広がり幅を安全マージン（+18%）で拡大し、同時にSideのハイパス周波数を140Hzに引き上げて低音の位相崩れを防止。</td>
-          </tr>
-          <tr>
-            <td><strong>ANALOG WARMTH</strong></td>
-            <td><code>satEnabled: true</code><br><code>satDrive: +15% / satMix: +18%</code></td>
-            <td>真空管（TUBE）第2次偶数倍音を付加。220Hz HPFにより低域を濁らせず、中高域に温かい太さを追加。</td>
-          </tr>
-          <tr>
-            <td><strong>LOUDNESS PUSH</strong></td>
-            <td><code>clipperDrive: +1.5 dB</code><br><code>limiterBoost: +1.5 dB</code></td>
-            <td>プレ・クリッパーとリミッターが1.5dBずつ分担して押し込み、ポンピングを起こさずに音圧を底上げ。</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <footer class="app-footer" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
-      <div class="footer-links">
-        <a href="index.html"><i class="fa-solid fa-house"></i> AetherMaster ホーム</a>
-        <span class="separator">|</span>
-        <a href="guide.html"><i class="fa-solid fa-book-open"></i> 総合ユーザーズガイド</a>
-        <span class="separator">|</span>
-        <a href="updates.html"><i class="fa-solid fa-clock-rotate-left"></i> 更新記録</a>
-      </div>
-      <p>&copy; 2026 AETHERMASTER. All rights reserved.</p>
-    </footer>
+  <div class="card">
+    <div class="logo">AETHERMASTER 5</div>
+    <h1>新しいマスタリングツールへ移転しました</h1>
+    <div class="spinner-box">
+      <div class="spinner"></div>
+    </div>
+    <p>
+      AetherMaster は新エンジン「AetherMaster 5」になりました。<br>
+      曲を読み込むだけで、AIが自動で仕上げます。<br>
+      3秒後に自動的に新しいページへ移動します。
+    </p>
+    <a href="https://bito999p-ctrl.github.io/aether_master/">今すぐ移動する</a>
   </div>
+
+  <script>setTimeout(function () { location.replace('https://bito999p-ctrl.github.io/aether_master/'); }, 3000);</script>
 </body>
 </html>
