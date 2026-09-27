@@ -179,6 +179,21 @@
   .play:hover { transform: translateY(-2px); }
   .play i { width: 22px; height: 22px; border-radius: 50%; background: var(--pig); display: grid; place-items: center; }
   .play i::before { content: ""; border-left: 7px solid #fff; border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent; margin-left: 2px; }
+  .tl { border-top: 1px solid var(--rule); max-width: 520px; }
+  .tl summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 12px 0; font: 500 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+  .tl summary::-webkit-details-marker { display: none; }
+  .tl summary b { font-weight: 500; color: var(--pig); }
+  .tl summary::after { content: "+"; margin-left: auto; font-size: 15px; transition: transform .4s var(--ease); }
+  .tl[open] summary::after { transform: rotate(45deg); }
+  .tl summary:hover { color: var(--ink); }
+  .tl ol { list-style: none; margin: 0 0 8px; padding: 0 6px 0 0; max-height: min(320px, 42vh); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+  .tl button { width: 100%; display: grid; grid-template-columns: 30px 1fr 12px; align-items: center; gap: 8px; padding: 9px 4px; border: 0; border-bottom: 1px solid color-mix(in srgb, var(--rule) 60%, transparent); background: none; cursor: pointer; text-align: left; font: 400 13.5px/1.4 var(--body); color: var(--ink-2); transition: color .2s, background .2s; }
+  .tl button:hover { color: var(--ink); background: color-mix(in srgb, var(--pig) 8%, transparent); }
+  .tl .n { font: 400 10.5px/1 var(--mono); color: var(--ink-3); }
+  .tl .tt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tl button.now { color: var(--ink); font-weight: 500; }
+  .tl button.now .n { color: var(--pig); }
+  .tl button.now i { width: 8px; height: 8px; border-radius: 50%; background: var(--pig); }
   .p-links { display: flex; gap: 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
   .p-links a { text-decoration: none; color: var(--ink-2); border-bottom: 1px solid var(--rule); }
   .p-links a.sp { color: #1ed760; border-color: rgba(30,215,96,.4); }
@@ -475,6 +490,10 @@ track.innerHTML = ARTISTS.map((a, i) => `
         ${SUNO[a.id]?.length ? `<button class="play" type="button" data-id="${a.id}"><i></i>Listen</button>` : ""}
         <div class="p-links">${a.spotify ? `<a class="sp" href="${a.spotify}" target="_blank" rel="noopener">Spotify</a>` : ""}<a href="${a.yt}" target="_blank" rel="noopener">YouTube</a><a href="${a.suno}" target="_blank" rel="noopener">Suno</a></div>
       </div>
+      ${SUNO[a.id]?.length ? `<details class="tl">
+        <summary>Tracks <b>${SUNO[a.id].length}</b></summary>
+        <ol>${SUNO[a.id].map((t, k) => `<li><button type="button" data-tid="${t.id}"><span class="n">${pad(k + 1)}</span><span class="tt">${esc(t.t)}</span><i></i></button></li>`).join("")}</ol>
+      </details>` : ""}
     </div>
   </article>`).join("");
 const panels = [...track.children];
@@ -617,6 +636,8 @@ const setIcon = () => {
 const load = (i, animate) => {
   cur = (i + LIST.length) % LIST.length;
   const t = LIST[cur];
+  document.querySelectorAll(".tl button.now").forEach(x => x.classList.remove("now"));
+  document.querySelectorAll(`.tl button[data-tid="${t.id}"]`).forEach(x => x.classList.add("now"));
   audio.src = t.src;
   player.style.setProperty("--pig", t.pig);
   document.getElementById("p-title").textContent = t.t;
@@ -643,6 +664,12 @@ document.querySelector(".p-rail").addEventListener("click", e => {
 });
 document.getElementById("p-btn").addEventListener("click", () => audio.paused ? play() : audio.pause());
 track.addEventListener("click", e => {
+  const tb = e.target.closest(".tl button");
+  if (tb) {
+    load(LIST.findIndex(t => t.id === tb.dataset.tid), true); play();
+    window.dispatchEvent(new CustomEvent("pigment", { detail: LIST[cur].pig }));
+    return;
+  }
   const b = e.target.closest(".play"); if (!b) return;
   const a = ARTISTS.find(x => x.id === b.dataset.id);
   load(LIST.indexOf(LIST.find(t => t.id === newest(a.id).id)), true); play();
