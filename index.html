@@ -214,7 +214,6 @@
     .p-art { width: 78%; justify-self: start; }
     .p-name { font-size: clamp(44px, 13vw, 72px); }
   }
-  @media (prefers-reduced-motion: reduce) { .p-art, .p-text > * { opacity: 1; transform: none; transition: none; } }
 
   /* Scene 3: statement, characters light up with scroll */
   .scene-words { height: 150vh; }
@@ -258,7 +257,6 @@
   .spectrum { position: relative; height: clamp(110px, 13vw, 170px); margin-bottom: 6px; display: flex; align-items: flex-end; gap: 3px; }
   .spectrum i { flex: 1; height: 100%; border-radius: 2px 2px 0 0; transform-origin: bottom; background: linear-gradient(to top, #1f5fa8, #3a9cc4 45%, #c8457e 80%, #e27a22); opacity: .85; animation: eq 1.6s ease-in-out infinite alternate; }
   @keyframes eq { from { transform: scaleY(var(--lo)); } to { transform: scaleY(var(--hi)); } }
-  @media (prefers-reduced-motion: reduce) { .spectrum i { animation: none; transform: scaleY(var(--hi)); } }
   .links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 2vw, 24px); }
   @media (max-width: 960px) { .links { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 600px) { .links { grid-template-columns: 1fr; } }
@@ -312,9 +310,6 @@
   @keyframes pop { from { transform: scale(.7) rotate(-6deg); opacity: .3; } }
   @media (max-width: 480px) { .p-bar span { display: none; } .p-bar { grid-template-columns: 1fr; } }
 
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; }
-  }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -476,7 +471,8 @@ const ARTISTS = [
 ];
 const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+// motion is part of the piece, so we play it even when the OS asks for reduced motion (the user wants it)
+const reduceMotion = false;
 const pad = n => String(n).padStart(2, "0");
 
 /* ---------- build DOM ---------- */
