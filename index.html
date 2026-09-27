@@ -228,7 +228,8 @@
   .reveal span.on { opacity: 1; }
   @media (max-width: 800px) {
     .scene-words .stage { grid-template-columns: 1fr; grid-template-rows: auto 1fr; align-content: center; }
-    .logo-wrap img { max-width: 180px; }
+    /* the mark has ~14% transparent padding top and bottom; trim it so a bigger logo still fits */
+    .logo-wrap img { width: min(80vw, 360px); max-width: none; margin-block: calc(min(80vw, 360px) * -.12); }
     .word { margin-bottom: 16px; }
   }
 
